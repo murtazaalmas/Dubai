@@ -12,5 +12,5 @@ export const routes: Routes = [
   { path: 'set-up', component: SetUpComponent },
   { path: 'business/beauty-in-dubai', component: BeautySpaCardComponent },
   { path: 'business/car-in-dubai', component: BusinessCardComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' } 
 ];
