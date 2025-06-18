@@ -6,8 +6,8 @@ import { BeautySpaCardComponent } from './Business/beauty-spa-card/beauty-spa-ca
 import { BusinessCardComponent } from './Business/business-card/business-card.component';
 
 export const routes: Routes = [
-  { path: '', component: AccountManagementComponent },
-  { path: 'login', component: AccountManagementComponent },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'set-up', component: SetUpComponent },
   { path: 'business/beauty-in-dubai', component: BusinessCardComponent },
