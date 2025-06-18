@@ -655,7 +655,7 @@
         transition: all 0.3s ease;
 
         &:hover {
-          background-color: darken(#FFD700, 10%);
+          background-color: #FFD700;
           transform: translateY(-2px);
         }
       }
