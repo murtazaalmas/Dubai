@@ -1,0 +1,88 @@
+<div class="setup-container">
+    <div class="progress-barDiv">
+        <div class="step" [class.active]="isStepActive(1)">
+            <div class="icon"><i class="fas fa-user"></i></div>
+            <p>About You</p>
+        </div>
+        <div class="step" [class.active]="isStepActive(2)">
+            <div class="icon"><i class="fas fa-building"></i></div>
+            <p>About Your Business</p>
+        </div>
+        <div class="step" [class.active]="isStepActive(3)">
+            <div class="icon"><i class="fas fa-clipboard-list"></i></div>
+            <p>About Your Needs</p>
+        </div>
+        <div class="step" [class.active]="isStepActive(4)">
+            <div class="icon"><i class="fas fa-check"></i></div>
+            <p>Done</p>
+        </div>
+    </div>
+
+    <div class="form-box">
+        <form [formGroup]="form1" *ngIf="currentStep === 1">
+            <h2>Welcome to ProfitBooks !</h2>
+            <p class="subheading">Let us understand a bit more about you…</p>
+            <label>Full Name <span class="required">*</span></label>
+            <div class="name-inputs">
+                <input type="text" formControlName="firstName" placeholder="First Name" required />
+                <input type="text" formControlName="lastName" placeholder="Last Name" />
+            </div>
+
+            <label for="state">State</label>
+            <select id="state" formControlName="state">
+                <option>Punjab</option>
+            </select>
+
+            <label for="city">City</label>
+            <select id="city" formControlName="city">
+                <option>Gujranwala</option>
+            </select>
+
+            <div class="button-container">
+                <button type="button" class="btn" (click)="nextStep()">Next</button>
+            </div>
+        </form>
+
+        <form [formGroup]="form2" *ngIf="currentStep === 2">
+            <h2>About Your Business</h2>
+            <p class="subheading">Tell us about your business…</p>
+            <label>Business Name <span class="required">*</span></label>
+            <input type="text" formControlName="businessName" placeholder="Business Name" required />
+
+            <label for="businessType">Business Type</label>
+            <select id="businessType" formControlName="businessType">
+                <option>Retail</option>
+                <option>Service</option>
+            </select>
+
+            <div class="button-container">
+                <button type="button" class="btn" (click)="previousStep()">Previous</button>
+                <button type="button" class="btn" (click)="nextStep()">Next</button>
+            </div>
+        </form>
+
+        <form [formGroup]="form3" *ngIf="currentStep === 3">
+            <h2>About Your Needs</h2>
+            <p class="subheading">What do you need from us…</p>
+            <label>Needs <span class="required">*</span></label>
+            <input type="text" formControlName="needs" placeholder="Your Needs" required />
+
+            <div class="button-container">
+                <button type="button" class="btn" (click)="previousStep()">Previous</button>
+                <button type="button" class="btn" (click)="nextStep()">Next</button>
+            </div>
+        </form>
+
+        <form [formGroup]="form4" *ngIf="currentStep === 4">
+            <h2>Done</h2>
+            <p class="subheading">Thank you for your information…</p>
+            <label>Confirmation <span class="required">*</span></label>
+            <input type="text" formControlName="confirmation" placeholder="Confirm" required />
+
+            <div class="button-container">
+                <button type="button" class="btn" (click)="previousStep()">Previous</button>
+                <button type="submit" class="btn" (click)="onSubmit()">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

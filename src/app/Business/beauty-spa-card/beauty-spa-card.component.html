@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+
+<div class="beauty-spa-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Beauty & Wellness in Dubai</h1>
+      <p>Discover the finest beauty services and wellness centers in Dubai</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Categories Sidebar -->
+    <aside class="categories-sidebar">
+      <h2>Categories</h2>
+      <ul class="category-list">
+        <li *ngFor="let category of categories" 
+            [class.active]="selectedCategory?.id === category.id"
+            (click)="selectCategory(category)">
+          <i [class]="category.icon"></i>
+          <span class="category-name">{{ category.name }}</span>
+          <span class="category-count">({{ category.count }})</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Business Cards Section -->
+    <section class="business-section">
+      <div class="business-grid">
+        <div *ngFor="let card of businessCards" 
+             class="business-card"
+             [class.selected]="selectedCategory && card.categoryId === selectedCategory.id">
+          <!-- Business Image -->
+          <div class="business-image">
+            <img [src]="card.image" [alt]="card.name">
+          </div>
+
+          <!-- Business Info -->
+          <div class="business-info">
+            <h3>{{ card.name }}</h3>
+            <div class="business-meta">
+              <div class="rating">
+                <i *ngFor="let star of getRatingStars(card.rating)" [class]="star"></i>
+                <span>{{ card.rating }}</span>
+              </div>
+              <div class="price">{{ card.price }}</div>
+            </div>
+            <div class="location">
+              <i class="fas fa-map-marker-alt"></i>
+              {{ card.location }}, {{ card.city }}
+            </div>
+            <div class="phone">
+              <i class="fas fa-phone"></i>
+              {{ card.phone }}
+            </div>
+            <div class="features">
+              <span *ngFor="let feature of card.features" class="feature-tag">
+                {{ feature }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="business-actions">
+            <button class="view-details" (click)="viewDetails(card)">
+              <i class="fas fa-info-circle"></i>
+              View Details
+            </button>
+            <button class="enquire-now" (click)="enquireNow(card)">
+              <i class="fas fa-envelope"></i>
+              Enquire Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div> 

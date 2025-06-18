@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+
+<div class="car-rentals-container">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Car Rentals in Dubai</h1>
+      <p>Find the perfect car for your Dubai adventure</p>
+    </div>
+  </div>
+
+  <!-- Main Content Section -->
+  <div class="main-content">
+    <!-- Categories Sidebar -->
+    <div class="categories-sidebar">
+      <h2>Categories</h2>
+      <div class="category-list">
+        <div class="category-item" *ngFor="let category of categories"
+          [class.active]="selectedCategory?.id === category.id" (click)="selectCategory(category)">
+          <i [class]="category.icon"></i>
+          <div class="category-info">
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.count }} listings</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rental Cards Section -->
+    <div class="rentals-section">
+      <h2>{{ selectedCategory ? selectedCategory.name : 'All Listings' }}</h2>
+      <div class="rentals-grid-main">
+        <div class="rentals-grid">
+          <div class="rental-card" *ngFor="let rental of carRentals">
+            <!-- Left: Image -->
+            <div class="rental-image-section">
+              <img [src]="rental.image" [alt]="rental.name">
+            </div>
+
+            <!-- Middle: Content -->
+            <div class="rental-info-section">
+              <h3>{{ rental.name }}</h3>
+              <div class="rental-meta">
+                <div class="rating">
+                  <i *ngFor="let star of getRatingStars(rental.rating)" [class]="star"></i>
+                  <span>{{ rental.rating }}</span>
+                </div>
+                <div class="price">{{ rental.price }}</div>
+              </div>
+              <div class="rental-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{ rental.location }}, {{ rental.city }}</span>
+              </div>
+              <div class="rental-phone">
+                <i class="fas fa-phone"></i>
+                <span>{{ rental.phone }}</span>
+              </div>
+              <div class="rental-features">
+                <span *ngFor="let feature of rental.features">{{ feature }}</span>
+              </div>
+            </div>
+
+            <!-- Right: Buttons -->
+            <div class="rental-actions-section">
+              <button class="btn-view" (click)="viewDetails(rental)">View Details</button>
+              <button class="btn-enquire" (click)="enquireNow(rental)">Enquire Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
