@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Common variables
 $primary-color: #1f2937;
 $accent-color: #facc15;
@@ -252,7 +254,7 @@ $transition-base: all 0.3s ease;
       border: none;
 
       &:hover {
-        background-color: darken($accent-color, 10%);
+        background-color: color.adjust($accent-color, $lightness: -10%);
       }
     }
   }
@@ -657,7 +659,7 @@ $transition-base: all 0.3s ease;
         transition: all 0.3s ease;
 
         &:hover {
-          background-color: darken(#FFD700, 10%);
+          background-color: color.adjust(#FFD700, $lightness: -10%);
           transform: translateY(-2px);
         }
       }
