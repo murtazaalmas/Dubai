@@ -1,228 +1,93 @@
-import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from '../../navbar/navbar.component';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../../navbar/navbar.component';
 
 interface Category {
   id: number;
   name: string;
-  count: number;
   icon: string;
+  count: number;
 }
 
-interface BusinessCard {
+interface BeautySpa {
   id: number;
   name: string;
   image: string;
+  price: string;
   rating: number;
   location: string;
   city: string;
   phone: string;
   features: string[];
+  description: string;
   categoryId: number;
-  price: string;
 }
 
 @Component({
   selector: 'app-beauty-spa-card',
+  standalone: true,
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './beauty-spa-card.component.html',
-  styleUrls: ['./beauty-spa-card.component.scss'],
-  imports: [NavbarComponent, CommonModule],
-  standalone: true
+  styleUrl: './beauty-spa-card.component.scss'
 })
-export class BeautySpaCardComponent implements OnInit {
+export class BeautySpaCardComponent {
+  selectedCategory: Category | null = null;
+
   categories: Category[] = [
-    { id: 1, name: 'Perfume Stores', count: 675, icon: 'fas fa-spray-can' },
-    { id: 2, name: 'Beauty Salons', count: 558, icon: 'fas fa-cut' },
-    { id: 3, name: 'Cosmetic Stores', count: 519, icon: 'fas fa-pump-soap' },
-    { id: 4, name: "Men's Salon", count: 470, icon: 'fas fa-user-tie' },
-    { id: 5, name: 'Beauty Parlours', count: 310, icon: 'fas fa-store' },
-    { id: 6, name: 'Massage Centers', count: 247, icon: 'fas fa-hands' },
-    { id: 7, name: 'Hairdressers', count: 178, icon: 'fas fa-cut' },
-    { id: 8, name: 'Spa Centers', count: 177, icon: 'fas fa-spa' },
-    { id: 9, name: 'Beauty Product Suppliers', count: 133, icon: 'fas fa-truck' },
-    { id: 10, name: "Women's Salon", count: 111, icon: 'fas fa-female' },
-    { id: 11, name: 'Laser Treatments', count: 97, icon: 'fas fa-laser' },
-    { id: 12, name: 'Nails Salons', count: 90, icon: 'fas fa-hand-sparkles' }
+    { id: 1, name: 'Spa Centers', icon: 'fas fa-spa', count: 150 },
+    { id: 2, name: 'Massage Centers', icon: 'fas fa-hands', count: 200 },
+    { id: 3, name: 'Beauty Salons', icon: 'fas fa-cut', count: 300 },
+    { id: 4, name: 'Perfume Stores', icon: 'fas fa-spray-can-sparkles', count: 120 },
+    { id: 5, name: 'Cosmetic Stores', icon: 'fas fa-pump-soap', count: 180 },
+    { id: 6, name: 'Laser Treatments', icon: 'fas fa-wand-magic-sparkles', count: 90 },
+    { id: 7, name: 'Nails Salons', icon: 'fas fa-hand-sparkles', count: 250 },
+    { id: 8, name: 'Women\'s Salon', icon: 'fas fa-female', count: 280 },
+    { id: 9, name: 'Men\'s Salon', icon: 'fas fa-male', count: 150 }
   ];
 
-  businessCards: BusinessCard[] = [
-    // Perfume Stores
+  beautySpas: BeautySpa[] = [
     {
       id: 1,
-      name: 'Arabian Perfumes',
-      image: 'assets/images/perfume.jpg',
-      rating: 4.9,
-      location: 'Dubai Mall',
-      city: 'Dubai',
-      phone: '+971 4 345 6789',
-      features: ['Luxury Perfumes', 'Oud', 'Custom Scents', 'Gift Sets'],
-      categoryId: 1,
-      price: 'AED 100-2000'
-    },
-    {
-      id: 2,
-      name: 'Royal Fragrances',
-      image: 'assets/images/perfume2.jpg',
-      rating: 4.8,
-      location: 'Mall of Emirates',
-      city: 'Dubai',
-      phone: '+971 4 456 7890',
-      features: ['International Brands', 'Arabic Scents', 'Perfume Making', 'VIP Service'],
-      categoryId: 1,
-      price: 'AED 200-3000'
-    },
-    // Beauty Salons
-    {
-      id: 3,
-      name: 'Elite Beauty Salon',
-      image: 'assets/images/salon.jpg',
-      rating: 4.8,
-      location: 'City Walk',
-      city: 'Dubai',
-      phone: '+971 4 456 7890',
-      features: ['Hair Styling', 'Makeup', 'Skin Care', 'Bridal Services'],
-      categoryId: 2,
-      price: 'AED 150-800'
-    },
-    // Cosmetic Stores
-    {
-      id: 4,
-      name: 'Glamour Cosmetics',
-      image: 'assets/images/cosmetics.jpg',
-      rating: 4.6,
-      location: 'Mall of Emirates',
-      city: 'Dubai',
-      phone: '+971 4 567 8901',
-      features: ['Makeup', 'Skincare', 'Fragrances', 'Beauty Tools'],
-      categoryId: 3,
-      price: 'AED 50-500'
-    },
-    // Men's Salon
-    {
-      id: 5,
-      name: 'Gentlemen\'s Grooming',
-      image: 'assets/images/mens-salon.jpg',
-      rating: 4.7,
-      location: 'Business Bay',
-      city: 'Dubai',
-      phone: '+971 4 678 9012',
-      features: ['Haircut', 'Shave', 'Facial', 'Massage'],
-      categoryId: 4,
-      price: 'AED 100-400'
-    },
-    // Beauty Parlours
-    {
-      id: 6,
-      name: 'Royal Beauty Parlour',
-      image: 'assets/images/parlour.jpg',
-      rating: 4.7,
-      location: 'Jumeirah',
-      city: 'Dubai',
-      phone: '+971 4 789 0123',
-      features: ['Hair Care', 'Skin Treatments', 'Nail Art', 'Bridal Makeup'],
-      categoryId: 5,
-      price: 'AED 200-1000'
-    },
-    // Massage Centers
-    {
-      id: 7,
-      name: 'Tranquility Massage',
-      image: 'assets/images/massage.jpg',
-      rating: 4.8,
-      location: 'Downtown Dubai',
-      city: 'Dubai',
-      phone: '+971 4 890 1234',
-      features: ['Swedish Massage', 'Deep Tissue', 'Aromatherapy', 'Hot Stone'],
-      categoryId: 6,
-      price: 'AED 200-800'
-    },
-    // Hairdressers
-    {
-      id: 8,
-      name: 'Style Studio',
-      image: 'assets/images/hairdresser.jpg',
-      rating: 4.7,
-      location: 'Dubai Marina',
-      city: 'Dubai',
-      phone: '+971 4 901 2345',
-      features: ['Haircuts', 'Coloring', 'Styling', 'Extensions'],
-      categoryId: 7,
-      price: 'AED 150-600'
-    },
-    // Spa Centers
-    {
-      id: 9,
-      name: 'Dubai Luxury Spa',
-      image: 'assets/images/spa.jpg',
+      name: 'Luxury Spa & Wellness',
+      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3BhfGVufDB8fDB8fHww&w=1000&q=80',
+      price: 'AED 200-1000',
       rating: 4.8,
       location: 'Downtown Dubai',
       city: 'Dubai',
       phone: '+971 4 123 4567',
       features: ['Massage', 'Facial', 'Body Treatment', 'Steam Room'],
-      categoryId: 8,
-      price: 'AED 200-1000'
+      description: 'Luxury spa offering premium wellness treatments and relaxation services.',
+      categoryId: 1
     },
-    // Beauty Product Suppliers
     {
-      id: 10,
-      name: 'Beauty Supply Co.',
-      image: 'assets/images/supplier.jpg',
-      rating: 4.6,
-      location: 'Al Quoz',
+      id: 2,
+      name: 'Zen Massage Center',
+      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFzc2FnZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+      price: 'AED 150-500',
+      rating: 4.7,
+      location: 'Dubai Marina',
       city: 'Dubai',
       phone: '+971 4 234 5678',
-      features: ['Wholesale', 'Retail', 'Professional Products', 'Equipment'],
-      categoryId: 9,
-      price: 'AED 50-5000'
+      features: ['Thai Massage', 'Deep Tissue', 'Reflexology', 'Aromatherapy'],
+      description: 'Professional massage center specializing in various massage techniques.',
+      categoryId: 2
     },
-    // Women's Salon
     {
-      id: 11,
-      name: 'Ladies Beauty Lounge',
-      image: 'assets/images/womens-salon.jpg',
-      rating: 4.8,
-      location: 'City Walk',
+      id: 3,
+      name: 'Glamour Beauty Salon',
+      image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXR5JTIwc2Fsb258ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+      price: 'AED 100-800',
+      rating: 4.6,
+      location: 'Jumeirah',
       city: 'Dubai',
       phone: '+971 4 345 6789',
-      features: ['Hair Styling', 'Makeup', 'Nail Care', 'Skin Treatments'],
-      categoryId: 10,
-      price: 'AED 200-900'
-    },
-    // Laser Treatments
-    {
-      id: 12,
-      name: 'Skin & Laser Clinic',
-      image: 'assets/images/laser.jpg',
-      rating: 4.9,
-      location: 'Dubai Healthcare City',
-      city: 'Dubai',
-      phone: '+971 4 456 7890',
-      features: ['Hair Removal', 'Skin Rejuvenation', 'Acne Treatment', 'Anti-aging'],
-      categoryId: 11,
-      price: 'AED 300-2000'
-    },
-    // Nails Salons
-    {
-      id: 13,
-      name: 'Nail Art Studio',
-      image: 'assets/images/nails.jpg',
-      rating: 4.7,
-      location: 'Dubai Mall',
-      city: 'Dubai',
-      phone: '+971 4 567 8901',
-      features: ['Manicure', 'Pedicure', 'Nail Art', 'Gel Polish'],
-      categoryId: 12,
-      price: 'AED 100-400'
+      features: ['Hair Styling', 'Makeup', 'Facial', 'Manicure'],
+      description: 'Full-service beauty salon offering comprehensive beauty treatments.',
+      categoryId: 3
     }
   ];
 
-  selectedCategory: Category | null = null;
-
-  constructor() { }
-
-  ngOnInit(): void { }
-
-  selectCategory(category: Category): void {
+  selectCategory(category: Category) {
     this.selectedCategory = category;
   }
 
@@ -237,19 +102,21 @@ export class BeautySpaCardComponent implements OnInit {
     if (hasHalfStar) {
       stars.push('fas fa-star-half-alt');
     }
-    while (stars.length < 5) {
+    const emptyStars = 5 - stars.length;
+    for (let i = 0; i < emptyStars; i++) {
       stars.push('far fa-star');
     }
+
     return stars;
   }
 
-  viewDetails(card: BusinessCard): void {
+  viewDetails(spa: BeautySpa) {
     // Implement view details functionality
-    console.log('View details:', card);
+    console.log('View details for:', spa.name);
   }
 
-  enquireNow(card: BusinessCard): void {
+  enquireNow(spa: BeautySpa) {
     // Implement enquiry functionality
-    console.log('Enquire now:', card);
+    console.log('Enquire about:', spa.name);
   }
 } 
