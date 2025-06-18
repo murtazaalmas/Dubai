@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'login', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'set-up', component: SetUpComponent },
-  { path: 'business/beauty-in-dubai', component: BusinessCardComponent },
+  { path: 'business/beauty-in-dubai', component: BeautySpaCardComponent },
   { path: 'business/car-in-dubai', component: BusinessCardComponent },
   { path: '**', redirectTo: '' }
 ];
