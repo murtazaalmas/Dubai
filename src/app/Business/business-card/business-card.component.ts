@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../navbar/navbar.component';
+import { CardSectionComponent } from '../card-section/card-section.component';
 
 interface CarRental {
   id: number;
@@ -25,13 +26,14 @@ interface Category {
 
 @Component({
   selector: 'app-business-card',
-  imports: [CommonModule, NavbarComponent],
+  standalone: true,
+  imports: [CommonModule, CardSectionComponent],
   templateUrl: './business-card.component.html',
   styleUrl: './business-card.component.scss'
 })
 export class BusinessCardComponent {
-
   selectedCategory: Category | null = null;
+  filteredRentals: CarRental[] = [];
 
   categories: Category[] = [
     { id: 1, name: 'Auto Parts Stores', icon: 'fas fa-cogs', count: 629 },
@@ -821,15 +823,14 @@ export class BusinessCardComponent {
     }
   ];
 
-  get carRentals(): CarRental[] {
-    if (!this.selectedCategory) {
-      return this.allRentals;
-    }
-    return this.allRentals.filter(rental => rental.categoryId === this.selectedCategory?.id);
+  ngOnInit() {
+    // Initialize with all rentals
+    this.filteredRentals = this.allRentals;
   }
 
-  selectCategory(category: Category) {
+  onCategorySelect(category: Category) {
     this.selectedCategory = category;
+    this.filteredRentals = this.allRentals.filter(rental => rental.categoryId === category.id);
   }
 
   getRatingStars(rating: number): string[] {
@@ -852,12 +853,10 @@ export class BusinessCardComponent {
   }
 
   viewDetails(rental: CarRental) {
-    // Implement view details functionality
     console.log('View details for:', rental.name);
   }
 
   enquireNow(rental: CarRental) {
-    // Implement enquiry functionality
     console.log('Enquire about:', rental.name);
   }
 } 

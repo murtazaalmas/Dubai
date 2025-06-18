@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../navbar/navbar.component';
+import { CardSectionComponent } from '../card-section/card-section.component';
 
 interface Category {
   id: number;
@@ -26,12 +27,13 @@ interface BeautySpa {
 @Component({
   selector: 'app-beauty-spa-card',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, CardSectionComponent],
   templateUrl: './beauty-spa-card.component.html',
   styleUrl: './beauty-spa-card.component.scss'
 })
 export class BeautySpaCardComponent {
   selectedCategory: Category | null = null;
+  filteredSpas: BeautySpa[] = [];
 
   categories: Category[] = [
     { id: 1, name: 'Spa Centers', icon: 'fas fa-spa', count: 150 },
@@ -87,8 +89,14 @@ export class BeautySpaCardComponent {
     }
   ];
 
-  selectCategory(category: Category) {
+  ngOnInit() {
+    // Initialize with all spas
+    this.filteredSpas = this.beautySpas;
+  }
+
+  onCategorySelect(category: Category) {
     this.selectedCategory = category;
+    this.filteredSpas = this.beautySpas.filter(spa => spa.categoryId === category.id);
   }
 
   getRatingStars(rating: number): string[] {
@@ -111,12 +119,10 @@ export class BeautySpaCardComponent {
   }
 
   viewDetails(spa: BeautySpa) {
-    // Implement view details functionality
     console.log('View details for:', spa.name);
   }
 
   enquireNow(spa: BeautySpa) {
-    // Implement enquiry functionality
     console.log('Enquire about:', spa.name);
   }
 } 
