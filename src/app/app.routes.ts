@@ -2,8 +2,8 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SetUpComponent } from './set-up/set-up.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
-import { BeautySpaCardComponent } from './business/beauty-spa-card/beauty-spa-card.component';
-import { BusinessCardComponent } from './business/business-card/business-card.component';
+import { BeautySpaCardComponent } from './Business/beauty-spa-card/beauty-spa-card.component';
+import { BusinessCardComponent } from './Business/business-card/business-card.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
