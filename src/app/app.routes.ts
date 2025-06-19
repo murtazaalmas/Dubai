@@ -21,5 +21,5 @@ export const routes: Routes = [
   { path: 'businesses/auto-repair-in-dubai', component: AutoRepairComponent },
   { path: 'businesses/parking-in-dubai', component: ParkingComponent },
   { path: 'businesses/oil-change-service-in-dubai', component: OilChangeServiceComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'home' }
 ];
