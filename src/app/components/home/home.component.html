@@ -1,0 +1,146 @@
+<app-navbar></app-navbar>
+
+<div class="home-container">
+  <!-- HERO & SEARCH -->
+  <section class="hero-section">
+    <div class="container">
+      <h2>Explore <span class="highlight">Local Businesses</span> with Ease!</h2>
+      <p class="subheading">Find what you need, when you need, and the way you need it.</p>
+      <div class="search-container">
+        <select class="search-dropdown">
+          <option *ngFor="let location of dubaiLocations" [value]="location.value">{{location.label}}</option>
+        </select>
+        <div class="search-input-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" placeholder="Search for businesses...">
+        </div>
+      </div>
+
+      <div class="store-buttons">
+        <a  class="store-button app-store">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="Apple Logo">
+          <div class="text">
+            <span>Available on the</span>
+            <strong>App Store</strong>
+          </div>
+        </a>
+
+        <a  class="store-button google-play">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
+            alt="Google Play Logo">
+          <div class="text">
+            <span>Get it on</span>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- CATEGORIES Icons -->
+
+  <section class="category-section">
+    <div class="container">
+      <div class="category-grid">
+        <div class="category-card" *ngFor="let category of categories">
+          <i [class]="category.icon"></i>
+          <p>{{category.name}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES Cards -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="categories-grid">
+        <div class="category-card" *ngFor="let category of categorySections">
+          <img [src]="category.image" [alt]="category.name" class="category-image">
+          <p>{{category.name}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENTLY LISTED BUSINESSES -->
+  <section class="recent-businesses">
+    <div class="container">
+      <h3>Recently Listed Businesses</h3>
+      <div class="businesses-grid">
+        <div class="business-card" *ngFor="let business of recentBusinesses">
+          <img [src]="business.image" [alt]="business.name" class="business-image">
+          <p>{{business.name}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUN FOOD ENTERTAINMENT -->
+  <section class="entertainment-section">
+    <div class="container">
+      <h3>Fun • Food • Entertainment</h3>
+      <p>Check top "Things To Do" in Dubai</p>
+      <button class="cta-button">Let Us Help You</button>
+    </div>
+  </section>
+
+  <!-- CATEGORY LIST -->
+  <section class="category-list">
+    <div class="container">
+      <h3>Popular Categories</h3>
+      <div class="categories-grid">
+        <div class="category-box" *ngFor="let category of categoryLists">
+          <h4>{{category.heading}}</h4>
+          <ul>
+            <li *ngFor="let item of category.items">
+              <a [href]="item.link">{{item.name}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DUBAI CATEGORIES SLIDER -->
+  <section class="dubai-categories">
+    <div class="container">
+      <h3>Explore Dubai</h3>
+      <div class="slider-container">
+        <div class="cards-slider">
+          <div class="card" *ngFor="let card of dubaiCards">
+            <div class="card-image">
+              <img [src]="card.image" [alt]="card.title" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4>{{card.title}}</h4>
+              <p>{{card.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE SECTION -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-content">
+        <div class="feature-image">
+          <img [src]="featureSection.image" [alt]="featureSection.title">
+        </div>
+        <div class="feature-details">
+          <h2>{{featureSection.title}}</h2>
+          <p class="description">{{featureSection.description}}</p>
+          <ul class="features-list">
+            <li *ngFor="let feature of featureSection.features">
+              <i class="fas fa-check-circle"></i>
+              {{feature}}
+            </li>
+          </ul>
+          <button class="cta-button">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>

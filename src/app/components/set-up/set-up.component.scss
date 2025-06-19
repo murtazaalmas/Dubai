@@ -1,0 +1,151 @@
+.setup-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px;
+}
+
+.progress-barDiv {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 20px 40px;
+  flex-wrap: nowrap;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  max-width: 90%;
+}
+
+.step {
+  text-align: center;
+  flex: 1;
+  position: relative;
+  white-space: nowrap;
+}
+
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background-color: #e0e0e0;
+  z-index: 0;
+}
+
+.step.active::after {
+  background-color: #2b70f7;
+}
+
+.step .icon {
+  position: relative;
+  z-index: 2;
+  background: #e0e0e0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px;
+}
+
+.step.active .icon {
+  background: blue;
+  color: white;
+}
+
+.step p {
+  font-size: 14px;
+  color: #777;
+}
+
+.step.active p {
+  font-weight: bold;
+  color: #2b70f7;
+}
+
+.step.active, .step.completed {
+  color: blue;
+}
+
+.form-box {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px;
+  width: 600px;
+  max-width: 90%;
+
+  h2 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    color: #333;
+    text-align: center;
+  }
+
+  .subheading {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+}
+
+form label {
+  display: block;
+  margin: 15px 0 5px;
+  color: #333;
+  font-weight: 500;
+}
+
+.required {
+  color: red;
+}
+
+.name-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.name-inputs input {
+  flex: 1;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}

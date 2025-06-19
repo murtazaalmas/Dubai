@@ -1,0 +1,62 @@
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section about">
+      <h3>About Us</h3>
+      <p>Your trusted platform for discovering and connecting with businesses in Dubai. We help you find the best local services and experiences.</p>
+      <div class="store-buttons">
+        <a  class="store-button app-store">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="Apple Logo">
+          <div class="text">
+            <span>Available on the</span>
+            <strong>App Store</strong>
+          </div>
+        </a>
+        <a  class="store-button google-play">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Logo">
+          <div class="text">
+            <span>Get it on</span>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-section quick-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li *ngFor="let link of quickLinks">
+          <a [href]="link.url">{{link.name}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-section categories">
+      <h3>Categories</h3>
+      <ul>
+        <li *ngFor="let category of categories">
+          <a [href]="category.url">{{category.name}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-section subscribe">
+      <h3>Subscribe</h3>
+      <p>Stay updated with our latest news and offers</p>
+      <form class="subscribe-form">
+        <input type="email" placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="social-icons">
+        <a *ngFor="let social of socialIcons" 
+           [href]="social.url" 
+           class="social-icon" 
+           [title]="social.name">
+          <i [class]="social.icon"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Qasim Dubai. All rights reserved.</p>
+  </div>
+</footer>
