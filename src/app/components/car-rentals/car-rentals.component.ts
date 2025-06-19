@@ -25,6 +25,7 @@ interface Category {
 }
 @Component({
   selector: 'app-car-rentals',
+  standalone: true,
   imports: [CommonModule, CardSectionComponent],
   templateUrl: './car-rentals.component.html',
   styleUrl: './car-rentals.component.scss'

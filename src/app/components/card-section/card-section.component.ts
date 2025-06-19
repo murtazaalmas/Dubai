@@ -35,6 +35,7 @@ export class CardSectionComponent {
   @Input() cardItems: CardItem[] = [];
   @Input() title: string = 'Card Section Title';
   @Input() description: string = 'Card Section Description';
+  @Input() heroBgImage: string = '';
   @Output() categorySelect = new EventEmitter<Category>();
 
   selectedCategory: Category | null = null;
