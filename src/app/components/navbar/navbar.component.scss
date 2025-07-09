@@ -219,6 +219,12 @@
   position: absolute;
   top: 10px;
   z-index: 999;
+  width: 100px;
+  background: transparent;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+  padding: 6px;
+  background-blend-mode: multiply;
 }
 
 .logo-container {
@@ -249,4 +255,8 @@
 
 .dropdown-item::after {
   display: none;
+}
+
+.top-link-item {
+  cursor: pointer;
 }

@@ -36,6 +36,21 @@
       </div>
     </div>
   </section>
+
+
+   <!-- CATEGORIES Cards -->
+   <section class="categories-section">
+    <div class="container">
+      <div class="categories-grid">
+        <div class="category-card" *ngFor="let category of categorySections">
+          <img [src]="category.image" [alt]="category.name" class="category-image">
+          <p>{{category.name}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- CATEGORIES Icons -->
 
   <section class="category-section">
@@ -49,44 +64,20 @@
     </div>
   </section>
 
-  <!-- CATEGORIES Cards -->
-  <section class="categories-section">
-    <div class="container">
-      <div class="categories-grid">
-        <div class="category-card" *ngFor="let category of categorySections">
-          <img [src]="category.image" [alt]="category.name" class="category-image">
-          <p>{{category.name}}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RECENTLY LISTED BUSINESSES -->
-  <section class="recent-businesses">
-    <div class="container">
-      <h3>Recently Listed Businesses</h3>
-      <div class="businesses-grid">
-        <div class="business-card" *ngFor="let business of recentBusinesses">
-          <img [src]="business.image" [alt]="business.name" class="business-image">
-          <p>{{business.name}}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
+ 
   <!-- FUN FOOD ENTERTAINMENT -->
   <section class="entertainment-section">
     <div class="container">
-      <h3>Fun • Food • Entertainment</h3>
-      <p>Check top "Things To Do" in Dubai</p>
-      <button class="cta-button">Let Us Help You</button>
+      <h3>Bike Parts • Accessories • Upgrades</h3>
+      <p>Discover and shop the best bike parts and accessories for your ride</p>
+      <button class="cta-button">Shop Now</button>
     </div>
   </section>
 
   <!-- CATEGORY LIST -->
   <section class="category-list">
     <div class="container">
-      <h3>Popular Categories</h3>
+      <h3>Popular Selling Parts</h3>
       <div class="categories-grid">
         <div class="category-box" *ngFor="let category of categoryLists">
           <h4>{{category.heading}}</h4>
@@ -136,7 +127,7 @@
               {{feature}}
             </li>
           </ul>
-          <button class="cta-button">Get Started</button>
+          <button class="cta-button">Show Now</button>
         </div>
       </div>
     </div>

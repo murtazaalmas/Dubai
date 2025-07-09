@@ -18,6 +18,7 @@ export interface NavMenuItem {
 export interface TopBarLink {
   label: string;
   route?: string;
+  icon?: string;
 }
 
 // Place this helper function outside the class
@@ -43,9 +44,9 @@ export class NavbarComponent {
   currentDate = new Date();
 
   topBarLinks: TopBarLink[] = [
-    { label: '+92 316 7249265' },
-    { label: 'Ijaz@gmail.com' },
-    { label: 'IjazBikeStudio' }
+    { label: '+92 316 7249265', icon: 'fas fa-phone', route: 'tel:+923167249265' },
+    { label: 'Ijaz@gmail.com', icon: 'fas fa-envelope', route: 'mailto:Ijaz@gmail.com' },
+    { label: 'IjazBikeStudio', route: '' }
   ];
 
   topBarButton = { label: 'Content with Us' };

@@ -7,7 +7,21 @@
     <div class="col-md-8">
       <div class="top-links">
         <ng-container *ngFor="let link of topBarLinks; let last = last">
-          <a class="hover-underline">{{ link.label }}</a>
+          <a *ngIf="link.route"
+             class="hover-underline top-link-item"
+             [href]="link.route"
+             [attr.target]="link.route.startsWith('http') ? '_blank' : null">
+            <ng-container *ngIf="link.icon">
+              <i [class]="link.icon"></i>
+            </ng-container>
+            {{ link.label }}
+          </a>
+          <span *ngIf="!link.route" class="hover-underline top-link-item">
+            <ng-container *ngIf="link.icon">
+              <i [class]="link.icon"></i>
+            </ng-container>
+            {{ link.label }}
+          </span>
           <span class="separator" *ngIf="!last">|</span>
         </ng-container>
         <button class="advertise-btn">{{ topBarButton.label }}</button>
@@ -20,7 +34,7 @@
 <header class="main-nav">
   <!-- Logo -->
   <div class="logo-container">
-    <img src="/assets/images/logo.png" alt="Dubai Local" class="navLogo">
+    <img src="/assets/images/logo.png" alt="Ijaz Bikes" class="navLogo">
 
     <!-- <span class="logo-text">FIND ALL YOUR NEEDS</span> -->
   </div>

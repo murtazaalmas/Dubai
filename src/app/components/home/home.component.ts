@@ -10,7 +10,7 @@ interface DubaiLocation {
 }
 
 interface Category {
-  icon: string;
+  icon?: string;
   name: string;
 }
 
@@ -41,6 +41,20 @@ interface FeatureSection {
   features: string[];
 }
 
+function getCategoryIconByName(name: string): string {
+  const lower = name.toLowerCase();
+  if (lower.includes('fancy') && lower.includes('tank')) return 'fas fa-gas-pump';
+  if (lower.includes('genuine') && lower.includes('tank')) return 'fas fa-oil-can';
+  if (lower.includes('silencer')) return 'fas fa-volume-up';
+  if (lower.includes('rim')) return 'fas fa-circle-notch';
+  if (lower.includes('back light')) return 'fas fa-lightbulb';
+  if (lower.includes('head light')) return 'fas fa-lightbulb';
+  if (lower.includes('helmet')) return 'fas fa-hard-hat';
+  if (lower.includes('speedometer')) return 'fas fa-tachometer-alt';
+  // fallback
+  return 'fas fa-cogs';
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -55,98 +69,83 @@ export class HomeComponent implements OnInit {
   prevTranslate = 0;
   dubaiCards: any[] = [];
 
-  categoryLists: CategoryList[] = [
-    {
-      heading: 'Beauty & Spa',
-      items: [
-        { name: 'Spa Centers', link: '#' },
-        { name: 'Massage Centers', link: '#' }
-      ]
-    },
-    {
-      heading: 'Restaurants',
-      items: [
-        { name: 'Indian Food', link: '#' },
-        { name: 'Asian Food', link: '#' }
-      ]
-    },
-    {
-      heading: 'Nightlife',
-      items: [
-        { name: 'Clubs', link: '#' },
-        { name: 'Bars', link: '#' }
-      ]
-    }
-  ];
-
-  recentBusinesses: RecentBusiness[] = [
-    {
-      image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-      name: 'BayBee Dubai'
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bHV4dXJ5JTIwY2FyJTIwZGVhbGVyc2hpcHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-      name: 'Cars Dubai'
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJhdmVsJTIwYWdlbmN5fGVufDB8fDB8fHww&w=1000&q=80',
-      name: 'Arabian Wings'
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3RvcmV8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
-      name: 'Prime Store LLC'
-    }
-  ];
-
   categorySections: CategorySection[] = [
     {
       image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-      name: 'Restaurants'
+      name: 'Fuel Tanks'
     },
     {
       image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmlnaHRsaWZlfGVufDB8fDB8fHww&w=1000&q=80',
-      name: 'Nightlife'
+      name: 'Silencer'
     },
     {
       image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXR5JTIwcHJvZHVjdHN8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
-      name: 'Beauty & Spa'
+      name: 'Lights'
     },
     {
       image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hvcHBpbmclMjBtYWxsfGVufDB8fDB8fHww&w=1000&q=80',
-      name: 'Shopping'
+      name: 'Helmets'
     },
     {
       image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bHV4dXJ5JTIwY2FyJTIwZGVhbGVyc2hpcHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-      name: 'Automotive'
+      name: 'Speedometers'
     },
     {
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-      name: 'Real Estate'
+      name: 'AlloyRims'
     },
     {
       image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJhdmVsJTIwYWdlbmN5fGVufDB8fDB8fHww&w=1000&q=80',
-      name: 'Travel'
+      name: 'Decor Items'
     },
     {
       image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhbHRoY2FyZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
-      name: 'Healthcare'
+      name: 'Parts'
     }
   ];
 
   categories: Category[] = [
-    { icon: 'fas fa-compass', name: 'Explore' },
-    { icon: 'fas fa-building', name: 'Businesses' },
-    { icon: 'fas fa-plane', name: 'Tour & Travel' },
-    { icon: 'fas fa-moon', name: 'Nightlife' },
-    { icon: 'fas fa-spa', name: 'Beauty & Spa' },
-    { icon: 'fas fa-car', name: 'Automobile' },
-    { icon: 'fas fa-utensils', name: 'Restaurants' },
-    { icon: 'fas fa-shopping-bag', name: 'Shopping' },
-    { icon: 'fas fa-home', name: 'Home Services' },
-    { icon: 'fas fa-building', name: 'Real Estate' },
-    { icon: 'fas fa-film', name: 'Entertainment' },
-    { icon: 'fas fa-ellipsis-h', name: 'More' }
+    { name: 'CD 70 Fancy Fuel Tanks' },
+    { name: 'CD 70 Genuine Fuel Tanks' },
+    { name: 'CG 125 Fancy Fuel Tanks' },
+    { name: 'CG 125 Genuine Fuel Tanks' },
+    { name: '125 Silencer' },
+    { name: 'Alloy Rims-CD70' },
+    { name: 'AlloyRims-CG125' },
+    { name: 'Decor Items' },
+    { name: 'Back Lights' },
+    { name: 'Head Lights' },
+    { name: 'Helmets' },
+    { name: 'Speedometers' },
   ];
+
+
+
+  categoryLists: CategoryList[] = [
+    {
+      heading: 'Fuel Tanks',
+      items: [
+        { name: 'CD 70 Fancy Fuel Tanks', link: '#' },
+        { name: 'CD 70 Genuine Fuel Tanks', link: '#' }
+      ]
+    },
+    {
+      heading: 'AlloyRims',
+      items: [
+        { name: 'Alloy Rims-CD70', link: '#' },
+        { name: 'AlloyRims-CG125', link: '#' }
+      ]
+    },
+    {
+      heading: 'Lights',
+      items: [
+        { name: 'Back Lights', link: '#' },
+        { name: 'Head Lights', link: '#' }
+      ]
+    }
+  ];
+
+
 
   dubaiLocations: DubaiLocation[] = [
     { value: 'all', label: 'Wheel' },
@@ -159,41 +158,46 @@ export class HomeComponent implements OnInit {
 
   originalCards = [
     {
-      title: 'Dubai Restaurants',
-      description: 'Discover the finest dining experiences',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80'
+      title: 'Fuel Tanks',
+      description: 'Premium and genuine fuel tanks for all bike models',
+      image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80'
     },
     {
-      title: 'Dubai Shopping',
-      description: 'World-class shopping destinations',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hvcHBpbmclMjBtYWxsfGVufDB8fDB8fHww&w=1000&q=80'
+      title: 'Silencers',
+      description: 'High-quality silencers for a smooth and quiet ride',
+      image: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=800&q=80'
     },
     {
-      title: 'Dubai Travel',
-      description: 'Explore amazing tourist attractions',
-      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZHViYWl8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
+      title: 'Alloy Rims',
+      description: 'Stylish and durable alloy rims for enhanced performance',
+      image: 'https://images.unsplash.com/photo-1518655048521-f130df041f66?auto=format&fit=crop&w=800&q=80'
     },
     {
-      title: 'Dubai Investment',
-      description: 'Prime investment opportunities',
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80'
+      title: 'Helmets & Accessories',
+      description: 'Protective helmets and essential bike accessories',
+      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80'
     }
   ];
 
   featureSection: FeatureSection = {
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnVzaW5lc3MlMjBtZWV0aW5nfGVufDB8fDB8fHww&w=1000&q=80',
-    title: 'Expand Your Reach and Boost Your Online Presence',
-    description: 'Join our platform to connect with customers and grow your business in Dubai',
+    image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80',
+    title: 'Upgrade Your Ride with Premium Bike Parts',
+    description: 'Find the best quality motor-bike parts, accessories, and upgrades to enhance your bike’s performance, safety, and style. Shop genuine and aftermarket parts for every need.',
     features: [
-      'Increase your visibility in the local market',
-      'Connect with potential customers',
-      'Showcase your products and services',
-      'Get real-time customer feedback',
-      'Access detailed analytics and insights'
+      'Wide range of fuel tanks, silencers, rims, and more',
+      'Genuine and high-quality aftermarket parts',
+      'Accessories for comfort and safety',
+      'Expert support and guidance',
+      'Fast delivery and easy returns'
     ]
   };
 
   ngOnInit() {
+    // Assign icons dynamically to categories
+    this.categories = this.categories.map(cat => ({
+      ...cat,
+      icon: getCategoryIconByName(cat.name)
+    }));
     // Create infinite scroll effect by duplicating cards
     this.dubaiCards = [...this.originalCards, ...this.originalCards, ...this.originalCards];
   }
