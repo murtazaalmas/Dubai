@@ -149,18 +149,12 @@ export class HomeComponent implements OnInit {
   ];
 
   dubaiLocations: DubaiLocation[] = [
-    { value: 'all', label: 'In Dubai' },
-    { value: 'dubai-marina', label: 'Dubai Marina' },
-    { value: 'downtown', label: 'Downtown Dubai' },
-    { value: 'jbr', label: 'JBR' },
-    { value: 'business-bay', label: 'Business Bay' },
-    { value: 'dubai-mall', label: 'Dubai Mall' },
-    { value: 'burj-khalifa', label: 'Burj Khalifa' },
-    { value: 'palm-jumeirah', label: 'Palm Jumeirah' },
-    { value: 'jumeirah', label: 'Jumeirah' },
-    { value: 'deira', label: 'Deira' },
-    { value: 'karama', label: 'Karama' },
-    { value: 'bur-dubai', label: 'Bur Dubai' }
+    { value: 'all', label: 'Wheel' },
+    { value: 'dubai-marina', label: 'CD 70 Tanks' },
+    { value: 'downtown', label: 'CG 125 Tanks' },
+    { value: 'jbr', label: 'LED & Lighting' },
+    { value: 'business-bay', label: 'Helmet & Gadgets' },
+    { value: 'dubai-mall', label: 'Silencer' },
   ];
 
   originalCards = [
