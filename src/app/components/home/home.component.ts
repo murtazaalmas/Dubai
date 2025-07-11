@@ -68,6 +68,8 @@ export class HomeComponent implements OnInit {
   startPos = 0;
   prevTranslate = 0;
   dubaiCards: any[] = [];
+  currentSlideIndex = 0;
+  currentCategoryIndex = 0;
 
   categorySections: CategorySection[] = [
     {
@@ -200,6 +202,49 @@ export class HomeComponent implements OnInit {
     }));
     // Create infinite scroll effect by duplicating cards
     this.dubaiCards = [...this.originalCards, ...this.originalCards, ...this.originalCards];
+    setTimeout(() => {
+      this.attachSliderScrollListener();
+      this.attachCategoryScrollListener();
+    }, 0);
+  }
+
+  attachSliderScrollListener() {
+    const slider = document.querySelector('.cards-slider');
+    if (!slider) return;
+    slider.addEventListener('scroll', () => {
+      const cardWidth = (slider as HTMLElement).querySelector('.card')?.clientWidth || 1;
+      const scrollLeft = (slider as HTMLElement).scrollLeft;
+      const index = Math.round(scrollLeft / (cardWidth + 24)); // 24px gap
+      this.currentSlideIndex = index % this.originalCards.length;
+    });
+  }
+
+  attachCategoryScrollListener() {
+    const grid = document.querySelector('.category-section .category-grid');
+    if (!grid) return;
+    const totalCards = this.categories.length;
+    // Duplicate categories for infinite scroll
+    const originalCards = Array.from(grid.children).slice(0, totalCards);
+    // Only duplicate if not already duplicated
+    if (grid.children.length === totalCards) {
+      for (let i = 0; i < 2; i++) {
+        originalCards.forEach(card => grid.appendChild(card.cloneNode(true)));
+      }
+      grid.scrollLeft = grid.scrollWidth / 3;
+    }
+    grid.addEventListener('scroll', () => {
+      const cardWidth = (grid as HTMLElement).querySelector('.category-card')?.clientWidth || 1;
+      const scrollLeft = (grid as HTMLElement).scrollLeft;
+      const totalWidth = cardWidth * totalCards;
+      // Infinite scroll logic
+      if (scrollLeft <= cardWidth) {
+        grid.scrollLeft = scrollLeft + totalWidth;
+      } else if (scrollLeft + (grid as HTMLElement).clientWidth >= grid.scrollWidth - cardWidth) {
+        grid.scrollLeft = scrollLeft - totalWidth;
+      }
+      const index = Math.round(scrollLeft / (cardWidth + 32)) % totalCards;
+      this.currentCategoryIndex = ((index % totalCards) + totalCards) % totalCards;
+    });
   }
 
   @HostListener('mousedown', ['$event'])

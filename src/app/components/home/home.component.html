@@ -41,6 +41,7 @@
    <!-- CATEGORIES Cards -->
    <section class="categories-section">
     <div class="container">
+      <h1 class="text-center m-2 pb-4">Our Top Collections</h1>
       <div class="categories-grid">
         <div class="category-card" *ngFor="let category of categorySections">
           <img [src]="category.image" [alt]="category.name" class="category-image">
@@ -61,6 +62,12 @@
           <p>{{category.name}}</p>
         </div>
       </div>
+    </div>
+    <div class="slider-dots category-section-dots">
+      <span *ngFor="let category of categories; let i = index"
+            class="dot"
+            [class.active]="i === currentCategoryIndex">
+      </span>
     </div>
   </section>
 
@@ -94,7 +101,7 @@
   <!-- DUBAI CATEGORIES SLIDER -->
   <section class="dubai-categories">
     <div class="container">
-      <h3>Explore Dubai</h3>
+      <h3>Explore Products</h3>
       <div class="slider-container">
         <div class="cards-slider">
           <div class="card" *ngFor="let card of dubaiCards">
@@ -107,6 +114,12 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="slider-dots">
+        <span *ngFor="let card of originalCards; let i = index" 
+              class="dot" 
+              [class.active]="i === currentSlideIndex">
+        </span>
       </div>
     </div>
   </section>
@@ -127,7 +140,7 @@
               {{feature}}
             </li>
           </ul>
-          <button class="cta-button">Show Now</button>
+          <button class="cta-button">Shop Now</button>
         </div>
       </div>
     </div>
