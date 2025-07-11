@@ -71,35 +71,35 @@ export class HomeComponent implements OnInit {
 
   categorySections: CategorySection[] = [
     {
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+      image: '/assets/images/tanks/10029.jpeg',
       name: 'Fuel Tanks'
     },
     {
-      image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmlnaHRsaWZlfGVufDB8fDB8fHww&w=1000&q=80',
+      image: '/assets/images/silencer/10104.jpeg',
       name: 'Silencer'
     },
     {
-      image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXR5JTIwcHJvZHVjdHN8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+      image: '/assets/images/lights/10065.jpg',
       name: 'Lights'
     },
     {
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hvcHBpbmclMjBtYWxsfGVufDB8fDB8fHww&w=1000&q=80',
+      image: '/assets/images/helmet/10020.jpeg',
       name: 'Helmets'
     },
     {
-      image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bHV4dXJ5JTIwY2FyJTIwZGVhbGVyc2hpcHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+      image: '/assets/images/lights/10066.jpg',
       name: 'Speedometers'
     },
     {
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+      image: '/assets/images/wheel/10011.jpg',
       name: 'AlloyRims'
     },
     {
-      image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJhdmVsJTIwYWdlbmN5fGVufDB8fDB8fHww&w=1000&q=80',
+      image: '/assets/images/_Studio/10076.jpg',
       name: 'Decor Items'
     },
     {
-      image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGVhbHRoY2FyZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+      image: '/assets/images/_Studio/10113.png',
       name: 'Parts'
     }
   ];
@@ -118,8 +118,6 @@ export class HomeComponent implements OnInit {
     { name: 'Helmets' },
     { name: 'Speedometers' },
   ];
-
-
 
   categoryLists: CategoryList[] = [
     {
@@ -145,8 +143,6 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-
-
   dubaiLocations: DubaiLocation[] = [
     { value: 'all', label: 'Wheel' },
     { value: 'dubai-marina', label: 'CD 70 Tanks' },
@@ -160,27 +156,31 @@ export class HomeComponent implements OnInit {
     {
       title: 'Fuel Tanks',
       description: 'Premium and genuine fuel tanks for all bike models',
-      image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80'
+      image: '/assets/images/tanks/10029.jpeg',
+
     },
     {
       title: 'Silencers',
       description: 'High-quality silencers for a smooth and quiet ride',
-      image: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=800&q=80'
+      image: '/assets/images/silencer/10104.jpeg',
+
     },
     {
       title: 'Alloy Rims',
       description: 'Stylish and durable alloy rims for enhanced performance',
-      image: 'https://images.unsplash.com/photo-1518655048521-f130df041f66?auto=format&fit=crop&w=800&q=80'
+      image: '/assets/images/wheel/10011.jpg',
+
     },
     {
       title: 'Helmets & Accessories',
       description: 'Protective helmets and essential bike accessories',
-      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80'
+      image: '/assets/images/helmet/10020.jpeg',
+
     }
   ];
 
   featureSection: FeatureSection = {
-    image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/images/_Studio/10005.jpeg',
     title: 'Upgrade Your Ride with Premium Bike Parts',
     description: 'Find the best quality motor-bike parts, accessories, and upgrades to enhance your bike’s performance, safety, and style. Shop genuine and aftermarket parts for every need.',
     features: [
