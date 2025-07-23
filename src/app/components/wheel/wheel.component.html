@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [cartItems]="cartItems"></app-navbar>
 
 <div class="wheel-hero">
   <img src="/assets/images/wheel/10011.jpg" alt="Alloy Rims-CD70" class="wheel-hero-image">
@@ -78,4 +78,4 @@
 </section>
 
 <!-- Popup Modal -->
-<app-popup *ngIf="showPopup" [category]="popupCategory" (close)="closePopup()"></app-popup>
+<app-popup *ngIf="showPopup" [category]="popupCategory" (close)="closePopup()" (addCartItem)="onAddCartItem($event)"></app-popup>

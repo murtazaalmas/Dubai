@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -41,6 +41,7 @@ function getMenuIconByName(name: string): string {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  @Input() cartItems: { item: any, quantity: number }[] = [];
   currentDate = new Date();
 
   topBarLinks: TopBarLink[] = [
@@ -49,7 +50,6 @@ export class NavbarComponent {
     { label: 'IjazBikeStudio', route: '' }
   ];
 
-  topBarButton = { label: 'Content with Us' };
 
   navMenu: NavMenuItem[] = [
     {
@@ -86,6 +86,7 @@ export class NavbarComponent {
 
   showMobileMenu = false;
   expandedMenuIndex: number | null = null;
+  showCartDrawer = false;
 
   toggleMobileMenu() {
     this.showMobileMenu = !this.showMobileMenu;
@@ -100,6 +101,14 @@ export class NavbarComponent {
     } else {
       this.expandedMenuIndex = index;
     }
+  }
+
+  toggleCartDrawer() {
+    this.showCartDrawer = !this.showCartDrawer;
+  }
+
+  removeCartItem(index: number) {
+    this.cartItems.splice(index, 1);
   }
 
   @HostListener('mouseover', ['$event'])

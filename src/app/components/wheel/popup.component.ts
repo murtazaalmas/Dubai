@@ -21,6 +21,7 @@ interface CategorySection {
 export class PopupComponent {
   @Input() category: CategorySection | null = null;
   @Output() close = new EventEmitter<void>();
+  @Output() addCartItem = new EventEmitter<{ item: CategorySection, quantity: number }>();
 
   quantity: number = 1;
 
@@ -35,8 +36,10 @@ export class PopupComponent {
   }
 
   addToCart() {
-    // Implement add to cart logic here
-    alert(`Added ${this.quantity} of ${this.category?.name} to cart!`);
+    if (this.category) {
+      this.addCartItem.emit({ item: this.category, quantity: this.quantity });
+    }
+    // Optionally close popup or show feedback
   }
 
   onClose() {

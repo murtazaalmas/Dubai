@@ -24,7 +24,10 @@
           </span>
           <span class="separator" *ngIf="!last">|</span>
         </ng-container>
-        <button class="advertise-btn">{{ topBarButton.label }}</button>
+        <!-- Cart Icon (top right, with top-links) -->
+        <button class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
+          <i class="fas fa-shopping-cart"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -86,10 +89,36 @@
         </span>
         <!-- <span class="separator" *ngIf="!last">|</span> -->
       </ng-container>
-      <button class="advertise-btn">{{ topBarButton.label }}</button>
     </div>
   </nav>
 
   <!-- Overlay for mobile menu -->
   <div class="mobile-menu-overlay" *ngIf="showMobileMenu" (click)="toggleMobileMenu()"></div>
 </header>
+
+<!-- Cart Drawer Overlay and Drawer -->
+<div class="cart-drawer-overlay" *ngIf="showCartDrawer" (click)="toggleCartDrawer()"></div>
+<div class="cart-drawer" *ngIf="showCartDrawer">
+  <button class="close-cart-drawer" (click)="toggleCartDrawer()" aria-label="Close cart">
+    <i class="fas fa-times"></i>
+  </button>
+  <div class="cart-drawer-content">
+    <h2>Your Cart</h2>
+    <ng-container *ngIf="cartItems && cartItems.length > 0; else emptyCart">
+      <div class="cart-item" *ngFor="let cart of cartItems; let i = index">
+        <img [src]="cart.item.image" [alt]="cart.item.name" class="cart-item-image">
+        <div class="cart-item-info">
+          <div class="cart-item-name">{{ cart.item.name }}</div>
+          <div class="cart-item-price">{{ cart.item.price }}</div>
+          <div class="cart-item-qty">Qty: {{ cart.quantity }}</div>
+        </div>
+        <button class="cart-item-delete" (click)="removeCartItem(i)" aria-label="Remove item">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </ng-container>
+    <ng-template #emptyCart>
+      <p>Your cart is empty.</p>
+    </ng-template>
+  </div>
+</div>

@@ -198,6 +198,7 @@ export class WheelComponent {
 
   showPopup: boolean = false;
   popupCategory: CategorySection | null = null;
+  cartItems: { item: CategorySection, quantity: number }[] = [];
 
   setTab(tab: number) {
     this.selectedTab = tab;
@@ -219,5 +220,15 @@ export class WheelComponent {
   closePopup() {
     this.showPopup = false;
     this.popupCategory = null;
+  }
+
+  onAddCartItem(event: { item: CategorySection, quantity: number }) {
+    const existing = this.cartItems.find(ci => ci.item.id === event.item.id && ci.item.name === event.item.name);
+    if (existing) {
+      existing.quantity += event.quantity;
+    } else {
+      this.cartItems.push({ item: event.item, quantity: event.quantity });
+    }
+    this.closePopup(); // Optionally close popup after adding
   }
 }
