@@ -34,7 +34,7 @@
 <header class="main-nav">
   <!-- Logo -->
   <div class="logo-container">
-    <img src="/assets/images/logo.png" alt="Ijaz Bikes" class="navLogo">
+    <img [routerLink]="['/']" src="/assets/images/logo.png" alt="Ijaz Bikes" class="navLogo">
   </div>
 
   <!-- Hamburger for mobile -->
@@ -56,6 +56,9 @@
     <div class="nav-item " *ngFor="let item of navMenu; let i = index">
       <a class="nav-link "
          role="button"
+         [routerLink]="item.route ? item.route : null"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }"
          (click)="showMobileMenu ? toggleMenu(i) : null">
         <i [class]="item.icon"></i>
         {{ item.name }}

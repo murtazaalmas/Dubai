@@ -55,32 +55,32 @@ export class NavbarComponent {
     {
       name: 'Wheel',
       icon: getMenuIconByName('Wheel'),
-    
+      route: '/wheel',
     },
     {
       name: 'CD 70 Tanks',
       icon: getMenuIconByName('CD 70 Tanks'),
-    
+      route: '/cd70tanks',
     },
     {
       name: 'CG 125 Tanks',
       icon: getMenuIconByName('CG 125 Tanks'),
-     
+      route: '/cg125tanks',
     },
     {
       name: 'LED & Lighting',
       icon: getMenuIconByName('LED & Lighting'),
-    
+      route: '/ledlighting',
     },
     {
       name: 'Helmet & Gadgets',
       icon: getMenuIconByName('Helmet & Gadgets'),
-     
+      route: '/helmetgadgets',
     },
     {
       name: 'Silencer',
       icon: getMenuIconByName('Silencer'),
-     
+      route: '/silencer',
     },
   ];
 
