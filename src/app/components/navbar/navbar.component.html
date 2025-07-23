@@ -38,18 +38,27 @@
 
 <!-- Main Navbar -->
 <header class="main-nav">
-  <!-- Logo -->
-  <div class="logo-container">
-    <img [routerLink]="['/']" src="/assets/images/logo.png" alt="Ijaz Bikes" class="navLogo">
-  </div>
-
-  <!-- Hamburger for mobile -->
-  <button class="hamburger" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+  <!-- Hamburger for mobile (left) -->
+  <button class="hamburger mobile-only" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
     <span></span>
     <span></span>
     <span></span>
   </button>
 
+  <!-- Logo (centered on mobile) -->
+  <div class="logo-container">
+    <img [routerLink]="['/']" src="/assets/images/logo.png" alt="Ijaz Bikes" class="navLogo">
+  </div>
+
+  <!-- Cart Icon (right on mobile) -->
+  <button class="cart-icon-btn mobile-only" (click)="toggleCartDrawer()" aria-label="Open cart">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-badge" *ngIf="cartCount > 0">
+      {{ cartCount }}
+    </span>
+  </button>
+
+  <!-- Cart Icon (desktop, with top-links) is already in top bar -->
   <!-- Menu Items -->
   <nav class="nav-menu" [class.open]="showMobileMenu">
     <!-- X close button for mobile -->
@@ -102,11 +111,13 @@
 <!-- Cart Drawer Overlay and Drawer -->
 <div class="cart-drawer-overlay" *ngIf="showCartDrawer" (click)="toggleCartDrawer()"></div>
 <div class="cart-drawer" *ngIf="showCartDrawer">
-  <button class="close-cart-drawer" (click)="toggleCartDrawer()" aria-label="Close cart">
-    <i class="fas fa-times"></i>
-  </button>
   <div class="cart-drawer-content">
-    <h2>Your Cart</h2>
+    <div class="cart-drawer-header">
+      <span class="cart-drawer-title">Your cart</span>
+      <button class="close-cart-drawer" (click)="toggleCartDrawer()" aria-label="Close cart">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
     <ng-container *ngIf="cartItems && cartItems.length > 0; else emptyCart">
       <div class="cart-item" *ngFor="let cart of cartItems; let i = index">
         <img [src]="cart.item.image" [alt]="cart.item.name" class="cart-item-image">
