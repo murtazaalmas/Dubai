@@ -55,51 +55,52 @@ export class NavbarComponent {
     {
       name: 'Wheel',
       icon: getMenuIconByName('Wheel'),
-      dropdown: [
-        { name: 'CD 70 Alloy Rim', icon: 'fas fa-spa', route: '/businesses/beauty-in-dubai' },
-      ]
+    
     },
     {
       name: 'CD 70 Tanks',
       icon: getMenuIconByName('CD 70 Tanks'),
-      dropdown: [
-        { name: 'CD 70 Tanks', icon: 'fas fa-spa', route: '/businesses/beauty-in-dubai' },
-
-      ]
+    
     },
     {
       name: 'CG 125 Tanks',
       icon: getMenuIconByName('CG 125 Tanks'),
-      dropdown: [
-        { name: 'CG 125 Tanks', icon: 'fas fa-spa', route: '/businesses/beauty-in-dubai' },
-
-      ]
+     
     },
     {
       name: 'LED & Lighting',
       icon: getMenuIconByName('LED & Lighting'),
-      dropdown: [
-        { name: 'LED & Lighting', icon: 'fas fa-spa', route: '/businesses/beauty-in-dubai' },
-
-      ]
+    
     },
     {
       name: 'Helmet & Gadgets',
       icon: getMenuIconByName('Helmet & Gadgets'),
-      dropdown: [
-        { name: 'Helmet & Gadgets', icon: 'fas fa-spa', route: '/businesses/beauty-in-dubai' },
-
-      ]
+     
     },
     {
       name: 'Silencer',
       icon: getMenuIconByName('Silencer'),
-      dropdown: [
-        { name: 'Silencer', icon: 'fas fa-spa', route: '/businesses/beauty-in-dubai' },
-
-      ]
+     
     },
   ];
+
+  showMobileMenu = false;
+  expandedMenuIndex: number | null = null;
+
+  toggleMobileMenu() {
+    this.showMobileMenu = !this.showMobileMenu;
+    if (!this.showMobileMenu) {
+      this.expandedMenuIndex = null;
+    }
+  }
+
+  toggleMenu(index: number) {
+    if (this.expandedMenuIndex === index) {
+      this.expandedMenuIndex = null;
+    } else {
+      this.expandedMenuIndex = index;
+    }
+  }
 
   @HostListener('mouseover', ['$event'])
   onMouseOver(event: MouseEvent) {
