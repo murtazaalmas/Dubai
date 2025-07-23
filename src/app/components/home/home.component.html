@@ -43,7 +43,7 @@
     <div class="container">
       <h1 class="text-center m-2 pb-4">Our Top Collections</h1>
       <div class="categories-grid">
-        <div class="category-card" *ngFor="let category of categorySections">
+        <div class="category-card" *ngFor="let category of categorySections" [routerLink]="category.route ? category.route : null" style="cursor:pointer;">
           <img [src]="category.image" [alt]="category.name" class="category-image">
           <p>{{category.name}}</p>
         </div>

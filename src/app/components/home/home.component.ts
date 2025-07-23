@@ -17,6 +17,7 @@ interface Category {
 interface CategorySection {
   image: string;
   name: string;
+  route?: string; // Added route property
 }
 
 interface RecentBusiness {
@@ -74,35 +75,44 @@ export class HomeComponent implements OnInit {
   categorySections: CategorySection[] = [
     {
       image: '/assets/images/tanks/10029.jpeg',
-      name: 'Fuel Tanks'
-    },
-    {
-      image: '/assets/images/silencer/10104.jpeg',
-      name: 'Silencer'
-    },
-    {
-      image: '/assets/images/lights/10065.jpg',
-      name: 'Lights'
-    },
-    {
-      image: '/assets/images/helmet/10020.jpeg',
-      name: 'Helmets'
-    },
-    {
-      image: '/assets/images/lights/10066.jpg',
-      name: 'Speedometers'
+      name: 'Fuel Tanks',
+      route: '/cd70tanks'
     },
     {
       image: '/assets/images/wheel/10011.jpg',
-      name: 'AlloyRims'
+      name: 'AlloyRims',
+      route: '/wheel'
     },
     {
+      image: '/assets/images/silencer/10104.jpeg',
+      name: 'Silencer',
+      route: '/silencer'
+    },
+    {
+      image: '/assets/images/lights/10065.jpg',
+      name: 'Lights',
+      route: '/ledlighting'
+    },
+    {
+      image: '/assets/images/helmet/10020.jpeg',
+      name: 'Helmets',
+      route: '/helmetgadgets'
+    },
+    {
+      image: '/assets/images/lights/10066.jpg',
+      name: 'Speedometers',
+      route: '/ledlighting'
+    },
+    
+    {
       image: '/assets/images/_Studio/10076.jpg',
-      name: 'Decor Items'
+      name: 'Decor Items',
+      route: '/ledlighting'
     },
     {
       image: '/assets/images/_Studio/10113.png',
-      name: 'Parts'
+      name: 'Parts',
+      route: '/ledlighting'
     }
   ];
 
