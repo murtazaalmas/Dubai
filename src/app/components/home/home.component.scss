@@ -168,6 +168,24 @@
         }
       }
     }
+
+    @media (max-width: 900px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .category-card .category-image {
+        height: 160px;
+        max-width: 100%;
+      }
+    }
+    @media (max-width: 600px) {
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+      .category-card .category-image {
+        height: 120px;
+      }
+    }
   }
 
   // Recent Businesses Section
@@ -307,6 +325,16 @@
             }
           }
         }
+      }
+    }
+    @media (max-width: 900px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .categories-grid {
+        grid-template-columns: 1fr;
       }
     }
   }
@@ -704,6 +732,35 @@
           transform: translateY(-2px);
         }
       }
+    }
+  }
+
+  @media (max-width: 900px) {
+    .feature-content {
+      flex-direction: column;
+      gap: 2rem;
+      align-items: stretch;
+      text-align: center;
+    }
+    .feature-image img {
+      height: 320px;
+    }
+  }
+  @media (max-width: 600px) {
+    .feature-content {
+      gap: 1.2rem;
+    }
+    .feature-image img {
+      height: 180px;
+    }
+    .feature-details h2 {
+      font-size: 1.2rem;
+    }
+    .feature-details .description {
+      font-size: 1rem;
+    }
+    .feature-details .features-list li {
+      font-size: 1rem;
     }
   }
 }
