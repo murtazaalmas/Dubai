@@ -27,6 +27,9 @@
         <!-- Cart Icon (top right, with top-links) -->
         <button class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
           <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge" *ngIf="cartCount > 0">
+            {{ cartCount }}
+          </span>
         </button>
       </div>
     </div>

@@ -111,6 +111,10 @@ export class NavbarComponent {
     this.cartItems.splice(index, 1);
   }
 
+  get cartCount(): number {
+    return this.cartItems.reduce((total, c) => total + c.quantity, 0);
+  }
+
   @HostListener('mouseover', ['$event'])
   onMouseOver(event: MouseEvent) {
     const target = event.target as HTMLElement;
