@@ -44,7 +44,7 @@
     <div class="categories-grid" [ngClass]="'cols-' + selectedView">
       <div *ngFor="let category of filteredCategories">
         <ng-container *ngIf="selectedView === 1; else gridCard">
-          <div class="category-card list-view text-left">
+          <div class="category-card list-view text-left" (click)="openPopup(category)">
             <div class="list-col list-img">
               <img [src]="category.image" [alt]="category.name" class="category-image list-image">
             </div>
@@ -57,13 +57,13 @@
               <div class="list-detail">{{category.detail}}</div>
             </div>
             <div class="list-col list-actions">
-              <button class="list-btn quick-view">Quick view</button>
-              <button class="list-btn read-more">Read more</button>
+              <button class="list-btn quick-view" (click)="$event.stopPropagation(); openPopup(category)">Quick view</button>
+              <button class="list-btn read-more" (click)="$event.stopPropagation(); openPopup(category)">Read more</button>
             </div>
           </div>
         </ng-container>
         <ng-template #gridCard>
-          <div class="category-card">
+          <div class="category-card" (click)="openPopup(category)">
             <img [src]="category.image" [alt]="category.name" class="category-image">
             <p>{{category.name}}</p>
             <div class="list-price">
@@ -76,3 +76,6 @@
     </div>
   </div>
 </section>
+
+<!-- Popup Modal -->
+<app-popup *ngIf="showPopup" [category]="popupCategory" (close)="closePopup()"></app-popup>

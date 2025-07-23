@@ -1,0 +1,38 @@
+<div class="popup-overlay" (click)="onClose()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <button class="popup-close" (click)="onClose()">&times;</button>
+    <ng-container *ngIf="category">
+      <div class="popup-grid">
+        <div class="popup-image-col">
+          <img [src]="category.image" [alt]="category.name">
+        </div>
+        <div class="popup-info-col">
+          <h2>{{ category.name }}</h2>
+          <div class="popup-price-row">
+            <div *ngIf="category.oldPrice" class="popup-old-price"> {{ category.oldPrice }}</div>
+            <div class="popup-price">{{ category.price }}</div>
+          </div>
+          <p class="shipping">Shipping calculated at checkout.</p>
+          <div class="popup-detail">
+            {{ category.detail }}
+          </div>
+          <div class="popup-qty">
+            <div class="qty-input-wrapper">
+              <button type="button" (click)="decrementQty()" class="qty-btn">-</button>
+              <input id="qty" type="number" min="1" [(ngModel)]="quantity" />
+              <button type="button" (click)="incrementQty()" class="qty-btn">+</button>
+            </div>
+            <button class="popup-add-btn" (click)="addToCart()">ADD TO CART</button>
+          </div>
+          <button class="buy-now-btn">BUY IT NOW</button>
+          <h3>Ask a Question</h3>
+          <p>SKU: AR-000126</p>
+          <p>Availability: <span class="in-stock">In Stock</span></p>
+          <p>Categories: All Alloy Rims, Alloy Rims-CD70</p>
+          
+
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

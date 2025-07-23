@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { PopupComponent } from './popup.component';
 
 interface CategorySection {
   id: number;
@@ -13,7 +14,7 @@ interface CategorySection {
 
 @Component({
   selector: 'app-wheel',
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, NavbarComponent, PopupComponent],
   templateUrl: './wheel.component.html',
   styleUrl: './wheel.component.scss'
 })
@@ -193,8 +194,11 @@ export class WheelComponent {
   ];
 
   selectedView = 1; // 1 to 5 columns
-
   selectedTab = 1;
+
+  showPopup: boolean = false;
+  popupCategory: CategorySection | null = null;
+
   setTab(tab: number) {
     this.selectedTab = tab;
   }
@@ -205,5 +209,15 @@ export class WheelComponent {
 
   get filteredCategories() {
     return this.categorySections.filter(c => c.id === this.selectedTab);
+  }
+
+  openPopup(category: CategorySection) {
+    this.popupCategory = category;
+    this.showPopup = true;
+  }
+
+  closePopup() {
+    this.showPopup = false;
+    this.popupCategory = null;
   }
 }
