@@ -51,7 +51,7 @@
       <i class="fas fa-times"></i>
     </button>
     <!-- Top links for mobile -->
-  
+
     <!-- End top links for mobile -->
     <div class="nav-item " *ngFor="let item of navMenu; let i = index">
       <a class="nav-link "
@@ -63,6 +63,7 @@
       
     </div>
     <hr>
+
     <div class="top-links mobile-only">
       <ng-container *ngFor="let link of topBarLinks; let last = last">
         <a *ngIf="link.route"
