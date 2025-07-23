@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+
+<div class="wheel-hero">
+  <img src="/assets/images/wheel/10011.jpg" alt="Alloy Rims-CD70" class="wheel-hero-image">
+  <h1 class="wheel-hero-title">CD 70 Tanks</h1>
+</div>
+
+<!-- Filter/Sort/View Bar -->
+<div class="wheel-toolbar">
+  <div class="filter-button">
+    <span class="icon"><i class="fas fa-filter"></i></span>
+    <span>Filter</span>
+  </div>
+
+  <div class="view-buttons hide-mobile">
+    <div class="view-button" [class.active]="selectedView === 1" (click)="setView(1)">&#9776;</div>
+    <div class="view-button" [class.active]="selectedView === 2" (click)="setView(2)" >&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 3" (click)="setView(3)" >&#10074;&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 4" (click)="setView(4)" >&#10074;&#10074;&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 5" (click)="setView(5)" >&#10074;&#10074;&#10074;&#10074;&#10074;</div>
+  </div>
+
+  <div class="sort-button">
+    <select class="sort-select">
+      <option>Best selling</option>
+      <option>Price: Low to High</option>
+      <option>Price: High to Low</option>
+      <option>Newest</option>
+      <option>Customer Rating</option>
+    </select>
+    <span class="icon">&#9662;</span>
+  </div>
+</div>
+
+<section class="categories-section">
+  <div class="container">
+    <div class="categories-grid" [ngClass]="'cols-' + selectedView">
+      <div *ngFor="let category of categorySections">
+        <ng-container *ngIf="selectedView === 1; else gridCard">
+          <div class="category-card list-view">
+            <div class="list-col list-img">
+              <img [src]="category.image" [alt]="category.name" class="category-image list-image">
+            </div>
+            <div class="list-col list-info">
+              <div class="list-title">{{category.name}}</div>
+              <div class="list-price">{{category.price}}</div>
+              <div class="list-detail">{{category.detail}}</div>
+            </div>
+            <div class="list-col list-actions">
+              <button class="list-btn quick-view">Quick view</button>
+              <button class="list-btn read-more">Read more</button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #gridCard>
+          <div class="category-card">
+            <img [src]="category.image" [alt]="category.name" class="category-image">
+            <p>{{category.name}}</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wheel-container">
+  <h2>Wheel Works!</h2>
+  <!-- Add your wheel content here -->
+</div>
