@@ -37,14 +37,16 @@
     <div class="categories-grid" [ngClass]="'cols-' + selectedView">
       <div *ngFor="let category of categorySections">
         <ng-container *ngIf="selectedView === 1; else gridCard">
-          <div class="category-card list-view">
+          <div class="category-card list-view text-left">
             <div class="list-col list-img">
               <img [src]="category.image" [alt]="category.name" class="category-image list-image">
             </div>
             <div class="list-col list-info">
               <div class="list-title">{{category.name}}</div>
-              <div class="list-price">{{category.price}}</div>
-              <div class="list-detail">{{category.detail}}</div>
+              <div class="list-price">
+                <span *ngIf="category.oldPrice" class="old-price">{{category.oldPrice}}</span>
+                <span>{{category.price}}</span>
+              </div>              <div class="list-detail">{{category.detail}}</div>
             </div>
             <div class="list-col list-actions">
               <button class="list-btn quick-view">Quick view</button>
