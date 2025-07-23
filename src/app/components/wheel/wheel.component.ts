@@ -199,6 +199,8 @@ export class WheelComponent {
   showPopup: boolean = false;
   popupCategory: CategorySection | null = null;
   cartItems: { item: CategorySection, quantity: number }[] = [];
+  showToast = false;
+  toastMessage = '';
 
   setTab(tab: number) {
     this.selectedTab = tab;
@@ -229,6 +231,15 @@ export class WheelComponent {
     } else {
       this.cartItems.push({ item: event.item, quantity: event.quantity });
     }
+    this.showToastMessage(`${event.item.name} added to cart!`);
     this.closePopup(); // Optionally close popup after adding
+  }
+
+  showToastMessage(message: string) {
+    this.toastMessage = message;
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 2000);
   }
 }

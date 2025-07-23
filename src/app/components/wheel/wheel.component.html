@@ -1,5 +1,8 @@
 <app-navbar [cartItems]="cartItems"></app-navbar>
 
+<!-- Toast Notification -->
+<div class="toast-message" *ngIf="showToast">{{ toastMessage }}</div>
+
 <div class="wheel-hero">
   <img src="/assets/images/wheel/10011.jpg" alt="Alloy Rims-CD70" class="wheel-hero-image">
   <h1 class="wheel-hero-title">Alloy Rims-CD70</h1>
