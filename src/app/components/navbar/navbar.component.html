@@ -25,7 +25,10 @@
           <span class="separator" *ngIf="!last">|</span>
         </ng-container>
         <!-- Cart Icon (top right, with top-links) -->
-        <button *ngIf="showCartIcon" class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
+        <button *ngIf="showBagIcon" class="cart-icon-btn" aria-label="Bag" (click)="navigateToCart()">
+          <i class="fas fa-shopping-bag"></i>
+        </button>
+        <button *ngIf="showCartIcon && !showBagIcon" class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
           <i class="fas fa-shopping-cart"></i>
           <span class="cart-badge" *ngIf="cartCount > 0">
             {{ cartCount }}
@@ -51,7 +54,10 @@
   </div>
 
   <!-- Cart Icon (right on mobile) -->
-  <button *ngIf="showCartIcon" class="cart-icon-btn mobile-only" (click)="toggleCartDrawer()" aria-label="Open cart">
+  <button *ngIf="showBagIcon" class="cart-icon-btn mobile-only" aria-label="Bag">
+    <i class="fas fa-shopping-bag" (click)="navigateToCart()"></i>
+  </button>
+  <button *ngIf="showCartIcon && !showBagIcon" class="cart-icon-btn mobile-only" (click)="toggleCartDrawer()" aria-label="Open cart">
     <i class="fas fa-shopping-cart"></i>
     <span class="cart-badge" *ngIf="cartCount > 0">
       {{ cartCount }}

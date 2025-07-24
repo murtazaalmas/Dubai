@@ -20,7 +20,7 @@
     <div class="view-button" [class.active]="selectedView === 2" (click)="setView(2)" >&#10074;&#10074;</div>
     <div class="view-button" [class.active]="selectedView === 3" (click)="setView(3)" >&#10074;&#10074;&#10074;</div>
     <div class="view-button" [class.active]="selectedView === 4" (click)="setView(4)" >&#10074;&#10074;&#10074;&#10074;</div>
-    <div class="view-button" [class.active]="selectedView === 5" (click)="setView(5)" >&#10074;&#10074;&#10074;&#10074;&#10074;</div>
+    <!-- <div class="view-button" [class.active]="selectedView === 5" (click)="setView(5)" >&#10074;&#10074;&#10074;&#10074;&#10074;</div> -->
   </div>
 
   <div class="sort-button">
@@ -60,7 +60,7 @@
               <div class="list-detail">{{category.detail}}</div>
             </div>
             <div class="list-col list-actions">
-              <button class="list-btn quick-view" (click)="$event.stopPropagation(); openPopup(category)">Quick view</button>
+              <button class="list-btn quick-view" (click)="$event.stopPropagation(); openPopup(category)">Add to cart</button>
               <button class="list-btn read-more" (click)="$event.stopPropagation(); openPopup(category)">Read more</button>
             </div>
           </div>

@@ -45,6 +45,7 @@ export class NavbarComponent {
   @Input() cartItems: { item: any, quantity: number }[] = [];
   @Input() disableCartDrawer = false;
   @Input() showCartIcon: boolean = true;
+  @Input() showBagIcon: boolean = false;
   shipping = 500;
   currentDate = new Date();
 
@@ -116,21 +117,25 @@ export class NavbarComponent {
 
   removeCartItem(index: number) {
     this.cartItems.splice(index, 1);
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
   incrementCartQty(index: number) {
     this.cartItems[index].quantity++;
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
   decrementCartQty(index: number) {
     if (this.cartItems[index].quantity > 1) {
       this.cartItems[index].quantity--;
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     }
   }
 
   onCartQtyInput(index: number, value: string) {
     const qty = Math.max(1, parseInt(value, 10) || 1);
     this.cartItems[index].quantity = qty;
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
   get cartCount(): number {
@@ -157,6 +162,10 @@ export class NavbarComponent {
   onCheckoutClick() {
     this.toggleCartDrawer();
     this.router.navigate(['/checkout']);
+  }
+
+  navigateToCart() {
+    this.router.navigate(['/cart']);
   }
 
   @HostListener('mouseover', ['$event'])
