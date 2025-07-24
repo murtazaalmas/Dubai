@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { PopupComponent } from './popup.component';
@@ -18,7 +18,7 @@ interface CategorySection {
   templateUrl: './wheel.component.html',
   styleUrl: './wheel.component.scss'
 })
-export class WheelComponent {
+export class WheelComponent implements OnInit {
   categorySections: CategorySection[] = [
     {
       id: 1,
@@ -202,6 +202,17 @@ export class WheelComponent {
   showToast = false;
   toastMessage = '';
 
+  ngOnInit() {
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+      this.cartItems = JSON.parse(savedCart);
+    }
+  }
+
+  saveCart() {
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
+
   setTab(tab: number) {
     this.selectedTab = tab;
   }
@@ -231,6 +242,7 @@ export class WheelComponent {
     } else {
       this.cartItems.push({ item: event.item, quantity: event.quantity });
     }
+    this.saveCart();
     this.showToastMessage(`${event.item.name} added to cart!`);
     this.closePopup(); // Optionally close popup after adding
   }
@@ -241,5 +253,28 @@ export class WheelComponent {
     setTimeout(() => {
       this.showToast = false;
     }, 2000);
+  }
+
+  incrementCartQty(index: number) {
+    this.cartItems[index].quantity++;
+    this.saveCart();
+  }
+
+  decrementCartQty(index: number) {
+    if (this.cartItems[index].quantity > 1) {
+      this.cartItems[index].quantity--;
+      this.saveCart();
+    }
+  }
+
+  onCartQtyInput(index: number, value: string) {
+    const qty = Math.max(1, parseInt(value, 10) || 1);
+    this.cartItems[index].quantity = qty;
+    this.saveCart();
+  }
+
+  removeCartItem(index: number) {
+    this.cartItems.splice(index, 1);
+    this.saveCart();
   }
 }

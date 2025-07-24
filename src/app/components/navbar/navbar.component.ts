@@ -42,6 +42,8 @@ function getMenuIconByName(name: string): string {
 })
 export class NavbarComponent {
   @Input() cartItems: { item: any, quantity: number }[] = [];
+  @Input() disableCartDrawer = false;
+  shipping = 500;
   currentDate = new Date();
 
   topBarLinks: TopBarLink[] = [
@@ -104,6 +106,7 @@ export class NavbarComponent {
   }
 
   toggleCartDrawer() {
+    if (this.disableCartDrawer) return;
     this.showCartDrawer = !this.showCartDrawer;
   }
 
@@ -111,8 +114,40 @@ export class NavbarComponent {
     this.cartItems.splice(index, 1);
   }
 
+  incrementCartQty(index: number) {
+    this.cartItems[index].quantity++;
+  }
+
+  decrementCartQty(index: number) {
+    if (this.cartItems[index].quantity > 1) {
+      this.cartItems[index].quantity--;
+    }
+  }
+
+  onCartQtyInput(index: number, value: string) {
+    const qty = Math.max(1, parseInt(value, 10) || 1);
+    this.cartItems[index].quantity = qty;
+  }
+
   get cartCount(): number {
     return this.cartItems.reduce((total, c) => total + c.quantity, 0);
+  }
+
+  getSubtotal(): number {
+    return this.cartItems.reduce((sum, c) => sum + (this.parsePrice(c.item.price) * c.quantity), 0);
+  }
+
+  getTotal(): number {
+    return this.getSubtotal() + this.shipping;
+  }
+
+  parsePrice(price: string): number {
+    // Remove non-numeric characters except dot and minus
+    return parseFloat(price.replace(/[^\d.-]/g, '')) || 0;
+  }
+
+  formatPKR(amount: number): string {
+    return 'PKR ' + Math.round(amount).toLocaleString('en-PK');
   }
 
   @HostListener('mouseover', ['$event'])

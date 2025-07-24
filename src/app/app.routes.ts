@@ -6,6 +6,8 @@ import { CG125TanksComponent } from './components/CG125Tanks/cg125tanks.componen
 import { LEDLightingComponent } from './components/LEDLighting/ledlighting.component';
 import { SilencerComponent } from './components/Silencer/silencer.component';
 import { HelmetGadgetsComponent } from './components/HelmetGadgets/helmetgadgets.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,5 +18,7 @@ export const routes: Routes = [
   { path: 'ledlighting', component: LEDLightingComponent },
   { path: 'silencer', component: SilencerComponent },
   { path: 'helmetgadgets', component: HelmetGadgetsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '**', redirectTo: 'home' }
 ];

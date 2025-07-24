@@ -124,11 +124,32 @@
         <div class="cart-item-info">
           <div class="cart-item-name">{{ cart.item.name }}</div>
           <div class="cart-item-price">{{ cart.item.price }}</div>
-          <div class="cart-item-qty">Qty: {{ cart.quantity }}</div>
+          <div class="cart-item-qty">
+            <span>Qty:</span>
+            <button class="qty-btn" (click)="decrementCartQty(i)">-</button>
+            <input #qtyInput type="number" min="1" [value]="cart.quantity" (change)="onCartQtyInput(i, qtyInput.value)" />
+            <button class="qty-btn" (click)="incrementCartQty(i)">+</button>
+          </div>
         </div>
         <button class="cart-item-delete" (click)="removeCartItem(i)" aria-label="Remove item">
           <i class="fas fa-trash"></i>
         </button>
+      </div>
+      <div class="cart-summary">
+        <div class="cart-summary-row">
+          <span>Subtotal</span>
+          <span>{{ formatPKR(getSubtotal()) }}</span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Shipping</span>
+          <span>{{ formatPKR(shipping) }}</span>
+        </div>
+        <div class="cart-summary-row cart-summary-total">
+          <span>Total</span>
+          <span>{{ formatPKR(getTotal()) }}</span>
+        </div>
+        <button class="cart-view-btn" [routerLink]="['/cart']">View Cart</button>
+        <button class="cart-checkout-btn">Checkout</button>
       </div>
     </ng-container>
     <ng-template #emptyCart>
