@@ -1,6 +1,7 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 export interface NavDropdownItem {
   name: string;
@@ -43,8 +44,11 @@ function getMenuIconByName(name: string): string {
 export class NavbarComponent {
   @Input() cartItems: { item: any, quantity: number }[] = [];
   @Input() disableCartDrawer = false;
+  @Input() showCartIcon: boolean = true;
   shipping = 500;
   currentDate = new Date();
+
+  constructor(private router: Router) {}
 
   topBarLinks: TopBarLink[] = [
     { label: '+92 316 7249265', icon: 'fas fa-phone', route: 'tel:+923167249265' },
@@ -148,6 +152,11 @@ export class NavbarComponent {
 
   formatPKR(amount: number): string {
     return 'PKR ' + Math.round(amount).toLocaleString('en-PK');
+  }
+
+  onCheckoutClick() {
+    this.toggleCartDrawer();
+    this.router.navigate(['/checkout']);
   }
 
   @HostListener('mouseover', ['$event'])

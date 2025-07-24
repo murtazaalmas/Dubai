@@ -25,7 +25,7 @@
           <span class="separator" *ngIf="!last">|</span>
         </ng-container>
         <!-- Cart Icon (top right, with top-links) -->
-        <button class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
+        <button *ngIf="showCartIcon" class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
           <i class="fas fa-shopping-cart"></i>
           <span class="cart-badge" *ngIf="cartCount > 0">
             {{ cartCount }}
@@ -51,7 +51,7 @@
   </div>
 
   <!-- Cart Icon (right on mobile) -->
-  <button class="cart-icon-btn mobile-only" (click)="toggleCartDrawer()" aria-label="Open cart">
+  <button *ngIf="showCartIcon" class="cart-icon-btn mobile-only" (click)="toggleCartDrawer()" aria-label="Open cart">
     <i class="fas fa-shopping-cart"></i>
     <span class="cart-badge" *ngIf="cartCount > 0">
       {{ cartCount }}
@@ -149,7 +149,7 @@
           <span>{{ formatPKR(getTotal()) }}</span>
         </div>
         <button class="cart-view-btn" [routerLink]="['/cart']">View Cart</button>
-        <button class="cart-checkout-btn">Checkout</button>
+        <button class="cart-checkout-btn" (click)="onCheckoutClick()">Checkout</button>
       </div>
     </ng-container>
     <ng-template #emptyCart>

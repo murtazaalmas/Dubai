@@ -436,7 +436,7 @@
 .cart-summary-total {
   font-size: 17px;
   font-weight: bold;
-  color: #FFD700;
+  color: #e53935;
   margin-top: 10px;
   margin-bottom: 18px;
 }
@@ -535,7 +535,7 @@
   .cart-icon-btn.mobile-only {
     display: flex;
     position: absolute;
-    right: 0;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
