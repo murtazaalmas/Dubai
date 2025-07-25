@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { PopupComponent } from '../wheel/popup.component';
 import { SharedService, CategorySection } from '../../shared.service';
 @Component({
   selector: 'app-helmetgadgets',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, PopupComponent],
+  imports: [CommonModule, FormsModule, NavbarComponent, PopupComponent],
   templateUrl: './helmetgadgets.component.html',
   styleUrl: './helmetgadgets.component.scss'
 })
@@ -15,6 +16,7 @@ export class HelmetGadgetsComponent implements OnInit {
 
   selectedView = 1; // 1 to 5 columns
   selectedTab = 1;
+  selectedSort: string = 'lowToHigh';
 
   showPopup: boolean = false;
   popupCategory: CategorySection | null = null;
@@ -44,8 +46,18 @@ export class HelmetGadgetsComponent implements OnInit {
     this.selectedView = cols;
   }
 
+  onSortChange(sortValue: string) {
+    this.selectedSort = sortValue;
+  }
+
   get filteredCategories() {
-    return this.categorySections.filter(c => c.id === this.selectedTab);
+    let filtered = this.categorySections.filter(c => c.id === this.selectedTab);
+    if (this.selectedSort === 'lowToHigh') {
+      filtered = filtered.slice().sort((a, b) => a.price - b.price);
+    } else if (this.selectedSort === 'highToLow') {
+      filtered = filtered.slice().sort((a, b) => b.price - a.price);
+    }
+    return filtered;
   }
 
   openPopup(category: CategorySection) {

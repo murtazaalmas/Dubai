@@ -3,102 +3,115 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { PopupComponent } from '../wheel/popup.component';
 import { SharedService, CategorySection } from '../../shared.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-cg125tanks',
-    imports: [CommonModule, NavbarComponent, PopupComponent],
-
+    imports: [CommonModule, FormsModule, NavbarComponent, PopupComponent],
     standalone: true,
     templateUrl: './cg125tanks.component.html',
     styleUrl: './cg125tanks.component.scss'
 })
 export class CG125TanksComponent implements OnInit {
     categorySections: CategorySection[] = [];
-
+  
     selectedView = 1; // 1 to 5 columns
     selectedTab = 1;
+    selectedSort: string = 'lowToHigh';
+  
     showPopup: boolean = false;
     popupCategory: CategorySection | null = null;
     cartItems: { item: CategorySection, quantity: number }[] = [];
     showToast = false;
     toastMessage = '';
-
+  
     constructor(private sharedService: SharedService) { }
-
+  
     ngOnInit() {
-        this.categorySections = this.sharedService.getWheelCategorySections();
-        const savedCart = localStorage.getItem('cartItems');
-        if (savedCart) {
-            this.cartItems = JSON.parse(savedCart);
-        }
+      this.categorySections = this.sharedService.getWheelCategorySections();
+      const savedCart = localStorage.getItem('cartItems');
+      if (savedCart) {
+        this.cartItems = JSON.parse(savedCart);
+      }
     }
-
+  
     saveCart() {
-        localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     }
-
+  
     setTab(tab: number) {
-        this.selectedTab = tab;
+      this.selectedTab = tab;
     }
-
+  
     setView(cols: number) {
-        this.selectedView = cols;
+      this.selectedView = cols;
     }
-
+  
+    onSortChange(sortValue: string) {
+      this.selectedSort = sortValue;
+    }
+  
     get filteredCategories() {
-        return this.categorySections.filter(c => c.id === this.selectedTab);
+      let filtered = this.categorySections.filter(c => c.id === this.selectedTab);
+      if (this.selectedSort === 'lowToHigh') {
+        filtered = filtered.slice().sort((a, b) => a.price - b.price);
+      } else if (this.selectedSort === 'highToLow') {
+        filtered = filtered.slice().sort((a, b) => b.price - a.price);
+      }
+      return filtered;
     }
-
+  
     openPopup(category: CategorySection) {
-        this.popupCategory = category;
-        this.showPopup = true;
+      this.popupCategory = category;
+      this.showPopup = true;
     }
-
+  
     closePopup() {
-        this.showPopup = false;
-        this.popupCategory = null;
+      this.showPopup = false;
+      this.popupCategory = null;
     }
-
+  
     onAddCartItem(event: { item: CategorySection, quantity: number }) {
-        const existing = this.cartItems.find(ci => ci.item.id === event.item.id && ci.item.name === event.item.name);
-        if (existing) {
-            existing.quantity += event.quantity;
-        } else {
-            this.cartItems.push({ item: event.item, quantity: event.quantity });
-        }
-        this.saveCart();
-        this.showToastMessage(`${event.item.name} added to cart!`);
-        this.closePopup(); // Optionally close popup after adding
+      const existing = this.cartItems.find(ci => ci.item.id === event.item.id && ci.item.name === event.item.name);
+      if (existing) {
+        existing.quantity += event.quantity;
+      } else {
+        this.cartItems.push({ item: event.item, quantity: event.quantity });
+      }
+      this.saveCart();
+      this.showToastMessage(`${event.item.name} added to cart!`);
+      this.closePopup(); // Optionally close popup after adding
     }
-
+  
     showToastMessage(message: string) {
-        this.toastMessage = message;
-        this.showToast = true;
-        setTimeout(() => {
-            this.showToast = false;
-        }, 2000);
+      this.toastMessage = message;
+      this.showToast = true;
+      setTimeout(() => {
+        this.showToast = false;
+      }, 2000);
     }
-
+  
     incrementCartQty(index: number) {
-        this.cartItems[index].quantity++;
-        this.saveCart();
+      this.cartItems[index].quantity++;
+      this.saveCart();
     }
-
+  
     decrementCartQty(index: number) {
-        if (this.cartItems[index].quantity > 1) {
-            this.cartItems[index].quantity--;
-            this.saveCart();
-        }
+      if (this.cartItems[index].quantity > 1) {
+        this.cartItems[index].quantity--;
+        this.saveCart();
+      }
     }
-
+  
     onCartQtyInput(index: number, value: string) {
-        const qty = Math.max(1, parseInt(value, 10) || 1);
-        this.cartItems[index].quantity = qty;
-        this.saveCart();
+      const qty = Math.max(1, parseInt(value, 10) || 1);
+      this.cartItems[index].quantity = qty;
+      this.saveCart();
     }
-
+  
     removeCartItem(index: number) {
-        this.cartItems.splice(index, 1);
-        this.saveCart();
+      this.cartItems.splice(index, 1);
+      this.saveCart();
     }
-}
+  }
+  

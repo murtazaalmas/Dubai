@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { PopupComponent } from '../wheel/popup.component';
 import { SharedService, CategorySection } from '../../shared.service';
 
 
 @Component({
   selector: 'app-cd70tanks',
-  imports: [CommonModule, NavbarComponent, PopupComponent],
+  imports: [CommonModule, FormsModule, NavbarComponent, PopupComponent],
   standalone: true,
   templateUrl: './cd70tanks.component.html',
   styleUrl: './cd70tanks.component.scss'
@@ -17,6 +18,7 @@ export class CD70TanksComponent implements OnInit {
 
   selectedView = 1; // 1 to 5 columns
   selectedTab = 1;
+  selectedSort: string = 'lowToHigh';
 
   showPopup: boolean = false;
   popupCategory: CategorySection | null = null;
@@ -47,7 +49,13 @@ export class CD70TanksComponent implements OnInit {
   }
 
   get filteredCategories() {
-    return this.categorySections.filter(c => c.id === this.selectedTab);
+    let filtered = this.categorySections.filter(c => c.id === this.selectedTab);
+    if (this.selectedSort === 'lowToHigh') {
+      filtered = filtered.slice().sort((a, b) => a.price - b.price);
+    } else if (this.selectedSort === 'highToLow') {
+      filtered = filtered.slice().sort((a, b) => b.price - a.price);
+    }
+    return filtered;
   }
 
   openPopup(category: CategorySection) {
