@@ -1,4 +1,7 @@
-<app-navbar></app-navbar>
+<app-navbar [cartItems]="cartItems"></app-navbar>
+
+<!-- Toast Notification -->
+<div class="toast-message" *ngIf="showToast">{{ toastMessage }}</div>
 
 <div class="wheel-hero">
   <img src="/assets/images/wheel/10011.jpg" alt="Alloy Rims-CD70" class="wheel-hero-image">
@@ -14,10 +17,11 @@
 
   <div class="view-buttons hide-mobile">
     <div class="view-button" [class.active]="selectedView === 1" (click)="setView(1)">&#9776;</div>
-    <div class="view-button" [class.active]="selectedView === 2" (click)="setView(2)" >&#10074;&#10074;</div>
-    <div class="view-button" [class.active]="selectedView === 3" (click)="setView(3)" >&#10074;&#10074;&#10074;</div>
-    <div class="view-button" [class.active]="selectedView === 4" (click)="setView(4)" >&#10074;&#10074;&#10074;&#10074;</div>
-    <div class="view-button" [class.active]="selectedView === 5" (click)="setView(5)" >&#10074;&#10074;&#10074;&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 2" (click)="setView(2)">&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 3" (click)="setView(3)">&#10074;&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 4" (click)="setView(4)">&#10074;&#10074;&#10074;&#10074;
+    </div>
+    <!-- <div class="view-button" [class.active]="selectedView === 5" (click)="setView(5)" >&#10074;&#10074;&#10074;&#10074;&#10074;</div> -->
   </div>
 
   <div class="sort-button">
@@ -32,12 +36,19 @@
   </div>
 </div>
 
+<div class="container">
+  <div class="tab-buttons">
+    <button [class.active]="selectedTab === 1" (click)="setTab(1)">CG 125 Genuine Fuel Tanks</button>
+    <button [class.active]="selectedTab === 2" (click)="setTab(2)">CG 125 Fancy Fuel Tanks</button>
+  </div>
+</div>
+
 <section class="categories-section">
   <div class="container">
     <div class="categories-grid" [ngClass]="'cols-' + selectedView">
-      <div *ngFor="let category of categorySections">
+      <div *ngFor="let category of filteredCategories">
         <ng-container *ngIf="selectedView === 1; else gridCard">
-          <div class="category-card list-view text-left">
+          <div class="category-card list-view text-left" (click)="openPopup(category)">
             <div class="list-col list-img">
               <img [src]="category.image" [alt]="category.name" class="category-image list-image">
             </div>
@@ -46,18 +57,25 @@
               <div class="list-price">
                 <span *ngIf="category.oldPrice" class="old-price">{{category.oldPrice}}</span>
                 <span>{{category.price}}</span>
-              </div>              <div class="list-detail">{{category.detail}}</div>
+              </div>
+              <div class="list-detail">{{category.detail}}</div>
             </div>
             <div class="list-col list-actions">
-              <button class="list-btn quick-view">Add to cart</button>
-              <button class="list-btn read-more">Read more</button>
+              <button class="list-btn quick-view" (click)="$event.stopPropagation(); openPopup(category)">Add to
+                cart</button>
+              <button class="list-btn read-more" (click)="$event.stopPropagation(); openPopup(category)">Read
+                more</button>
             </div>
           </div>
         </ng-container>
         <ng-template #gridCard>
-          <div class="category-card">
+          <div class="category-card" (click)="openPopup(category)">
             <img [src]="category.image" [alt]="category.name" class="category-image">
             <p>{{category.name}}</p>
+            <div class="list-price">
+              <span *ngIf="category.oldPrice" class="old-price">{{category.oldPrice}}</span>
+              <span>{{category.price}}</span>
+            </div>
           </div>
         </ng-template>
       </div>
@@ -65,7 +83,6 @@
   </div>
 </section>
 
-<div class="wheel-container">
-  <h2>Wheel Works!</h2>
-  <!-- Add your wheel content here -->
-</div>
+<!-- Popup Modal -->
+<app-popup *ngIf="showPopup" [category]="popupCategory" (close)="closePopup()"
+  (addCartItem)="onAddCartItem($event)"></app-popup>
