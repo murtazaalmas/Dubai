@@ -13,22 +13,22 @@
             </div>
             <div class="cart-item-info">
               <div class="cart-item-name">{{ cart.item.name }}</div>
-              <div class="cart-item-price">{{ cart.item.price }}</div>
+              <div class="cart-item-price">Rs {{ cart.item.price | number:'1.0-0' }}</div>
             </div>
           </div>
         </div>
         <div class="cart-summary">
           <div class="cart-summary-row">
             <span>Subtotal</span>
-            <span>{{ formatPKR(getSubtotal()) }}</span>
+            <span>Rs {{ getSubtotal() | number:'1.0-0' }}</span>
           </div>
           <div class="cart-summary-row">
             <span>Shipping</span>
-            <span>{{ formatPKR(shipping) }}</span>
+            <span>Rs {{ shipping | number:'1.0-0' }}</span>
           </div>
           <div class="cart-summary-row cart-summary-total">
             <span>Total</span>
-            <span>{{ formatPKR(getTotal()) }}</span>
+            <span>Rs {{ getTotal() | number:'1.0-0' }}</span>
           </div>
         </div>
       </div>

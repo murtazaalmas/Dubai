@@ -7,7 +7,7 @@
       <img [src]="cart.item.image" [alt]="cart.item.name" class="cart-item-image">
       <div class="cart-item-info">
         <div class="cart-item-name">{{ cart.item.name }}</div>
-        <div class="cart-item-price">{{ cart.item.price }}</div>
+        <div class="cart-item-price">Rs {{ cart.item.price | number:'1.0-0' }}</div>
         <div class="cart-item-qty">
           <span>Qty:</span>
           <button class="qty-btn" (click)="decrementCartQty(i)">-</button>
@@ -27,15 +27,15 @@
   <div class="cart-summary">
     <div class="cart-summary-row">
       <span>Subtotal</span>
-      <span>{{ getSubtotal() | currency:'PKR ':'symbol':'1.0-0' }}</span>
+      <span>{{ getSubtotal() | currency:'PKR':'symbol':'1.0-0' }}</span>
     </div>
     <div class="cart-summary-row">
       <span>Shipping</span>
-      <span>{{ shipping | currency:'PKR ':'symbol':'1.0-0' }}</span>
+      <span>{{ shipping | currency:'PKR':'symbol':'1.0-0' }}</span>
     </div>
     <div class="cart-summary-row cart-summary-total">
       <span>Total</span>
-      <span>{{ getTotal() | currency:'PKR ':'symbol':'1.0-0' }}</span>
+      <span>{{ getTotal() | currency:'PKR':'symbol':'1.0-0' }}</span>
     </div>
     <button class="cart-checkout-btn" [routerLink]="['/checkout']">Checkout</button>
   </div>

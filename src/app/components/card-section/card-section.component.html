@@ -45,7 +45,7 @@
                   <i *ngFor="let star of getRatingStars(item.rating)" [class]="star"></i>
                   <span>{{ item.rating }}</span>
                 </div>
-                <div class="price">{{ item.price }}</div>
+                <div class="price">Rs {{ item.price | number:'1.0-0' }}</div>
               </div>
               <div class="card-location">
                 <i class="fas fa-map-marker-alt"></i>

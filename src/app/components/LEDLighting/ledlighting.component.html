@@ -55,8 +55,8 @@
             <div class="list-col list-info">
               <div class="list-title">{{category.name}}</div>
               <div class="list-price">
-                <span *ngIf="category.oldPrice" class="old-price">{{category.oldPrice}}</span>
-                <span>{{category.price}}</span>
+                <span *ngIf="category.oldPrice" class="old-price">Rs {{category.oldPrice | number:'1.0-0'}}</span>
+                <span>Rs {{category.price | number:'1.0-0'}}</span>
               </div>
               <div class="list-detail">{{category.detail}}</div>
             </div>
@@ -73,8 +73,8 @@
             <img [src]="category.image" [alt]="category.name" class="category-image">
             <p>{{category.name}}</p>
             <div class="list-price">
-              <span *ngIf="category.oldPrice" class="old-price">{{category.oldPrice}}</span>
-              <span>{{category.price}}</span>
+              <span *ngIf="category.oldPrice" class="old-price">Rs {{category.oldPrice | number:'1.0-0'}}</span>
+              <span>Rs {{category.price | number:'1.0-0'}}</span>
             </div>
           </div>
         </ng-template>

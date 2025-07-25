@@ -9,8 +9,8 @@
         <div class="popup-info-col">
           <h2>{{ category.name }}</h2>
           <div class="popup-price-row">
-            <div *ngIf="category.oldPrice" class="popup-old-price"> {{ category.oldPrice }}</div>
-            <div class="popup-price">{{ category.price }}</div>
+            <div *ngIf="category.oldPrice" class="popup-old-price"> Rs {{ category.oldPrice | number:'1.0-0' }}</div>
+            <div class="popup-price">Rs {{ category.price | number:'1.0-0' }}</div>
           </div>
           <p class="shipping">Shipping calculated at checkout.</p>
           <div class="popup-detail">
