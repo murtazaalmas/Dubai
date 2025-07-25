@@ -17,21 +17,19 @@
 
   <div class="view-buttons hide-mobile">
     <div class="view-button" [class.active]="selectedView === 1" (click)="setView(1)">&#9776;</div>
-    <div class="view-button" [class.active]="selectedView === 2" (click)="setView(2)" >&#10074;&#10074;</div>
-    <div class="view-button" [class.active]="selectedView === 3" (click)="setView(3)" >&#10074;&#10074;&#10074;</div>
-    <div class="view-button" [class.active]="selectedView === 4" (click)="setView(4)" >&#10074;&#10074;&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 2" (click)="setView(2)">&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 3" (click)="setView(3)">&#10074;&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 4" (click)="setView(4)">&#10074;&#10074;&#10074;&#10074;
+    </div>
     <!-- <div class="view-button" [class.active]="selectedView === 5" (click)="setView(5)" >&#10074;&#10074;&#10074;&#10074;&#10074;</div> -->
   </div>
 
-  <div class="sort-button">
+  <div>
     <select class="sort-select">
-      <option>Best selling</option>
       <option>Price: Low to High</option>
       <option>Price: High to Low</option>
-      <option>Newest</option>
-      <option>Customer Rating</option>
     </select>
-    <span class="icon">&#9662;</span>
+
   </div>
 </div>
 
@@ -60,8 +58,10 @@
               <div class="list-detail">{{category.detail}}</div>
             </div>
             <div class="list-col list-actions">
-              <button class="list-btn quick-view" (click)="$event.stopPropagation(); openPopup(category)">Add to cart</button>
-              <button class="list-btn read-more" (click)="$event.stopPropagation(); openPopup(category)">Read more</button>
+              <button class="list-btn quick-view" (click)="$event.stopPropagation(); openPopup(category)">Add to
+                cart</button>
+              <button class="list-btn read-more" (click)="$event.stopPropagation(); openPopup(category)">Read
+                more</button>
             </div>
           </div>
         </ng-container>
@@ -81,4 +81,5 @@
 </section>
 
 <!-- Popup Modal -->
-<app-popup *ngIf="showPopup" [category]="popupCategory" (close)="closePopup()" (addCartItem)="onAddCartItem($event)"></app-popup>
+<app-popup *ngIf="showPopup" [category]="popupCategory" (close)="closePopup()"
+  (addCartItem)="onAddCartItem($event)"></app-popup>

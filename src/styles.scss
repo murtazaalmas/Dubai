@@ -181,19 +181,19 @@ input[type=number] {
 }
 
 .sort-select {
-  padding: 6px 12px;
+  padding: 6px;
   border: 1px solid #ddd;
   border-radius: 9999px;
   color: gray;
   font-size: 14px;
   background: white;
   outline: none;
-  min-width: 110px;
-  max-width: 140px;
-  margin-right: 4px;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  // min-width: 110px;
+  // max-width: 140px;
+  margin-right: 5px;
+  // appearance: none;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
   cursor: pointer;
 }
 
