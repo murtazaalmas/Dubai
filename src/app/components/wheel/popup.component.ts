@@ -7,8 +7,8 @@ interface CategorySection {
   id: number;
   image: string;
   name: string;
-  price: string;
-  oldPrice: string;
+  price: number;
+  oldPrice: number;
   detail: string;
 }
 

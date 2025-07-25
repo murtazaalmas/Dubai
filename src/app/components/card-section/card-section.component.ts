@@ -13,7 +13,7 @@ interface CardItem {
   id: number;
   name: string;
   image: string;
-  price: string;
+  price: number;
   rating: number;
   location: string;
   city: string;

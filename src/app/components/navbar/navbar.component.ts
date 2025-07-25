@@ -143,16 +143,11 @@ export class NavbarComponent {
   }
 
   getSubtotal(): number {
-    return this.cartItems.reduce((sum, c) => sum + (this.parsePrice(c.item.price) * c.quantity), 0);
+    return this.cartItems.reduce((sum, c) => sum + (c.item.price * c.quantity), 0);
   }
 
   getTotal(): number {
     return this.getSubtotal() + this.shipping;
-  }
-
-  parsePrice(price: string): number {
-    // Remove non-numeric characters except dot and minus
-    return parseFloat(price.replace(/[^\d.-]/g, '')) || 0;
   }
 
   formatPKR(amount: number): string {

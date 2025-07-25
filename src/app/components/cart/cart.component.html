@@ -27,15 +27,15 @@
   <div class="cart-summary">
     <div class="cart-summary-row">
       <span>Subtotal</span>
-      <span>{{ getSubtotal() | currency:'PKR':'symbol':'1.0-0' }}</span>
+      <span>{{ getSubtotal() | currency:'PKR ':'symbol':'1.0-0' }}</span>
     </div>
     <div class="cart-summary-row">
       <span>Shipping</span>
-      <span>{{ shipping | currency:'PKR':'symbol':'1.0-0' }}</span>
+      <span>{{ shipping | currency:'PKR ':'symbol':'1.0-0' }}</span>
     </div>
     <div class="cart-summary-row cart-summary-total">
       <span>Total</span>
-      <span>{{ getTotal() | currency:'PKR':'symbol':'1.0-0' }}</span>
+      <span>{{ getTotal() | currency:'PKR ':'symbol':'1.0-0' }}</span>
     </div>
     <button class="cart-checkout-btn" [routerLink]="['/checkout']">Checkout</button>
   </div>
