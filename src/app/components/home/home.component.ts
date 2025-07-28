@@ -131,29 +131,7 @@ export class HomeComponent implements OnInit {
     { name: 'Speedometers' },
   ];
 
-  categoryLists: CategoryList[] = [
-    {
-      heading: 'Fuel Tanks',
-      items: [
-        { name: 'CD 70 Fancy Fuel Tanks', link: '#' },
-        { name: 'CD 70 Genuine Fuel Tanks', link: '#' }
-      ]
-    },
-    {
-      heading: 'AlloyRims',
-      items: [
-        { name: 'Alloy Rims-CD70', link: '#' },
-        { name: 'AlloyRims-CG125', link: '#' }
-      ]
-    },
-    {
-      heading: 'Lights',
-      items: [
-        { name: 'Back Lights', link: '#' },
-        { name: 'Head Lights', link: '#' }
-      ]
-    }
-  ];
+ 
 
   dubaiLocations: DubaiLocation[] = [
     { value: 'all', label: 'Wheel' },
