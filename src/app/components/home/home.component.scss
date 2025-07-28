@@ -15,8 +15,8 @@
     background-position: center;
     background-repeat: no-repeat;
     color: white;
-    padding: 2rem 0;
-    height: 350px;
+    padding: 3rem 0;
+    height: 400px;
     text-align: center;
     position: relative;
     width: 100%;
@@ -65,7 +65,8 @@
         color: #1f2937;
         font-size: 1rem;
         cursor: pointer;
-        min-width: 180px;
+        min-width: 90px;
+        max-width: 120px;
         border-right: 1px solid #e5e7eb;
 
         &:focus {
