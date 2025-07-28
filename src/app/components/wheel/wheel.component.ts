@@ -24,6 +24,13 @@ export class WheelComponent implements OnInit {
   showToast = false;
   toastMessage = '';
 
+  showFilterSlider = false;
+  sliderOneValue = 30;
+  sliderTwoValue = 70;
+  sliderMin = 0;
+  sliderMax = 100;
+  minGap = 0;
+
   constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
@@ -32,6 +39,10 @@ export class WheelComponent implements OnInit {
     if (savedCart) {
       this.cartItems = JSON.parse(savedCart);
     }
+    // Set sliderOneValue to 0 and sliderMax to the max price
+    this.sliderOneValue = 0;
+    this.sliderMax = Math.max(...this.categorySections.map(c => c.price));
+    this.sliderTwoValue = this.sliderMax;
   }
 
   saveCart() {
@@ -111,5 +122,29 @@ export class WheelComponent implements OnInit {
   removeCartItem(index: number) {
     this.cartItems.splice(index, 1);
     this.saveCart();
+  }
+
+  get sliderTrackStyle() {
+    const percent1 = (this.sliderOneValue / this.sliderMax) * 100;
+    const percent2 = (this.sliderTwoValue / this.sliderMax) * 100;
+    return {
+      background: `linear-gradient(to right, #dadae5 ${percent1}%, #3264fe ${percent1}%, #3264fe ${percent2}%, #dadae5 ${percent2}%)`
+    };
+  }
+
+  toggleFilterSlider() {
+    this.showFilterSlider = !this.showFilterSlider;
+  }
+
+  slideOne() {
+    if (this.sliderTwoValue - this.sliderOneValue <= this.minGap) {
+      this.sliderOneValue = this.sliderTwoValue - this.minGap;
+    }
+  }
+
+  slideTwo() {
+    if (this.sliderTwoValue - this.sliderOneValue <= this.minGap) {
+      this.sliderTwoValue = this.sliderOneValue + this.minGap;
+    }
   }
 }

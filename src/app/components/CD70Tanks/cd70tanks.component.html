@@ -10,16 +10,36 @@
 
 <!-- Filter/Sort/View Bar -->
 <div class="wheel-toolbar">
-  <div class="filter-button">
-    <span class="icon"><i class="fas fa-filter"></i></span>
-    <span>Filter</span>
+  <div>
+    <div class="filter-button" (click)="toggleFilterSlider()">
+      <span class="icon"><i class="fas fa-filter"></i></span>
+      <span>Filter</span>
+    </div>
+    <!-- Double Range Slider -->
+    <div class="wrapper" *ngIf="showFilterSlider">
+      <div class="">
+        <span><b>Price: </b></span>
+        <span id="range1">Rs. {{ sliderOneValue }}</span>
+        <span> &dash; </span>
+        <span id="range2">Rs. {{ sliderTwoValue }}</span>
+      </div>
+      <div class="container">
+        <div class="slider-track" [ngStyle]="sliderTrackStyle"></div>
+        <input type="range" [min]="sliderMin" [max]="sliderMax" [(ngModel)]="sliderOneValue" (input)="slideOne()"
+          style="z-index:3;">
+        <input type="range" [min]="sliderMin" [max]="sliderMax" [(ngModel)]="sliderTwoValue" (input)="slideTwo()"
+          style="z-index:4;">
+      </div>
+    </div>
   </div>
 
   <div class="view-buttons hide-mobile">
     <div class="view-button" [class.active]="selectedView === 1" (click)="setView(1)">&#9776;</div>
-    <div class="view-button" [class.active]="selectedView === 2" (click)="setView(2)" >&#10074;&#10074;</div>
-    <div class="view-button" [class.active]="selectedView === 3" (click)="setView(3)" >&#10074;&#10074;&#10074;</div>
-    <div class="view-button" [class.active]="selectedView === 4" (click)="setView(4)" >&#10074;&#10074;&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 2" (click)="setView(2)">&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 3" (click)="setView(3)">&#10074;&#10074;&#10074;</div>
+    <div class="view-button" [class.active]="selectedView === 4" (click)="setView(4)">&#10074;&#10074;&#10074;&#10074;
+    </div>
+    <!-- <div class="view-button" [class.active]="selectedView === 5" (click)="setView(5)" >&#10074;&#10074;&#10074;&#10074;&#10074;</div> -->
   </div>
 
   <select class="sort-select" [(ngModel)]="selectedSort">
