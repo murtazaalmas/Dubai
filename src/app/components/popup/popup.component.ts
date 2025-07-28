@@ -9,6 +9,9 @@ interface CategorySection {
   name: string;
   price: number;
   oldPrice: number;
+  sku: string;
+  categories: string;
+  availability: string;
   detail: string;
 }
 
@@ -45,22 +48,22 @@ export class PopupComponent {
     // Optionally close popup or show feedback
   }
 
-  buyNow() {
-    if (this.category) {
-      // Get current cart from localStorage
-      const savedCart = localStorage.getItem('cartItems');
-      let cartItems: any[] = savedCart ? JSON.parse(savedCart) : [];
-      // Check if item already exists in cart
-      const index = cartItems.findIndex((c: any) => c.item && c.item.id === this.category!.id);
-      if (index > -1) {
-        cartItems[index].quantity += this.quantity;
-      } else {
-        cartItems.push({ item: this.category, quantity: this.quantity });
-      }
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
-      this.router.navigate(['/checkout']);
-    }
-  }
+  // buyNow() {
+  //   if (this.category) {
+  //     // Get current cart from localStorage
+  //     const savedCart = localStorage.getItem('cartItems');
+  //     let cartItems: any[] = savedCart ? JSON.parse(savedCart) : [];
+  //     // Check if item already exists in cart
+  //     const index = cartItems.findIndex((c: any) => c.item && c.item.id === this.category!.id);
+  //     if (index > -1) {
+  //       cartItems[index].quantity += this.quantity;
+  //     } else {
+  //       cartItems.push({ item: this.category, quantity: this.quantity });
+  //     }
+  //     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  //     this.router.navigate(['/checkout']);
+  //   }
+  // }
 
   onClose() {
     this.close.emit();
