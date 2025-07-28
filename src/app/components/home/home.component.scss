@@ -20,6 +20,9 @@
     text-align: center;
     position: relative;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &::before {
       content: '';
@@ -35,6 +38,11 @@
     .container {
       position: relative;
       z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     h2 {
@@ -50,7 +58,7 @@
     }
 
     .search-container {
-      max-width: 45rem;
+      width: 100%;
       margin: 0 auto;
       display: flex;
       background-color: white;
@@ -778,6 +786,22 @@
 
     .feature-details .features-list li {
       font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    .search-container {
+      min-height: 50px;
+      height: 50px;
+    }
+    .search-input-wrapper {
+      width: 100%;
+    }
+    .search-dropdown {
+      width: 100%;
+      max-width: 100%;
     }
   }
 }
