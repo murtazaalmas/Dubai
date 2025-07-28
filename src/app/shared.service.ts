@@ -15,6 +15,92 @@ export interface CategorySection {
 export class SharedService {
   constructor() { }
 
+  getWheelCategorySections(): CategorySection[] {
+    return [
+      {
+        id: 1,
+        image: '/assets/images/wheel/wheel01.webp',
+        name: 'Alloyrims Silver CD70 | Star Shape | Premium Quality',
+        price: 21999,
+        oldPrice: 22900,
+        detail: 'Upgrade your bike with our Alloyrims Silver CD70! Featuring a star shape design for an aesthetic look and better grip, these premium quality rims will enhance your riding experience. Experience...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/wheel/wheel02.webp',
+        name: 'Silver Curve Alloy Rims for CD 70 – Durable & Sleek Design',
+        price: 23000,
+        oldPrice: 25000,
+        detail: 'Upgrade your Honda CD 70 with our stylish and strong Silver Curve Alloy Rims. Made from high-quality aluminum, these rims are built to last, are lightweight, and add a modern...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/wheel/wheel03.webp',
+        name: 'Crown Red Alloy Rims for Honda CD70 - Premium Quality',
+        price: 23000,
+        oldPrice: 25000,
+        detail: 'Upgrade your Honda CD70 with our premium Crown Red Alloy Rims—designed for riders who demand style and performance. Featuring a bold red finish and a sleek design, these lightweight rims...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/wheel/wheel04.webp',
+        name: 'Crown Golden Alloy Rims for Honda CD70 - Elegant & Durable',
+        price: 23000,
+        oldPrice: 25000,
+        detail: "Upgrade your Honda CD70 with our premium Crown Golden Alloy Rims, designed to combine style and performance. Featuring a luxurious golden finish, these lightweight rims enhance your bike's aesthetics, improve..."
+      },
+      {
+        id: 1,
+        image: '/assets/images/wheel/wheel05.webp',
+        name: 'Alloyrims CD70 | YBR Shape Blue Outline | Premium Quality',
+        price: 21999,
+        oldPrice: 0,
+        detail: 'Enhance your ride with the Alloyrims CD70 featuring a sleek YBR shape and striking blue outline. Crafted with premium quality materials, these rims offer durability and style, ensuring your bike...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/wheel/wheel06.webp',
+        name: 'Premium Red Curve Alloy Rims for CD 70 – Stylish & Durable Design',
+        price: 23000,
+        oldPrice: 25000,
+        detail: 'Upgrade your Honda CD 70 with our premium Red Curve Alloy Rims—crafted for riders who value both style and performance. With a sleek red finish and modern curved design, these...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/wheel/wheel07.webp',
+        name: 'Curve Golden Alloy Rims for Honda CD70 - Stylish & Durable',
+        price: 23000,
+        oldPrice: 25000,
+        detail: 'Transform your Honda CD70 with our premium Curve Golden Alloy Rims, designed for bikers in Pakistan who value elegance and performance. These lightweight alloy rims feature a striking golden finish...'
+      },
+      {
+        id: 2,
+        image: '/assets/images/wheel/wheel08.webp',
+        name: 'Alloy Rims in YBR Shape With plates for Honda CG125 - Stylish, Durable, and Affordable | Top Choice in Pakistan',
+        price: 34999,
+        oldPrice: 38000,
+        detail: 'Transform your Honda CG125 with YBR Shape Alloy Rims, designed for bikers in Pakistan seeking cutting-edge style and reliable performance. With a modern YBR-inspired design, these premium alloy rims offer...'
+      },
+      {
+        id: 2,
+        image: '/assets/images/wheel/wheel09.webp',
+        name: 'Silver Alloy Rims for Honda CG125 - Durable & Stylish',
+        price: 31999,
+        oldPrice: 35000,
+        detail: "Elevate your Honda CG125 with our high-quality Silver Alloy Rims, crafted for riders in Pakistan who demand durability and style. These premium alloy rims feature a sleek silver finish that..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/wheel/wheel10.webp',
+        name: 'Golden Alloy Rims CG125',
+        price: 32000,
+        oldPrice: 0,
+        detail: ''
+      },
+      // ... (add the rest of the items as needed)
+    ];
+  }
+
   getCD70CategorySections(): CategorySection[] {
     return [
       {
@@ -327,89 +413,56 @@ export class SharedService {
     ];
   }
 
-  getWheelCategorySections(): CategorySection[] {
+  getCG125CategorySections(): CategorySection[] {
     return [
       {
         id: 1,
-        image: '/assets/images/wheel/wheel01.webp',
-        name: 'Alloyrims Silver CD70 | Star Shape | Premium Quality',
-        price: 21999,
-        oldPrice: 22900,
-        detail: 'Upgrade your bike with our Alloyrims Silver CD70! Featuring a star shape design for an aesthetic look and better grip, these premium quality rims will enhance your riding experience. Experience...'
+        image: '/assets/images/tanks/tank001.webp',
+        name: '2025 Red CD70',
+        price: 8500,
+        oldPrice: 7999,
+        detail: 'The 2025 Red CD70 is a high-quality motorcycle that boasts a genuine paint and logo, making it a durable and stylish choice. With its advanced 2025 model and vibrant red...'
       },
-      {
-        id: 1,
-        image: '/assets/images/wheel/wheel02.webp',
-        name: 'Silver Curve Alloy Rims for CD 70 – Durable & Sleek Design',
-        price: 23000,
-        oldPrice: 25000,
-        detail: 'Upgrade your Honda CD 70 with our stylish and strong Silver Curve Alloy Rims. Made from high-quality aluminum, these rims are built to last, are lightweight, and add a modern...'
-      },
-      {
-        id: 1,
-        image: '/assets/images/wheel/wheel03.webp',
-        name: 'Crown Red Alloy Rims for Honda CD70 - Premium Quality',
-        price: 23000,
-        oldPrice: 25000,
-        detail: 'Upgrade your Honda CD70 with our premium Crown Red Alloy Rims—designed for riders who demand style and performance. Featuring a bold red finish and a sleek design, these lightweight rims...'
-      },
-      {
-        id: 1,
-        image: '/assets/images/wheel/wheel04.webp',
-        name: 'Crown Golden Alloy Rims for Honda CD70 - Elegant & Durable',
-        price: 23000,
-        oldPrice: 25000,
-        detail: "Upgrade your Honda CD70 with our premium Crown Golden Alloy Rims, designed to combine style and performance. Featuring a luxurious golden finish, these lightweight rims enhance your bike's aesthetics, improve..."
-      },
-      {
-        id: 1,
-        image: '/assets/images/wheel/wheel05.webp',
-        name: 'Alloyrims CD70 | YBR Shape Blue Outline | Premium Quality',
-        price: 21999,
-        oldPrice: 0,
-        detail: 'Enhance your ride with the Alloyrims CD70 featuring a sleek YBR shape and striking blue outline. Crafted with premium quality materials, these rims offer durability and style, ensuring your bike...'
-      },
-      {
-        id: 1,
-        image: '/assets/images/wheel/wheel06.webp',
-        name: 'Premium Red Curve Alloy Rims for CD 70 – Stylish & Durable Design',
-        price: 23000,
-        oldPrice: 25000,
-        detail: 'Upgrade your Honda CD 70 with our premium Red Curve Alloy Rims—crafted for riders who value both style and performance. With a sleek red finish and modern curved design, these...'
-      },
-      {
-        id: 1,
-        image: '/assets/images/wheel/wheel07.webp',
-        name: 'Curve Golden Alloy Rims for Honda CD70 - Stylish & Durable',
-        price: 23000,
-        oldPrice: 25000,
-        detail: 'Transform your Honda CD70 with our premium Curve Golden Alloy Rims, designed for bikers in Pakistan who value elegance and performance. These lightweight alloy rims feature a striking golden finish...'
-      },
-      {
-        id: 2,
-        image: '/assets/images/wheel/wheel08.webp',
-        name: 'Alloy Rims in YBR Shape With plates for Honda CG125 - Stylish, Durable, and Affordable | Top Choice in Pakistan',
-        price: 34999,
-        oldPrice: 38000,
-        detail: 'Transform your Honda CG125 with YBR Shape Alloy Rims, designed for bikers in Pakistan seeking cutting-edge style and reliable performance. With a modern YBR-inspired design, these premium alloy rims offer...'
-      },
-      {
-        id: 2,
-        image: '/assets/images/wheel/wheel09.webp',
-        name: 'Silver Alloy Rims for Honda CG125 - Durable & Stylish',
-        price: 31999,
-        oldPrice: 35000,
-        detail: "Elevate your Honda CG125 with our high-quality Silver Alloy Rims, crafted for riders in Pakistan who demand durability and style. These premium alloy rims feature a sleek silver finish that..."
-      },
-      {
-        id: 2,
-        image: '/assets/images/wheel/wheel10.webp',
-        name: 'Golden Alloy Rims CG125',
-        price: 32000,
-        oldPrice: 0,
-        detail: ''
-      },
-      // ... (add the rest of the items as needed)
     ];
   }
-} 
+
+  getLEDlightingCategorySections(): CategorySection[] {
+    return [
+      {
+        id: 1,
+        image: '/assets/images/lights/10066.jpg',
+        name: 'Lights',
+        price: 8500,
+        oldPrice: 7999,
+        detail: 'Lights'
+      },
+    ];
+
+  }
+
+  getHelmetGadgetsCategorySections(): CategorySection[] {
+    return [
+      {
+        id: 1,
+        image: '/assets/images/helmet/10020.jpeg',
+        name: 'Helmet',
+        price: 8500,
+        oldPrice: 7999,
+        detail: 'This is a Helmet'
+      },
+    ];
+  }
+
+  getSilencerCategorySections(): CategorySection[] {
+    return [
+      {
+        id: 1,
+        image: '/assets/images/silencer/10028.jpeg',
+        name: 'Silencer',
+        price: 8500,
+        oldPrice: 7999,
+        detail: 'Silencer'
+      },
+    ];
+  }
+}

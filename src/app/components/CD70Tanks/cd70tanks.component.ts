@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { PopupComponent } from '../wheel/popup.component';
+import { PopupComponent } from '../popup/popup.component';
 import { SharedService, CategorySection } from '../../shared.service';
 
 
@@ -60,7 +60,11 @@ export class CD70TanksComponent implements OnInit {
   }
 
   get filteredCategories() {
-    let filtered = this.categorySections.filter(c => c.id === this.selectedTab);
+    let filtered = this.categorySections.filter(
+      c => c.id === this.selectedTab &&
+           c.price >= this.sliderOneValue &&
+           c.price <= this.sliderTwoValue
+    );
     if (this.selectedSort === 'lowToHigh') {
       filtered = filtered.slice().sort((a, b) => a.price - b.price);
     } else if (this.selectedSort === 'highToLow') {

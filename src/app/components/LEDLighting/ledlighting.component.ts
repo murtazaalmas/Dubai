@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
-import { PopupComponent } from '../wheel/popup.component';
+import { PopupComponent } from '../popup/popup.component';
 import { SharedService, CategorySection } from '../../shared.service';
 import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-ledlighting',
@@ -18,21 +19,30 @@ export class LEDLightingComponent implements OnInit {
   selectedView = 1; // 1 to 5 columns
   selectedTab = 1;
   selectedSort: string = 'lowToHigh';
-
   showPopup: boolean = false;
   popupCategory: CategorySection | null = null;
   cartItems: { item: CategorySection, quantity: number }[] = [];
   showToast = false;
   toastMessage = '';
+  showFilterSlider = false;
+  sliderOneValue = 30;
+  sliderTwoValue = 70;
+  sliderMin = 0;
+  sliderMax = 100;
+  minGap = 0;
 
   constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
-    this.categorySections = this.sharedService.getWheelCategorySections();
+    this.categorySections = this.sharedService.getLEDlightingCategorySections();
     const savedCart = localStorage.getItem('cartItems');
     if (savedCart) {
       this.cartItems = JSON.parse(savedCart);
     }
+    // Set sliderOneValue to 0 and sliderMax to the max price
+    this.sliderOneValue = 0;
+    this.sliderMax = Math.max(...this.categorySections.map(c => c.price));
+    this.sliderTwoValue = this.sliderMax;
   }
 
   saveCart() {
@@ -52,7 +62,11 @@ export class LEDLightingComponent implements OnInit {
   }
 
   get filteredCategories() {
-    let filtered = this.categorySections.filter(c => c.id === this.selectedTab);
+    let filtered = this.categorySections.filter(
+      c => c.id === this.selectedTab &&
+           c.price >= this.sliderOneValue &&
+           c.price <= this.sliderTwoValue
+    );
     if (this.selectedSort === 'lowToHigh') {
       filtered = filtered.slice().sort((a, b) => a.price - b.price);
     } else if (this.selectedSort === 'highToLow') {
@@ -112,5 +126,29 @@ export class LEDLightingComponent implements OnInit {
   removeCartItem(index: number) {
     this.cartItems.splice(index, 1);
     this.saveCart();
+  }
+
+  get sliderTrackStyle() {
+    const percent1 = (this.sliderOneValue / this.sliderMax) * 100;
+    const percent2 = (this.sliderTwoValue / this.sliderMax) * 100;
+    return {
+      background: `linear-gradient(to right, #dadae5 ${percent1}%, #3264fe ${percent1}%, #3264fe ${percent2}%, #dadae5 ${percent2}%)`
+    };
+  }
+
+  toggleFilterSlider() {
+    this.showFilterSlider = !this.showFilterSlider;
+  }
+
+  slideOne() {
+    if (this.sliderTwoValue - this.sliderOneValue <= this.minGap) {
+      this.sliderOneValue = this.sliderTwoValue - this.minGap;
+    }
+  }
+
+  slideTwo() {
+    if (this.sliderTwoValue - this.sliderOneValue <= this.minGap) {
+      this.sliderTwoValue = this.sliderOneValue + this.minGap;
+    }
   }
 }

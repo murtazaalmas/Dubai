@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
-import { PopupComponent } from './popup.component';
+import { PopupComponent } from '../popup/popup.component';
 import { SharedService, CategorySection } from '../../shared.service';
 import { FormsModule } from '@angular/forms';
 
@@ -17,13 +17,11 @@ export class WheelComponent implements OnInit {
   selectedView = 1; // 1 to 5 columns
   selectedTab = 1;
   selectedSort: string = 'lowToHigh';
-
   showPopup: boolean = false;
   popupCategory: CategorySection | null = null;
   cartItems: { item: CategorySection, quantity: number }[] = [];
   showToast = false;
   toastMessage = '';
-
   showFilterSlider = false;
   sliderOneValue = 30;
   sliderTwoValue = 70;
@@ -62,7 +60,11 @@ export class WheelComponent implements OnInit {
   }
 
   get filteredCategories() {
-    let filtered = this.categorySections.filter(c => c.id === this.selectedTab);
+    let filtered = this.categorySections.filter(
+      c => c.id === this.selectedTab &&
+           c.price >= this.sliderOneValue &&
+           c.price <= this.sliderTwoValue
+    );
     if (this.selectedSort === 'lowToHigh') {
       filtered = filtered.slice().sort((a, b) => a.price - b.price);
     } else if (this.selectedSort === 'highToLow') {

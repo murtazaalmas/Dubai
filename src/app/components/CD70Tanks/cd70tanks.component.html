@@ -89,6 +89,9 @@
           </div>
         </ng-template>
       </div>
+      <div *ngIf="filteredCategories.length === 0" class="no-record-message">
+        No record found
+      </div>
     </div>
   </div>
 </section>
