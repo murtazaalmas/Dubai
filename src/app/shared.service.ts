@@ -583,15 +583,279 @@ export class SharedService {
     return [
       {
         id: 1,
-        image: '/assets/images/lights/10066.jpg',
-        name: 'Lights',
+        image: '/assets/images/lights/backLight/headLight001.webp',
+        name: 'Premium LED Headlight 001',
         price: 8500,
         oldPrice: 7999,
-        sku: "abc",
-        categories: "All",
+        sku: "HL001",
+        categories: "Headlights",
         availability: "In Stock",
-        detail: 'Lights'
+        detail: 'High-quality LED headlight with superior brightness and energy efficiency. Perfect for enhanced visibility during night rides.'
       },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight002.webp',
+        name: 'Sport LED Headlight 002',
+        price: 8200,
+        oldPrice: 7800,
+        sku: "HL002",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Sport-style LED headlight designed for modern motorcycles with sleek aesthetics and powerful illumination.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight003.webp',
+        name: 'Classic LED Headlight 003',
+        price: 7800,
+        oldPrice: 7500,
+        sku: "HL003",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Classic design LED headlight that combines traditional styling with modern LED technology for timeless appeal.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight004.webp',
+        name: 'Modern LED Headlight 004',
+        price: 8900,
+        oldPrice: 8500,
+        sku: "HL004",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Contemporary LED headlight featuring cutting-edge design and advanced lighting technology for maximum visibility.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight005.webp',
+        name: 'Performance LED Headlight 005',
+        price: 9200,
+        oldPrice: 8800,
+        sku: "HL005",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'High-performance LED headlight engineered for racing and high-speed applications with exceptional beam control.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight006.webp',
+        name: 'Adventure LED Headlight 006',
+        price: 8600,
+        oldPrice: 8200,
+        sku: "HL006",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Adventure-ready LED headlight built for off-road conditions with rugged construction and wide beam pattern.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight007.webp',
+        name: 'Urban LED Headlight 007',
+        price: 7500,
+        oldPrice: 7200,
+        sku: "HL007",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Urban-focused LED headlight perfect for city riding with smart beam control and energy-efficient operation.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight008.webp',
+        name: 'Luxury LED Headlight 008',
+        price: 9500,
+        oldPrice: 9100,
+        sku: "HL008",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Luxury-grade LED headlight with premium materials and sophisticated design for high-end motorcycles.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight009.webp',
+        name: 'Compact LED Headlight 009',
+        price: 6800,
+        oldPrice: 6500,
+        sku: "HL009",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Compact LED headlight designed for smaller motorcycles with space-saving design and powerful output.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight010.webp',
+        name: 'Dual Beam LED Headlight 010',
+        price: 8800,
+        oldPrice: 8400,
+        sku: "HL010",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Dual-beam LED headlight with high and low beam functionality for versatile lighting options.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight011.webp',
+        name: 'Retro LED Headlight 011',
+        price: 8200,
+        oldPrice: 7900,
+        sku: "HL011",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Retro-styled LED headlight that captures classic motorcycle aesthetics with modern LED performance.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight012.webp',
+        name: 'Smart LED Headlight 012',
+        price: 9100,
+        oldPrice: 8700,
+        sku: "HL012",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Smart LED headlight with automatic brightness adjustment and integrated turn signal indicators.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight013.webp',
+        name: 'Racing LED Headlight 013',
+        price: 9400,
+        oldPrice: 9000,
+        sku: "HL013",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Racing-spec LED headlight optimized for track performance with aerodynamic design and maximum brightness.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight014.webp',
+        name: 'Touring LED Headlight 014',
+        price: 8700,
+        oldPrice: 8300,
+        sku: "HL014",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Touring-focused LED headlight designed for long-distance rides with comfortable illumination and durability.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/headLight015.webp',
+        name: 'Custom LED Headlight 015',
+        price: 9600,
+        oldPrice: 9200,
+        sku: "HL015",
+        categories: "Headlights",
+        availability: "In Stock",
+        detail: 'Custom LED headlight with unique design elements and personalized styling options for individual riders.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight001.webp',
+        name: 'LED Tail Light 001',
+        price: 4500,
+        oldPrice: 4200,
+        sku: "TL001",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Bright LED tail light with integrated brake light functionality for enhanced rear visibility and safety.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight002.webp',
+        name: 'Sport LED Tail Light 002',
+        price: 4800,
+        oldPrice: 4500,
+        sku: "TL002",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Sport-style LED tail light with sleek design and high-visibility output for modern motorcycles.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight003.webp',
+        name: 'Premium LED Tail Light 003',
+        price: 5200,
+        oldPrice: 4900,
+        sku: "TL003",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Premium LED tail light with advanced optics and superior brightness for maximum rear visibility.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight004.webp',
+        name: 'Modern LED Tail Light 004',
+        price: 4900,
+        oldPrice: 4600,
+        sku: "TL004",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Modern LED tail light featuring contemporary design and energy-efficient operation for daily commuting.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight005.webp',
+        name: 'Classic LED Tail Light 005',
+        price: 4300,
+        oldPrice: 4000,
+        sku: "TL005",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Classic-styled LED tail light that maintains traditional aesthetics while providing modern LED performance.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight006.webp',
+        name: 'Compact LED Tail Light 006',
+        price: 4100,
+        oldPrice: 3800,
+        sku: "TL006",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Compact LED tail light designed for smaller motorcycles with space-efficient design and bright output.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight007.webp',
+        name: 'Adventure LED Tail Light 007',
+        price: 4700,
+        oldPrice: 4400,
+        sku: "TL007",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Adventure-ready LED tail light built for rugged conditions with durable construction and reliable operation.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight008.webp',
+        name: 'Luxury LED Tail Light 008',
+        price: 5400,
+        oldPrice: 5100,
+        sku: "TL008",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Luxury-grade LED tail light with premium materials and sophisticated design for high-end motorcycles.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight009.webp',
+        name: 'Smart LED Tail Light 009',
+        price: 5100,
+        oldPrice: 4800,
+        sku: "TL009",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Smart LED tail light with automatic brightness adjustment and integrated turn signal functionality.'
+      },
+      {
+        id: 1,
+        image: '/assets/images/lights/backLight/backLight010.webp',
+        name: 'Racing LED Tail Light 010',
+        price: 5300,
+        oldPrice: 5000,
+        sku: "TL010",
+        categories: "Tail Lights",
+        availability: "In Stock",
+        detail: 'Racing-spec LED tail light optimized for track performance with aerodynamic design and maximum visibility.'
+      }
     ];
 
   }
