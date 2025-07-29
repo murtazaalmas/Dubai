@@ -584,278 +584,277 @@ export class SharedService {
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight001.webp',
-        name: 'Premium LED Headlight 001',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'A03-X Handle Ring Light | Orange Ring',
+        price: 1600.00,
+        oldPrice: 2000.00,
         sku: "HL001",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'High-quality LED headlight with superior brightness and energy efficiency. Perfect for enhanced visibility during night rides.'
+        detail: 'The A03-X Handle Ring Light with its vibrant orange ring offers reliable, adjustable lighting perfect for enhancing your photos and videos. Its ergonomic handle ensures comfortable use during extended shoots,...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight002.webp',
-        name: 'Sport LED Headlight 002',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'BB1285 Led Spotlights | Yellow & White',
+        price: 1700.00,
+        oldPrice: 1900.00,
         sku: "HL002",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Sport-style LED headlight designed for modern motorcycles with sleek aesthetics and powerful illumination.'
+        detail: 'Illuminate your space with the BB1285 LED Spotlights, featuring both yellow and white light options. Designed to provide versatile lighting, these spotlights enhance visibility and ambiance, making them ideal for...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight003.webp',
-        name: 'Classic LED Headlight 003',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Belta TF-134 | LED Lights | Yellow & White',
+        price: 1700.00,
+        oldPrice: 2000.00,
         sku: "HL003",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Classic design LED headlight that combines traditional styling with modern LED technology for timeless appeal.'
+        detail: 'The Belta TF-134 LED lights combine yellow and white illumination to enhance visibility and safety. Designed for durability and efficient performance, these lights are ideal for various applications where clear,...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight004.webp',
-        name: 'Modern LED Headlight 004',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Boss Led Light | HJG Metal Led | High quality',
+        price: 2250.00,
+        oldPrice: 2500.00,
         sku: "HL004",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Contemporary LED headlight featuring cutting-edge design and advanced lighting technology for maximum visibility.'
+        detail: 'The Boss Led Light is a premium HJG Metal Led with high quality construction. Its long range throw will illuminate even the darkest of areas, making it a must-have for...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight005.webp',
-        name: 'Performance LED Headlight 005',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'DUAL LENS LED BEAM',
+        price: 4800.00,
+        oldPrice: 5800.00,
         sku: "HL005",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'High-performance LED headlight engineered for racing and high-speed applications with exceptional beam control.'
+        detail: "Upgrade your bike's lighting system with our DUAL LENS LED BEAM. The dual lens design ensures long range throw while the beautiful DRL lights in red add a touch of..."
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight006.webp',
-        name: 'Adventure LED Headlight 006',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'DUAL LENS SMD LIGHT',
+        price: 6800.00,
+        oldPrice: 7500.00,
         sku: "HL006",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Adventure-ready LED headlight built for off-road conditions with rugged construction and wide beam pattern.'
+        detail: "Upgrade your bike with our high quality DUAL LENS SMD LIGHT. With metal construction, LED lighting, and long range throw, it's perfect for nighttime rides. Plus, you get a pair..."
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight007.webp',
-        name: 'Urban LED Headlight 007',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Front Logo Honda Neon | Universal Fitting | High quality',
+        price: 1699.00,
+        oldPrice: 1800.00,
         sku: "HL007",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Urban-focused LED headlight perfect for city riding with smart beam control and energy-efficient operation.'
+        detail: 'Elevate your bike ride with Front Logo Neon, featuring a vibrant Honda logo and LED neons for increased visibility. Expertly designed for a safe and stylish journey.'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight008.webp',
-        name: 'Luxury LED Headlight 008',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'HJG Metal Triple Lens Mini Led | Long Range Throw | High Quality Product',
+        price: 1500.00,
+        oldPrice: 2000.00,
         sku: "HL008",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Luxury-grade LED headlight with premium materials and sophisticated design for high-end motorcycles.'
+        detail: 'The HJG Metal Triple Lens Mini LED combines durability with exceptional performance. Its triple lens design delivers impressive long-range illumination, making it perfect for outdoor adventures, emergency situations, or everyday...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight009.webp',
-        name: 'Luxury LED Headlight 008',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'KZ-30 Led | Zoom In/Out Feature | Premium Quality | Water proof',
+        price: 4500.00,
+        oldPrice: 5500.00,
         sku: "HL008",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Luxury-grade LED headlight with premium materials and sophisticated design for high-end motorcycles.'
+        detail: 'Upgrade your biking experience with the KZ-30 LED. Enjoy zooming in and out for optimal visibility, while feeling confident with its premium quality and water resistance. Accessorize any bike with...'
       },
-
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight010.webp',
-        name: 'Dual Beam LED Headlight 010',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'LED HEADLIGHT',
+        price: 2500.00,
+        oldPrice: 3000.00,
         sku: "HL010",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Dual-beam LED headlight with high and low beam functionality for versatile lighting options.'
+        detail: 'Upgrade your biking experience with our LED Headlight - the best quality option for long range visibility. Designed specifically for bikers and bike lovers, our LED Headlight provides superior brightness...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight011.webp',
         name: 'Retro LED Headlight 011',
-        price: 8500,
-        oldPrice: 8500,
+        price: 1500.00,
+        oldPrice: 2800.00,
         sku: "HL011",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Retro-styled LED headlight that captures classic motorcycle aesthetics with modern LED performance.'
+        detail: "Transform your motorcycle's headlights with our high-quality LED skull panel. This yellow and white LED DRL light easily fits CD70 and CG125 models, giving your bike a unique and beautiful..."
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight012.webp',
-        name: 'Smart LED Headlight 012',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'M4 Led Price',
+        price: 1799.00,
+        oldPrice: 2199.00,
         sku: "HL012",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Smart LED headlight with automatic brightness adjustment and integrated turn signal indicators.'
+        detail: 'Upgrade your bike with the M4 multicoloured LED light. Enjoy a beautiful throw of light and multicoloured flashes, making your bike stand out. Expertly designed for all bikes, this light...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight013.webp',
-        name: 'Racing LED Headlight 013',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'M6 Led light',
+        price: 1199.00,
+        oldPrice: 1500.00,
         sku: "HL013",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Racing-spec LED headlight optimized for track performance with aerodynamic design and maximum brightness.'
+        detail: 'Get the most out of your lighting with our M6 Led light. The powerful M6 led emits a bright white light that will illuminate any space. Trust in our advanced...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight014.webp',
-        name: 'Touring LED Headlight 014',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'M8 Led Light',
+        price: 1499.00,
+        oldPrice: 1799.00,
         sku: "HL014",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Touring-focused LED headlight designed for long-distance rides with comfortable illumination and durability.'
+        detail: "Upgrade your bike's lighting with the M8 LED Light. Specifically designed for CG125 and 70 lovers, it provides a bright, clear vision for safer rides. Say goodbye to dim and..."
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight015.webp',
-        name: 'Custom LED Headlight 015',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Monster Headlight | New Design | Universal Head Light | CD70/CG125',
+        price: 2700.00,
+        oldPrice: 3000.00,
         sku: "HL015",
         categories: "Headlights",
         availability: "In Stock",
-        detail: 'Custom LED headlight with unique design elements and personalized styling options for individual riders.'
+        detail: "Upgrade your motorcycle's front headlight with our new, universal design. Compatible with CD70 and CG125 models, this headlight includes a high beam function for improved visibility on the road. Replace..."
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight016.webp',
-        name: 'LED Tail Light 001',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'OWL LED LIGHT | plastic body',
+        price: 1450.00,
+        oldPrice: 1800.00,
         sku: "TL001",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Bright LED tail light with integrated brake light functionality for enhanced rear visibility and safety.'
+        detail: 'The OWL LED LIGHT is a bright and versatile bike light with adjustable settings and a long range throw. The LED technology ensures a powerful beam that will guide you...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight017.webp',
-        name: 'Sport LED Tail Light 002',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'OWL TRIPLE LENS LIGHT',
+        price: 2300,
+        oldPrice: 2500,
         sku: "TL002",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Sport-style LED tail light with sleek design and high-visibility output for modern motorcycles.'
+        detail: 'The OWL TRIPLE LENS LIGHT is a must-have for bikers and bike lovers. This high-quality, LED light features a unique owl shape and triple lens design, providing long-range visibility and..'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight018.webp',
-        name: 'Premium LED Tail Light 003',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Protocol led flashlight',
+        price: 2499,
+        oldPrice: 2800,
         sku: "TL003",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Premium LED tail light with advanced optics and superior brightness for maximum rear visibility.'
+        detail: 'The Protocol Led Flashlight is a high-quality, police-style flashlight with dual blue and red flash capabilities. It also features a bright white and yellow LED light for maximum visibility, and...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight019.webp',
-        name: 'Modern LED Tail Light 004',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Single lens led',
+        price: 750,
+        oldPrice: 1200,
         sku: "TL004",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Modern LED tail light featuring contemporary design and energy-efficient operation for daily commuting.'
+        detail: 'The Single Lens LED is the perfect choice for CD70 and 125 riders. It offers a long range throw, providing increased visibility and safety on the road. Plus, it is...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight020.webp',
-        name: 'Classic LED Tail Light 005',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Skull led Customized',
+        price: 5500,
+        oldPrice: 6500,
         sku: "TL005",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Classic-styled LED tail light that maintains traditional aesthetics while providing modern LED performance.'
+        detail: 'Expertly designed with a customised LED panel featuring a metal skull and LED neon light. Enjoy a one-of-a-kind piece that adds a unique touch to your space. Enhance your decor...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight021.webp',
-        name: 'Compact LED Tail Light 006',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'SKULL LED HEADLIGHT',
+        price: 2500,
+        oldPrice: 0,
         sku: "TL006",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Compact LED tail light designed for smaller motorcycles with space-efficient design and bright output.'
+        detail: 'Upgrade your biking experience with our Skull LED Headlight. Made with high quality materials and powerful LED lights, this headlight provides a long range of visibility for safe and enjoyable...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight022.webp',
-        name: 'Adventure LED Tail Light 007',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Skull Led new',
+        price: 82499.00,
+        oldPrice: 2850.00,
         sku: "TL007",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Adventure-ready LED tail light built for rugged conditions with durable construction and reliable operation.'
+        detail: "Introducing our new Skull Led that fits perfectly on design cg125 and cd70 bikes. With a sleek and modern design, this led will enhance your bike's appearance and brightness. Upgrade..."
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight023.webp',
-        name: 'Luxury LED Tail Light 008',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Skull lens Led',
+        price: 1499.00,
+        oldPrice: 1800.00,
         sku: "TL008",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Luxury-grade LED tail light with premium materials and sophisticated design for high-end motorcycles.'
+        detail: 'I Illuminate your ride with the high quality Skull Lens LED light. Designed for all bikes, this universal product will enhance your visibility and make every journey safer and more stylish...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight024.webp',
-        name: 'Smart LED Tail Light 009',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Skull Lens Light | High Beam Light',
+        price: 2500.00,
+        oldPrice: 3000.00,
         sku: "TL009",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Smart LED tail light with automatic brightness adjustment and integrated turn signal functionality.'
+        detail: 'Enhance your visibility on the road with the Skull Lens Light. This high beam light passes through the unique skull design, providing a distinct and eye-catching appearance. With increased brightness...'
       },
       {
         id: 1,
         image: '/assets/images/lights/headLight/headLight025.webp',
-        name: 'Racing LED Tail Light 010',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Triple lens Led light',
+        price: 7499.00,
+        oldPrice: 9499.00,
         sku: "TL010",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'Racing-spec LED tail light optimized for track performance with aerodynamic design and maximum visibility.'
+        detail: "Upgrade your vehicle's lighting with the Triple Lens LED Light. Its high-quality design improves visibility with long range throw and daytime running light feature. Enjoy improved efficiency and durability with..."
       },
       // BackLigt
 
@@ -1256,8 +1255,8 @@ export class SharedService {
         availability: "In Stock",
         detail: 'indicators015'
       },
-      
-      
+
+
     ];
 
   }
