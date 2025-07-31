@@ -565,17 +565,17 @@ export class SharedService {
 
   getCG125CategorySections(): CategorySection[] {
     return [
-      {
-        id: 1,
-        image: '/assets/images/tanks/tank001.webp',
-        name: '2025 Red CD70',
-        price: 8500,
-        oldPrice: 7999,
-        sku: "abc",
-        categories: "All",
-        availability: "In Stock",
-        detail: 'The 2025 Red CD70 is a high-quality motorcycle that boasts a genuine paint and logo, making it a durable and stylish choice. With its advanced 2025 model and vibrant red...'
-      },
+      // {
+      //   id: 1,
+      //   image: '/assets/images/tanks/tank001.webp',
+      //   name: '2025 Red CD70',
+      //   price: 8500,
+      //   oldPrice: 7999,
+      //   sku: "abc",
+      //   categories: "All",
+      //   availability: "In Stock",
+      //   detail: 'The 2025 Red CD70 is a high-quality motorcycle that boasts a genuine paint and logo, making it a durable and stylish choice. With its advanced 2025 model and vibrant red...'
+      // },
     ];
   }
 
@@ -857,403 +857,402 @@ export class SharedService {
         detail: "Upgrade your vehicle's lighting with the Triple Lens LED Light. Its high-quality design improves visibility with long range throw and daytime running light feature. Enjoy improved efficiency and durability with..."
       },
       // BackLigt
-
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight001.webp',
-        name: 'backLight001',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Audi Running Backlight | CG125 | Premium Quality Finishing',
+        price: 2500.00,
+        oldPrice: 2800.00,
         sku: "TL010",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight001'
+        detail: "Upgrade your CG125 bike with the premium quality Audi Running Backlight. Enjoy the stylish and sleek design inspired by Audi and enhance your bike's appearance. With premium quality finishing, this..."
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight002.webp',
-        name: 'backLight002',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Backlights CG125',
+        price: 2500.00,
+        oldPrice: 2999.00,
         sku: "TL010",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight002'
+        detail: 'Introducing Backlights CG125 - the perfect mix of design and function for your CG125 motorcycle. Neon touch adds a touch of style while providing enhanced visibility. Experience the perfect blend...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight003.webp',
-        name: 'backLight003',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Dragon Style CG125',
+        price: 2500.00,
+        oldPrice: 2700.00,
         sku: "TL011",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight003'
+        detail: 'The Dragon Style CG125 boasts a unique dragon style backlight that sets it apart from other bikes. With its high quality craftsmanship and durable design, this bike is a must-have...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight004.webp',
-        name: 'backLight004',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Engroove Fancy BackLight Cover CG125',
+        price: 950.00,
+        oldPrice: 1250.00,
         sku: "TL012",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight004'
+        detail: 'Enhance your CG125 motorcycle with the Engroove Fancy BackLight Cover. This stylish accessory adds a modern touch to your bike while providing improved visibility during night rides. Designed specifically for...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight005.webp',
-        name: 'backLight005',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Engroove Fancy BackLight Cover CG125',
+        price: 950.00,
+        oldPrice: 1250.00,
         sku: "TL013",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight005'
+        detail: 'Enhance your CG125 motorcycle with the Engroove Fancy BackLight Cover. This stylish accessory adds a modern touch to your bike while providing reliable protection for your backlights. Designed specifically for...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight006.webp',
-        name: 'backLight006',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Engroove Fancy BackLight Cover CG125',
+        price: 950.00,
+        oldPrice: 1250.00,
         sku: "TL014",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight006'
+        detail: "Transform your CG125 motorcycle with the Engroove Fancy BackLight Cover. This specially designed accessory combines style and protection, enhancing your bike's appearance while safeguarding the backlights. Crafted for perfect compatibility..."
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight007.webp',
-        name: 'backLight007',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Engroove Fancy BackLight Cover CG125',
+        price: 950.00,
+        oldPrice: 1250.00,
         sku: "TL015",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight007'
+        detail: "Elevate your CG125 motorcycle's appearance with the Engroove Fancy BackLight Cover. This premium accessory not only protects your backlights from damage but also adds a stylish, modern aesthetic to your..."
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight008.webp',
-        name: 'backLight008',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Eyes Backlight | CG125 | Premium Quality Finishing',
+        price: 2500.00,
+        oldPrice: 3000.00,
         sku: "TL016",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight008'
+        detail: 'Enhance your CG125 with the Eyes Backlight, designed for premium quality finishing. This upgrade improves visibility and adds a stylish touch to your bike, ensuring safer rides in low-light conditions....'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight009.webp',
-        name: 'backLight009',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'FLAME SKULL | BACKLIGHT | CD70 / CG125',
+        price: 2500.00,
+        oldPrice: 3000.00,
         sku: "TL017",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight009'
+        detail: 'Illuminate your ride with our universal Flame Skull Backlight, specially designed to fit CD70 and CG125 motorcycles. This eye-catching accessory adds a bold, distinctive look to your bike while enhancing...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight010.webp',
-        name: 'backLight010',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Lava Backlight Neon Flash | Premium Cover',
+        price: 1499.00,
+        oldPrice: 1699.00,
         sku: "TL018",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight010'
+        detail: 'Illuminate your Honda CG125 bike with our Lava Backlight Premium Cover. Featuring a bright neon red light, this cover adds a vibrant touch to your bike while improving visibility for...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight011.webp',
-        name: 'backLight011',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Lava Backlight Square',
+        price: 2500.00,
+        oldPrice: 2800.00,
         sku: "TL019",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight011'
+        detail: 'Enhance your bike rides with the Square Lava backlight. Designed to fit all bikes, this LED backlight not only adds a beautiful touch, but also provides indicators for increased safety....'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight012.webp',
-        name: 'backLight012',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Lion Neon Backlight CG125',
+        price: 2500.00,
+        oldPrice: 2800.00,
         sku: "TL020",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight012'
+        detail: 'The Lion Neon Backlight CG125 features a stunning red neon backlight, creating a beautiful and eye-catching look for your CG125 bike. The addition of an inside lion light adds an...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight013.webp',
-        name: 'backLight013',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'New Cross Backlight',
+        price: 2500.00,
+        oldPrice: 2800.00,
         sku: "TL021",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight013'
+        detail: 'The New Cross Backlight boasts cutting-edge technology that provides optimal illumination for any situation. With its innovative design and superior lighting, the Cross Backlight offers up to 50% more visibility...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight014.webp',
-        name: 'backLight014',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Police Flash Backlight CG125',
+        price: 2500.00,
+        oldPrice: 2800.00,
         sku: "TL022",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight014'
+        detail: 'Enhance your visibility on the road with the Police Flash Backlight CG125. This unique backlight features a striking Neon red light that is sure to catch the attention of other...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight015.webp',
-        name: 'backLight015',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Police Flash Backlight Cover CG125',
+        price: 1400.00,
+        oldPrice: 1800.00,
         sku: "TL023",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight015'
+        detail: 'Enhance your safety on the road with our Police Flash Backlight Cover for CG125 motorbikes. Made with high quality materials, this cover features a built-in police flashing light to increase...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight016.webp',
-        name: 'backLight016',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Red Skull Backlight CD70/CG125',
+        price: 2350.00,
+        oldPrice: 2400.00,
         sku: "TL024",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight016'
+        detail: 'Transform your CD70 or CG125 motorcycle with our striking Red Skull Backlight. This eye-catching accessory combines safety with style, providing enhanced visibility while adding an aggressive, custom look to your...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight017.webp',
-        name: 'backLight017',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Skull Lens Backlight',
+        price: 3000.00,
+        oldPrice: 3500.00,
         sku: "TL025",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight017'
+        detail: 'Introducing the Skull Lens Backlight, a beautifully crafted high quality customizable product. Enhance the aesthetic of your room with this unique piece, designed to add personality and ambiance. Made with...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight018.webp',
-        name: 'backLight018',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Smoking Skull Backlight Multicolor | CG125 | Premium Quality Finishing',
+        price: 2500.00,
+        oldPrice: 2800.00,
         sku: "TL026",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight018'
+        detail: 'The Smoking Skull Backlight Multicolor for CG125 combines striking design with premium quality finishing, enhancing your bike’s style and visibility. Its vibrant multicolor backlight adds a unique, eye-catching glow, making...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight019.webp',
-        name: 'backLight019',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Wanted Neon Backlight CG125',
+        price: 2500.00,
+        oldPrice: 2800.00,
         sku: "TL027",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight019'
+        detail: 'Upgrade your CG125 with the Wanted Neon Backlight, featuring stunning neon and RGB lights. Give your bike a unique and stylish look while adding safety with increased visibility. Revamp your...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight020.webp',
-        name: 'backLight020',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'White Dragon Backlight | CG125 | Premium Quality Finishing',
+        price: 2500.00,
+        oldPrice: 2800.00,
         sku: "TL028",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight020'
+        detail: 'Enhance your CG125 with the White Dragon Backlight, crafted for premium quality and durability. This backlight not only adds a striking visual appeal but also ensures reliable performance, making your...'
       },
       {
         id: 2,
         image: '/assets/images/lights/backLight/backLight021.webp',
-        name: 'backLight021',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Wolf Backlight | CG125 | Premium Quality Finishing',
+        price: 2500.00,
+        oldPrice: 3000.00,
         sku: "TL029",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'backLight021'
+        detail: 'Enhance your CG125 with the Wolf Backlight, designed for premium quality finishing. This backlight offers reliable illumination and a sleek look, improving both safety and style on your ride. Crafted...'
       },
-
+      // indicators
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators001.webp',
-        name: 'indicators001',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Led Drl Indicators',
+        price: 850.00,
+        oldPrice: 999.00,
         sku: "TL029",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators001'
+        detail: "Enhance your motorcycle's visibility and safety with our LED DRL indicators for CG125 models. These indicators use advanced LED technology to provide brighter and longer lasting lights. Improve your riding..."
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators002.webp',
-        name: 'indicators002',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Led Drl indicators',
+        price: 850.00,
+        oldPrice: 999.00,
         sku: "TL030",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators002'
+        detail: "Upgrade your bike's style with our Led Drl indicators. These universal indicators not only add a sleek and unique look, but also provide necessary signaling for safe riding. Their slim..."
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators003.webp',
-        name: 'indicators003',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Led Drl Indicators',
+        price: 850.00,
+        oldPrice: 999.00,
         sku: "TL031",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators003'
+        detail: "These high quality Led indicators come in red, blue, and white variants. Improve your vehicle's visibility and safety with these reliable and efficient indicators. Perfect for any car enthusiast looking..."
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators004.webp',
-        name: 'indicators004',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Led Drl Indicators',
+        price: 850.00,
+        oldPrice: 950.00,
         sku: "TL032",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators004'
+        detail: 'Enhance the visibility and style of your vehicle with our high-quality LED DRL indicators. Choose from red, blue, or white lights to add a unique touch. Experience improved safety and...'
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators005.webp',
-        name: 'indicators005',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Capsule indicators',
+        price: 299.00,
+        oldPrice: 350.00,
         sku: "TL033",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators005'
+        detail: 'This small, capsule-style indicator features a beautiful golden design that will complement any space. Suitable for a variety of uses, this universal indicator is both practical and aesthetically pleasing. Perfect...'
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators006.webp',
-        name: 'indicators006',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Arrow Indicators DRL Universal',
+        price: 750.00,
+        oldPrice: 850.00,
         sku: "TL034",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators006'
+        detail: "Maximize your bike's safety and style with Arrow Indicators DRL Universal. These multifunctional lights combine a beautiful white DRL (daytime running light) with a yellow indicator light, ensuring enhanced visibility..."
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators007.webp',
-        name: 'indicators007',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'LED DRL Round Indicators Red & Yellow | CD70/CG125',
+        price: 800.00,
+        oldPrice: 950.00,
         sku: "TL035",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators007'
+        detail: 'Enhance your CD70 or CG125 motorcycle with these LED DRL round indicators in red and yellow. Designed for clear visibility, they improve safety by making your signals more noticeable in...'
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators008.webp',
-        name: 'indicators008',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'LED DRL Round Indicators White & Yellow | CD70/CG125',
+        price: 850.00,
+        oldPrice: 950.00,
         sku: "TL036",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators008'
+        detail: 'Enhance your CD70 or CG125 motorcycle with these LED DRL round indicators featuring white and yellow lights. Designed for clear visibility, they improve safety by making your signals more noticeable...'
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators009.webp',
-        name: 'indicators009',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'CNC Capsule Metal Indicators Black',
+        price: 650.00,
+        oldPrice: 750.00,
         sku: "TL037",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators009'
+        detail: "Enhance your motorcycle's style with our sleek CNC Capsule Metal Indicators in Black. Precision-crafted from high-quality metal, these indicators offer superior durability while adding a sophisticated touch to your bike...."
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators010.webp',
-        name: 'indicators010',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Led Drl Indicators',
+        price: 650.00,
+        oldPrice: 750.00,
         sku: "TL038",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators010'
+        detail: 'Indicators Drl are specially designed for use on CG125 and CD70 motorbikes. These high-quality indicators enhance safety and visibility while riding, providing a reliable and efficient way to signal your...'
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators011.webp',
-        name: 'indicators011',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Arrow DRL Indicators Blue & Yellow | CD70/CG125',
+        price: 850.00,
+        oldPrice: 950.00,
         sku: "TL039",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators011'
+        detail: 'Enhance your CD70 or CG125 motorcycle with the Arrow DRL Indicators in blue and yellow. These indicators provide clear, bright signals for improved visibility and safety on the road. Designed...'
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators012.webp',
-        name: 'indicators012',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'CNC Capsule Metal Indicators Blue',
+        price: 850.00,
+        oldPrice: 999.00,
         sku: "TL040",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators012'
+        detail: 'CNC Capsule Metal Indicators provide precise visual feedback for your motorcycle. These durable, machined metal indicators enhance both safety and style, offering improved visibility to other road users while complementing...'
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators013.webp',
-        name: 'indicators013',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Red CNC Metals Indicators Universal',
+        price: 650.00,
+        oldPrice: 750.00,
         sku: "TL041",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators013'
+        detail: 'As a universal indicator, the Red CNC Metals Indicators provide clear and accurate readings for a wide variety of metals. With a professional and objective tone, these indicators use scientific...'
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators014.webp',
-        name: 'indicators014',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Yellow CNC Metal Indicators',
+        price: 650.00,
+        oldPrice: 750.00,
         sku: "TL042",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators014'
+        detail: "Enhance the look of your bike with Yellow CNC Metals Indicators. These metal indicators are not only stylish, but also durable and weather-resistant. Elevate your bike's appearance and stand out..."
       },
       {
         id: 3,
         image: '/assets/images/lights/indicators/indicators015.webp',
-        name: 'indicators015',
-        price: 8500,
-        oldPrice: 8500,
+        name: 'Indicator Old Model Metal',
+        price: 850.00,
+        oldPrice: 850.00,
         sku: "TL043",
         categories: "Tail Lights",
         availability: "In Stock",
-        detail: 'indicators015'
+        detail: 'The Indicator Old Model Metal is expertly crafted with a sturdy metal body, providing durability and reliable performance. Its old model design is perfect for the classic style lover. Boost...'
       },
 
 
@@ -1263,33 +1262,33 @@ export class SharedService {
 
   getHelmetGadgetsCategorySections(): CategorySection[] {
     return [
-      {
-        id: 1,
-        image: '/assets/images/helmet/10020.jpeg',
-        name: 'Helmet',
-        price: 8500,
-        oldPrice: 7999,
-        sku: "abc",
-        categories: "All",
-        availability: "In Stock",
-        detail: 'This is a Helmet'
-      },
+      // {
+      //   id: 1,
+      //   image: '/assets/images/helmet/10020.jpeg',
+      //   name: 'Helmet',
+      //   price: 8500,
+      //   oldPrice: 7999,
+      //   sku: "abc",
+      //   categories: "All",
+      //   availability: "In Stock",
+      //   detail: 'This is a Helmet'
+      // },
     ];
   }
 
   getSilencerCategorySections(): CategorySection[] {
     return [
-      {
-        id: 1,
-        image: '/assets/images/silencer/10028.jpeg',
-        name: 'Silencer',
-        price: 8500,
-        oldPrice: 7999,
-        sku: "abc",
-        categories: "All",
-        availability: "In Stock",
-        detail: 'Silencer'
-      },
+      // {
+      //   id: 1,
+      //   image: '/assets/images/silencer/10028.jpeg',
+      //   name: 'Silencer',
+      //   price: 8500,
+      //   oldPrice: 7999,
+      //   sku: "abc",
+      //   categories: "All",
+      //   availability: "In Stock",
+      //   detail: 'Silencer'
+      // },
     ];
   }
 }
