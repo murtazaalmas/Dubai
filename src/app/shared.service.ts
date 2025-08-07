@@ -1262,33 +1262,223 @@ export class SharedService {
 
   getHelmetGadgetsCategorySections(): CategorySection[] {
     return [
-      // {
-      //   id: 1,
-      //   image: '/assets/images/helmet/10020.jpeg',
-      //   name: 'Helmet',
-      //   price: 8500,
-      //   oldPrice: 7999,
-      //   sku: "abc",
-      //   categories: "All",
-      //   availability: "In Stock",
-      //   detail: 'This is a Helmet'
-      // },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet001.jpg',
+        name: 'Aadora Blue By Vector | Medium Size | Premium Quality',
+        price: 5000.00,
+        oldPrice: 4000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Experience the perfect blend of style and durability with Aadora Blue by Vector. Designed in a medium size for a comfortable fit, this premium quality product ensures long-lasting performance. Whether...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet002.jpg',
+        name: 'Aadora Green By Vector | Medium Size | Premium Quality',
+        price: 5000.00,
+        oldPrice: 4000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Experience the perfect blend of style and quality with Aadora Green by Vector. Designed in a medium size for a comfortable fit, this product offers premium craftsmanship that ensures durability...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet003.jpg',
+        name: 'Atlas Honda Helmet | High Quality',
+        price: 10500.00,
+        oldPrice: 90500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'As an expert in the field, we can confidently state that the Atlas Honda Helmet is of the highest quality. Made with top-notch materials and advanced technology, this helmet guarantees...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet004.jpg',
+        name: 'Flip-Up Helmet with Dual Visor for Motorcycles | Premium Safety & Comfort | Best Price in Pakistan',
+        price: 7500.00,
+        oldPrice: 6500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Flip-Up Helmet with Dual Visor, designed for motorcyclists in Pakistan who prioritize premium safety and comfort. This high-quality helmet features a versatile flip-up design and dual visors for enhanced protection...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet005.jpg',
+        name: 'Flip-Up Matt Green Helmet - Premium Comfort & Safety for Riders',
+        price: 7500.00,
+        oldPrice: 6500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Ride in style with the Flip-Up Matt Green Helmet, designed for motorcycle enthusiasts in Pakistan who prioritize both safety and comfort. The sleek matt green finish adds a unique, modern...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet006.jpg',
+        name: 'Helmix Black | Large Size | Premium Quality',
+        price: 7500.00,
+        oldPrice: 6500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Experience the superior quality of Helmix Black in a large size, designed to meet your highest expectations. Crafted with premium materials, this product offers durability and reliable performance, ensuring it...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet007.jpg',
+        name: 'Helmix Red Helmet | Large Size | Premium Quality',
+        price: 5000.00,
+        oldPrice: 4000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'The Helmix Helmet in large size offers premium quality protection designed for comfort and safety. Its durable construction ensures reliable impact resistance, while the spacious fit provides all-day comfort for...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet008.jpg',
+        name: 'Ninja Elite Red Helmet | Medium Size | DOT Approved | Premium Quality',
+        price: 10500.00,
+        oldPrice: 90500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Experience superior protection with the Ninja Elite Helmet in medium size. DOT approved for safety, this premium-quality helmet offers reliable impact resistance and comfort for every ride. Designed to keep...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet009.jpg',
+        name: 'Revo Green Helmet By Vector | Medium size | DOT Approved | Premium Quality',
+        price: 13000.00,
+        oldPrice: 12500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'The Revo Helmet by Vector in medium size offers premium quality protection designed for your safety and comfort. Its durable construction ensures reliable impact resistance, while the ergonomic fit provides...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet010.jpg',
+        name: 'Vector Blue Helmet | Large Size | Premium Quality',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'The Vector Blue Helmet in large size offers premium quality protection designed for comfort and safety. Its durable construction ensures reliable impact resistance, making it an excellent choice for riders...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/helmet/helmet011.jpg',
+        name: 'Vector Green Helmet | Large Size | Premium Quality',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Stay safe and comfortable with the Vector Green Helmet in large size. Crafted with premium materials, it offers reliable protection while ensuring a secure fit. Its vibrant green color adds...'
+      },
+      // gadgets
+      {
+        id: 2,
+        image: '/assets/images/helmet/helmet011.jpg',
+        name: 'gadgets',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'gadgets'
+      },
     ];
   }
 
   getSilencerCategorySections(): CategorySection[] {
     return [
-      // {
-      //   id: 1,
-      //   image: '/assets/images/silencer/10028.jpeg',
-      //   name: 'Silencer',
-      //   price: 8500,
-      //   oldPrice: 7999,
-      //   sku: "abc",
-      //   categories: "All",
-      //   availability: "In Stock",
-      //   detail: 'Silencer'
-      // },
+      {
+        id: 1,
+        image: '/assets/images/silencer/silencer001.jpg',
+        name: "WHISTLER | Pakistan's # 1 Sound Exhaust For Honda CG125| Top Quality | Best Sound | Best Chrome",
+        price: 7000.00,
+        oldPrice: 65000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Experience the best sound and chrome finishing with WHISTLER, Pakistan's top-rated sound exhaust for Honda CG125. Designed for CG125 enthusiasts, it brings back the thunder and powerful sound of old..."
+      },
+      {
+        id: 1,
+        image: '/assets/images/silencer/silencer002.jpg',
+        name: 'AHL3 Chrome Exhaust for Honda CG125 - Premium Quality & Best Sound | Top Performance in Pakistan',
+        price: 6000.00,
+        oldPrice: 5000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Enhance your Honda CG125 with the AHL3 Chrome Exhaust, designed to deliver the best sound and improved performance. Featuring a sleek chrome finish and powerful exhaust note, this exhaust system...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/silencer/silencer003.jpg',
+        name: 'SANKEI 2011 Chrome Silencer for Honda CG125 - Premium Quality & Powerful Sound | Best Price in Pakistan',
+        price: 5500.00,
+        oldPrice: 5000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Enhance your Honda CG125 with the SANKEI 2011 Chrome Silencer, designed to offer superior performance and a powerful exhaust sound. This premium chrome silencer improves engine efficiency and gives your...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/silencer/silencer005.jpg',
+        name: 'AHL3 Black Silencer for Honda CG125 - High Performance & Premium Sound | Best in Pakistan',
+        price: 6500.00,
+        oldPrice: 55000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Transform your Honda CG125 with the AHL3 Black Silencer, designed to deliver outstanding performance and a premium exhaust sound. This high-quality black silencer boosts engine efficiency while producing a bold,...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/silencer/silencer006.jpg',
+        name: 'SANKEI 2011 Black Silencer for Honda CG125 - Premium Sound & High Performance',
+        price: 6500.00,
+        oldPrice: 55000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Enhance your Honda CG125 with the SANKEI 2011 Black Silencer, engineered to deliver superior performance and a powerful exhaust sound. This high-quality black silencer boosts your engine's efficiency while offering..."
+      },
+      {
+        id: 1,
+        image: '/assets/images/silencer/silencer007.jpg',
+        name: 'Akrapovic Silencor/Carbon Fiber/ Best Sound Performance',
+        price: 8000.00,
+        oldPrice: 7000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: 'Boost your performance with the Akrapovic Silencor. Made with advanced technology, this silencor guarantees the best sound performance for your vehicle. Enjoy a powerful and efficient ride with this top-of-the-line...'
+      },
+      {
+        id: 1,
+        image: '/assets/images/silencer/silencer001.jpg',
+        name: 'High Bass Exhaust | Carbon Fiber | Universal fitting | High Quality',
+        price: 12000.00,
+        oldPrice: 11000.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Experience premium sound and style with our High Bass Exhaust. Crafted from lightweight carbon fiber, this universal-fitting exhaust delivers deep, resonant bass tones that enhance your ride's performance and presence...."
+      },
+
+
     ];
   }
 }
