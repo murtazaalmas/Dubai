@@ -5,6 +5,7 @@ import { PopupComponent } from '../popup/popup.component';
 import { SharedService, CategorySection } from '../../shared.service';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-silencer',
   imports: [CommonModule, FormsModule, NavbarComponent, PopupComponent],
