@@ -1934,6 +1934,138 @@ export class SharedService {
         availability: "In Stock",
         detail: 'Upgrade your biking experience with the SHILAN SINGLE LENS. Featuring high-quality LED lights with multi colours and long range, this product is a must-have for all bike lovers. Stay safe...'
       },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets051.jpg',
+        name: 'M3 STROBE LIGHT MULTI PURPOSE',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "The M3 Strobe Light Multi Purpose delivers high quality performance with its efficient LED technology. With a convenient USB Type C port for charging, this multi-purpose light is perfect for..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets052.jpg',
+        name: 'LONG RANGE LEDS',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Experience the ultimate visibility with LONG RANGE LEDS. Our MINI LED pair provides long range illumination and is perfect for foggy conditions, making it ideal for bike lovers and bikers...."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets053.jpg',
+        name: 'SHILAN DOUBLE LENSE LED',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Introducing the SHILAN DOUBLE LENSE - the perfect LED headlight for bikers and bike lovers. With its high quality and long range capabilities, you'll never have to worry about not..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets054.jpg',
+        name: 'SMARTPHONE HOLDER',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "This high-quality smartphone holder is a must-have for all bike lovers and bikers. With its sturdy design and secure grip, it will keep your phone in place while you ride,..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets055.jpg',
+        name: 'SNAIL PRESSURE HORN',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "As an industry expert, trust the SNAIL PRESSURE HORN for a loud and high-quality sound on your bike. This useful gadget comes complete with copper wire and a relay for..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets056.jpg',
+        name: 'MULTI COLOUR LED SYSTEM WITH REMOTE',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Experience the ultimate in customizable bike lighting with our Multi Colour LED System. With mini LED lights and a remote control, you can easily adjust the colourful flash lights to..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets057.jpg',
+        name: 'FANCY METAL SWITCH BUTTON',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Upgrade your bike with the high-quality, durable Fancy Metal Switch Button. This metal button is designed specifically for LED bulbs and lights, providing easy control for turning lights on and..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets058.jpg',
+        name: 'FANCY SIDE MIRRORS SET',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Upgrade your ride with the Fancy Side Mirrors Set for bikers and bike lovers. Featuring custom colors and a beautiful shine, these mirrors are both stylish and functional. Experience improved..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets059.jpg',
+        name: 'FANCY OIL GUAGE',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Expertly track your oil levels with the Fancy Oil Gauge. Custom colors and an attractive design make it ideal for bike lovers and bikers. Accurately measure levels and improve your..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets060.jpg',
+        name: 'FANCY FUEL FILTER',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Upgrade your motorcycle's performance and style with our Fancy Fuel Filter. Featuring a beautiful design and custom colors, this fuel filter not only enhances your bike's appearance, but also improves..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets061.jpg',
+        name: 'BULLET FANCY NOZZLES',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Upgrade your biking experience with our Fancy Nozzles. These high-quality bike rim nozzles and number plate nozzles are perfect for bikers and bike lovers alike. Enhance your bike's appearance and..."
+      },
+      {
+        id: 2,
+        image: '/assets/images/gadgets/gadgets062.jpg',
+        name: 'YBR TAIL NUM PLATE ALUMINIUM',
+        price: 5000.00,
+        oldPrice: 4500.00,
+        sku: "abc",
+        categories: "All",
+        availability: "In Stock",
+        detail: "Upgrade your ride with the sleek and stylish YBR Tail Num Plate Aluminium. Made from high-quality aluminum, this number plate not only adds a beautiful touch, but also doubles as a high-quality tail light. Ride in style with this unique and functional feature."
+      },
     ];
   }
 
