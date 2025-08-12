@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
 
   categorySections: CategorySection[] = [
     {
-      image: '/assets/images/tanks/10029.jpeg',
+      image: '/assets/images/tanks/tank001.webp',
       name: 'Fuel Tanks',
       route: '/cd70tanks'
     },
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
       route: '/wheel'
     },
     {
-      image: '/assets/images/silencer/10104.jpeg',
+      image: '/assets/images/silencer/silencer007.webp',
       name: 'Silencer',
       route: '/silencer'
     },
@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit {
       route: '/ledlighting'
     },
     {
-      image: '/assets/images/helmet/10020.jpeg',
+      image: '/assets/images/helmet/helmet001.webp',
       name: 'Helmets',
       route: '/helmetgadgets'
     },
@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit {
     {
       title: 'Silencers',
       description: 'High-quality silencers for a smooth and quiet ride',
-      image: '/assets/images/silencer/10104.jpeg',
+      image: '/assets/images/silencer/silencer007.webp',
 
     },
     {
@@ -164,7 +164,7 @@ export class HomeComponent implements OnInit {
     {
       title: 'Helmets & Accessories',
       description: 'Protective helmets and essential bike accessories',
-      image: '/assets/images/helmet/10020.jpeg',
+      image: '/assets/images/helmet/helmet001.webp',
 
     }
   ];

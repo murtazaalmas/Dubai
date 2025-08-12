@@ -2,18 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
-interface CategorySection {
-  id: number;
-  image: string;
-  name: string;
-  price: number;
-  oldPrice: number;
-  sku: string;
-  categories: string;
-  availability: string;
-  detail: string;
-}
+import { CategorySection } from '../../shared.service';
 
 @Component({
   selector: 'app-popup',

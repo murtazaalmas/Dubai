@@ -133,7 +133,8 @@ export class NavbarComponent {
   }
 
   onCartQtyInput(index: number, value: string) {
-    const qty = Math.max(1, parseInt(value, 10) || 1);
+    const parsedValue = parseInt(value, 10);
+    const qty = Math.max(1, isNaN(parsedValue) ? 1 : parsedValue);
     this.cartItems[index].quantity = qty;
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
