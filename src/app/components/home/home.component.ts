@@ -71,6 +71,29 @@ export class HomeComponent implements OnInit {
   dubaiCards: any[] = [];
   currentSlideIndex = 0;
   currentCategoryIndex = 0;
+  currentSlide = 0;
+  sliderInterval: any;
+
+  sliderImages = [
+    {
+      image1: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      image2: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      title: 'Premium Tracksuits',
+      description: 'Discover the finest quality tracksuits for your active lifestyle'
+    },
+    {
+      image1: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      image2: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      title: 'Sportswear Collection',
+      description: 'Stylish and comfortable tracksuits for every occasion'
+    },
+    {
+      image1: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      image2: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      title: 'Athletic Wear',
+      description: 'High-performance tracksuits for your fitness journey'
+    }
+  ];
 
   categorySections: CategorySection[] = [
     {
@@ -194,6 +217,42 @@ export class HomeComponent implements OnInit {
       this.attachSliderScrollListener();
       this.attachCategoryScrollListener();
     }, 0);
+    
+    // Start auto slider with a delay to ensure DOM is ready
+    setTimeout(() => {
+      this.startAutoSlider();
+    }, 1000);
+  }
+
+  startAutoSlider() {
+    // Clear any existing interval
+    this.stopAutoSlider();
+    
+    this.sliderInterval = setInterval(() => {
+      this.nextSlide();
+    }, 4000); // Change slide every 4 seconds
+  }
+
+  stopAutoSlider() {
+    if (this.sliderInterval) {
+      clearInterval(this.sliderInterval);
+      this.sliderInterval = null;
+    }
+  }
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.sliderImages.length;
+    console.log('Next slide:', this.currentSlide); // Debug log
+  }
+
+  previousSlide() {
+    this.currentSlide = this.currentSlide === 0 ? this.sliderImages.length - 1 : this.currentSlide - 1;
+    console.log('Previous slide:', this.currentSlide); // Debug log
+  }
+
+  goToSlide(index: number) {
+    this.currentSlide = index;
+    console.log('Go to slide:', this.currentSlide); // Debug log
   }
 
   attachSliderScrollListener() {

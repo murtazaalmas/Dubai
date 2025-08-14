@@ -1,39 +1,21 @@
 <!-- Top Yellow Bar -->
 <div class="top-bar">
   <div class="row">
-    <div class="col-md-4">
-      <p class="date-time">{{ currentDate | date:'d MMM yyyy HH:mm' }}</p>
+    <div class="col-md-6">
+      <div class="social-links">
+        <a href="https://instagram.com" target="_blank" class="social-link">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="social-link">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </div>
     </div>
-    <div class="col-md-8">
-      <div class="top-links desktop-only">
-        <ng-container *ngFor="let link of topBarLinks; let last = last">
-          <a *ngIf="link.route"
-             class="hover-underline top-link-item"
-             [href]="link.route"
-             [attr.target]="link.route.startsWith('http') ? '_blank' : null">
-            <ng-container *ngIf="link.icon">
-              <i [class]="link.icon"></i>
-            </ng-container>
-            {{ link.label }}
-          </a>
-          <span *ngIf="!link.route" class="hover-underline top-link-item">
-            <ng-container *ngIf="link.icon">
-              <i [class]="link.icon"></i>
-            </ng-container>
-            {{ link.label }}
-          </span>
-          <span class="separator" *ngIf="!last">|</span>
-        </ng-container>
-        <!-- Cart Icon (top right, with top-links) -->
-        <button *ngIf="showBagIcon" class="cart-icon-btn" aria-label="Bag" (click)="navigateToCart()">
-          <i class="fas fa-shopping-bag"></i>
-        </button>
-        <button *ngIf="showCartIcon && !showBagIcon" class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="cart-badge" *ngIf="cartCount > 0">
-            {{ cartCount }}
-          </span>
-        </button>
+    <div class="col-md-6">
+      <div class="contact-info">
+        <a href="mailto:Ijaz@gmail.com" class="contact-link">
+          ahmaddaas.com
+        </a>
       </div>
     </div>
   </div>
@@ -41,78 +23,74 @@
 
 <!-- Main Navbar -->
 <header class="main-nav">
-  <!-- Hamburger for mobile (left) -->
-  <button class="hamburger mobile-only" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+  <!-- Left Section: Logo + Navigation -->
+  <div class="left-section">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img [routerLink]="['/']" src="/assets/images/logo.png" alt="Ijaz Bikes" class="navLogo">
+    </div>
 
-  <!-- Logo (centered on mobile) -->
-  <div class="logo-container">
-    <img [routerLink]="['/']" src="/assets/images/logo.png" alt="Ijaz Bikes" class="navLogo">
+    <!-- Navigation Menu -->
+    <nav class="nav-menu" [class.open]="showMobileMenu">
+      <!-- X close button for mobile -->
+      <button class="close-drawer mobile-only" (click)="toggleMobileMenu()" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="nav-item " *ngFor="let item of navMenu; let i = index">
+        <a class="nav-link "
+           role="button"
+           [routerLink]="item.route ? item.route : null"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }"
+           (click)="showMobileMenu ? toggleMenu(i) : null">
+          {{ item.name }}
+        </a>
+      </div>
+    </nav>
   </div>
 
-  <!-- Cart Icon (right on mobile) -->
-  <button *ngIf="showBagIcon" class="cart-icon-btn mobile-only" aria-label="Bag">
-    <i class="fas fa-shopping-bag" (click)="navigateToCart()"></i>
-  </button>
-  <button *ngIf="showCartIcon && !showBagIcon" class="cart-icon-btn mobile-only" (click)="toggleCartDrawer()" aria-label="Open cart">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="cart-badge" *ngIf="cartCount > 0">
-      {{ cartCount }}
-    </span>
-  </button>
-
-  <!-- Cart Icon (desktop, with top-links) is already in top bar -->
-  <!-- Menu Items -->
-  <nav class="nav-menu" [class.open]="showMobileMenu">
-    <!-- X close button for mobile -->
-    <button class="close-drawer mobile-only" (click)="toggleMobileMenu()" aria-label="Close menu">
-      <i class="fas fa-times"></i>
-    </button>
-    <!-- Top links for mobile -->
-
-    <!-- End top links for mobile -->
-    <div class="nav-item " *ngFor="let item of navMenu; let i = index">
-      <a class="nav-link "
-         role="button"
-         [routerLink]="item.route ? item.route : null"
-         routerLinkActive="active"
-         [routerLinkActiveOptions]="{ exact: true }"
-         (click)="showMobileMenu ? toggleMenu(i) : null">
-        <i [class]="item.icon"></i>
-        {{ item.name }}
-      </a>
-      
+  <!-- Center Section: Search Bar -->
+  <div class="center-section">
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <i class="far fa-search search-icon"></i>
+        <input type="text" placeholder="Search for products..." class="search-input">
+      </div>
     </div>
-    <hr>
+  </div>
 
-    <div class="top-links mobile-only">
-      <ng-container *ngFor="let link of topBarLinks; let last = last">
-        <a *ngIf="link.route"
-           class="hover-underline top-link-item"
-           [href]="link.route"
-           [attr.target]="link.route.startsWith('http') ? '_blank' : null">
-          <ng-container *ngIf="link.icon">
-            <i [class]="link.icon"></i>
-          </ng-container>
-          {{ link.label }}
-        </a>
-        <span *ngIf="!link.route" class="hover-underline top-link-item">
-          <ng-container *ngIf="link.icon">
-            <i [class]="link.icon"></i>
-          </ng-container>
-          {{ link.label }}
+  <!-- Right Section: Icons -->
+  <div class="right-section">
+    <div class="right-icons">
+      <button class="icon-btn" aria-label="User">
+        <i class="far fa-user"></i>
+      </button>
+      <button class="icon-btn" aria-label="Wishlist">
+        <i class="far fa-heart"></i>
+      </button>
+      <button *ngIf="showBagIcon" class="cart-icon-btn" aria-label="Bag" (click)="navigateToCart()">
+        <i class="far fa-shopping-bag"></i>
+      </button>
+      <button *ngIf="showCartIcon && !showBagIcon" class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
+        <i class="far fa-shopping-cart"></i>
+        <span class="cart-badge" *ngIf="cartCount > 0">
+          {{ cartCount }}
         </span>
-        <!-- <span class="separator" *ngIf="!last">|</span> -->
-      </ng-container>
+      </button>
     </div>
-  </nav>
 
-  <!-- Overlay for mobile menu -->
-  <div class="mobile-menu-overlay" *ngIf="showMobileMenu" (click)="toggleMobileMenu()"></div>
+    <!-- Hamburger for mobile -->
+    <button class="hamburger mobile-only" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
 </header>
+
+<!-- Overlay for mobile menu -->
+<div class="mobile-menu-overlay" *ngIf="showMobileMenu" (click)="toggleMobileMenu()"></div>
 
 <!-- Cart Drawer Overlay and Drawer -->
 <div class="cart-drawer-overlay" *ngIf="showCartDrawer" (click)="toggleCartDrawer()"></div>

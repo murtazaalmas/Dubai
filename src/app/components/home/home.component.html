@@ -1,6 +1,46 @@
 <app-navbar></app-navbar>
 
 <div class="home-container">
+  <!-- AUTO SLIDER SECTION -->
+  <section class="auto-slider-section">
+    <div class="slider-container">
+      <div class="slider-wrapper" [style.transform]="'translateX(-' + (currentSlide * 33.333) + '%)'">
+        <div class="slide" *ngFor="let slide of sliderImages; let i = index">
+          <div class="slide-content-section">
+            <div class="slide-content">
+              <h2>{{slide.title}}</h2>
+              <p>{{slide.description}}</p>
+              <button class="shop-now-btn">Shop Now</button>
+            </div>
+          </div>
+          <div class="slide-image-section">
+            <img [src]="slide.image1" [alt]="slide.title" class="slide-image">
+          </div>
+          <div class="slide-image-section">
+            <img [src]="slide.image2" [alt]="slide.title" class="slide-image">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Slider Navigation Dots -->
+      <div class="slider-dots">
+        <span *ngFor="let slide of sliderImages; let i = index" 
+              class="dot" 
+              [class.active]="i === currentSlide"
+              (click)="goToSlide(i)">
+        </span>
+      </div>
+      
+      <!-- Slider Navigation Arrows -->
+      <button class="slider-arrow prev" (click)="previousSlide()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="slider-arrow next" (click)="nextSlide()">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
   <!-- HERO & SEARCH -->
   <section class="hero-section">
     <div class="container">

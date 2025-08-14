@@ -60,34 +60,24 @@ export class NavbarComponent {
 
   navMenu: NavMenuItem[] = [
     {
-      name: 'Wheel',
-      icon: getMenuIconByName('Wheel'),
-      route: '/wheel',
+      name: 'Home',
+      icon: 'fas fa-home',
+      route: '/',
     },
     {
-      name: 'CD 70 Tanks',
-      icon: getMenuIconByName('CD 70 Tanks'),
-      route: '/cd70tanks',
+      name: 'Our Products',
+      icon: 'fas fa-box',
+      route: '/products',
     },
     {
-      name: 'CG 125 Tanks',
-      icon: getMenuIconByName('CG 125 Tanks'),
-      route: '/cg125tanks',
+      name: 'About Us',
+      icon: 'fas fa-info-circle',
+      route: '/about',
     },
     {
-      name: 'LED & Lighting',
-      icon: getMenuIconByName('LED & Lighting'),
-      route: '/ledlighting',
-    },
-    {
-      name: 'Helmet & Gadgets',
-      icon: getMenuIconByName('Helmet & Gadgets'),
-      route: '/helmetgadgets',
-    },
-    {
-      name: 'Silencer',
-      icon: getMenuIconByName('Silencer'),
-      route: '/silencer',
+      name: 'Contact Us',
+      icon: 'fas fa-envelope',
+      route: '/contact',
     },
   ];
 
