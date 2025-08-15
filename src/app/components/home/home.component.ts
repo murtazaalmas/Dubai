@@ -1,78 +1,29 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
+import { PopupComponent } from '../popup/popup.component';
+import { CategorySection } from '../../shared.service';
+import { BehaviorSubject } from 'rxjs';
 
-interface DubaiLocation {
-  value: string;
-  label: string;
-}
 
-interface Category {
-  icon?: string;
-  name: string;
-}
-
-interface CategorySection {
-  image: string;
-  name: string;
-  route?: string; // Added route property
-}
-
-interface RecentBusiness {
-  image: string;
-  name: string;
-}
-
-interface CategoryListItem {
-  name: string;
-  link: string;
-}
-
-interface CategoryList {
-  heading: string;
-  items: CategoryListItem[];
-}
-
-interface FeatureSection {
-  image: string;
-  title: string;
-  description: string;
-  features: string[];
-}
-
-function getCategoryIconByName(name: string): string {
-  const lower = name.toLowerCase();
-  if (lower.includes('fancy') && lower.includes('tank')) return 'fas fa-gas-pump';
-  if (lower.includes('genuine') && lower.includes('tank')) return 'fas fa-oil-can';
-  if (lower.includes('silencer')) return 'fas fa-volume-up';
-  if (lower.includes('rim')) return 'fas fa-circle-notch';
-  if (lower.includes('back light')) return 'fas fa-lightbulb';
-  if (lower.includes('head light')) return 'fas fa-lightbulb';
-  if (lower.includes('helmet')) return 'fas fa-hard-hat';
-  if (lower.includes('speedometer')) return 'fas fa-tachometer-alt';
-  // fallback
-  return 'fas fa-cogs';
-}
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, NavbarComponent, FooterComponent, CommonModule],
+  imports: [RouterModule, NavbarComponent, FooterComponent, CommonModule, PopupComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 
 export class HomeComponent implements OnInit {
-  isDragging = false;
-  startPos = 0;
-  prevTranslate = 0;
-  dubaiCards: any[] = [];
-  currentSlideIndex = 0;
-  currentCategoryIndex = 0;
   currentSlide = 0;
+  currentProductSlide = 0;
   sliderInterval: any;
+  showPopup = false;
+  selectedProduct: CategorySection | null = null;
+  cartItems: { item: CategorySection, quantity: number }[] = [];
 
   sliderImages = [
     {
@@ -95,133 +46,101 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  categorySections: CategorySection[] = [
+  productCards: CategorySection[] = [
     {
-      image: '/assets/images/tanks/tank001.webp',
-      name: 'Fuel Tanks',
-      route: '/cd70tanks'
+      id: 101,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      name: 'Classic White T-Shirt',
+      price: 29.99,
+      oldPrice: 39.99,
+      sku: 'T-SHIRT-001',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Premium quality white t-shirt made from 100% cotton. Perfect for everyday wear.'
     },
     {
-      image: '/assets/images/wheel/10011.jpg',
-      name: 'AlloyRims',
-      route: '/wheel'
+      id: 102,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1503341504253-dff4815485f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      name: 'Black Graphic Tee',
+      price: 34.99,
+      oldPrice: 44.99,
+      sku: 'T-SHIRT-002',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Stylish black graphic t-shirt with modern design. Made from soft, breathable fabric.'
     },
     {
-      image: '/assets/images/silencer/silencer007.webp',
-      name: 'Silencer',
-      route: '/silencer'
+      id: 103,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      name: 'Vintage Print T-Shirt',
+      price: 39.99,
+      oldPrice: 49.99,
+      sku: 'T-SHIRT-003',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Retro-inspired t-shirt with vintage print. Comfortable fit and durable material.'
     },
     {
-      image: '/assets/images/lights/10065.jpg',
-      name: 'Lights',
-      route: '/ledlighting'
+      id: 104,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1554568218-0f1715e72254?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      name: 'Cotton V-Neck Tee',
+      price: 24.99,
+      oldPrice: 32.99,
+      sku: 'T-SHIRT-004',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Classic v-neck t-shirt made from premium cotton. Comfortable and versatile for any occasion.'
     },
     {
-      image: '/assets/images/helmet/helmet001.webp',
-      name: 'Helmets',
-      route: '/helmetgadgets'
+      id: 105,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      name: 'Striped T-Shirt',
+      price: 32.99,
+      oldPrice: 42.99,
+      sku: 'T-SHIRT-005',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Stylish striped t-shirt with modern design. Perfect for casual outings.'
     },
     {
-      image: '/assets/images/lights/10066.jpg',
-      name: 'Speedometers',
-      route: '/ledlighting'
-    },
-    
-    {
-      image: '/assets/images/_Studio/10076.jpg',
-      name: 'Decor Items',
-      route: '/ledlighting'
-    },
-    {
-      image: '/assets/images/_Studio/10113.png',
-      name: 'Parts',
-      route: '/ledlighting'
+      id: 106,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      name: 'Premium Cotton Tee',
+      price: 44.99,
+      oldPrice: 54.99,
+      sku: 'T-SHIRT-006',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Premium quality t-shirt made from the finest cotton. Luxurious feel and excellent durability.'
     }
   ];
-
-  categories: Category[] = [
-    { name: 'CD 70 Fancy Fuel Tanks' },
-    { name: 'CD 70 Genuine Fuel Tanks' },
-    { name: 'CG 125 Fancy Fuel Tanks' },
-    { name: 'CG 125 Genuine Fuel Tanks' },
-    { name: '125 Silencer' },
-    { name: 'Alloy Rims-CD70' },
-    { name: 'AlloyRims-CG125' },
-    { name: 'Decor Items' },
-    { name: 'Back Lights' },
-    { name: 'Head Lights' },
-    { name: 'Helmets' },
-    { name: 'Speedometers' },
-  ];
-
- 
-
-  dubaiLocations: DubaiLocation[] = [
-    { value: 'all', label: 'Wheel' },
-    { value: 'dubai-marina', label: 'CD 70 Tanks' },
-    { value: 'downtown', label: 'CG 125 Tanks' },
-    { value: 'jbr', label: 'LED & Lighting' },
-    { value: 'business-bay', label: 'Helmet & Gadgets' },
-    { value: 'dubai-mall', label: 'Silencer' },
-  ];
-
-  originalCards = [
-    {
-      title: 'Fuel Tanks',
-      description: 'Premium and genuine fuel tanks for all bike models',
-      image: '/assets/images/tanks/10029.jpeg',
-
-    },
-    {
-      title: 'Silencers',
-      description: 'High-quality silencers for a smooth and quiet ride',
-      image: '/assets/images/silencer/silencer007.webp',
-
-    },
-    {
-      title: 'Alloy Rims',
-      description: 'Stylish and durable alloy rims for enhanced performance',
-      image: '/assets/images/wheel/10011.jpg',
-
-    },
-    {
-      title: 'Helmets & Accessories',
-      description: 'Protective helmets and essential bike accessories',
-      image: '/assets/images/helmet/helmet001.webp',
-
-    }
-  ];
-
-  featureSection: FeatureSection = {
-    image: '/assets/images/_Studio/10005.jpeg',
-    title: 'Upgrade Your Ride with Premium Bike Parts',
-    description: 'Find the best quality motor-bike parts, accessories, and upgrades to enhance your bike’s performance, safety, and style. Shop genuine and aftermarket parts for every need.',
-    features: [
-      'Wide range of fuel tanks, silencers, rims, and more',
-      'Genuine and high-quality aftermarket parts',
-      'Accessories for comfort and safety',
-      'Expert support and guidance',
-      'Fast delivery and easy returns'
-    ]
-  };
+  
+  totalProductSlides = 0;
 
   ngOnInit() {
-    // Assign icons dynamically to categories
-    this.categories = this.categories.map(cat => ({
-      ...cat,
-      icon: getCategoryIconByName(cat.name)
-    }));
-    // Create infinite scroll effect by duplicating cards
-    this.dubaiCards = [...this.originalCards, ...this.originalCards, ...this.originalCards];
-    setTimeout(() => {
-      this.attachSliderScrollListener();
-      this.attachCategoryScrollListener();
-    }, 0);
-    
     // Start auto slider with a delay to ensure DOM is ready
     setTimeout(() => {
       this.startAutoSlider();
     }, 1000);
+    
+    // Calculate total product slides
+    this.calculateTotalProductSlides();
+    
+    // Load cart items from localStorage
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+      this.cartItems = JSON.parse(savedCart);
+    }
+  }
+  
+  calculateTotalProductSlides() {
+    this.totalProductSlides = Math.ceil(this.productCards.length / this.getVisibleCardCount());
   }
 
   startAutoSlider() {
@@ -239,6 +158,61 @@ export class HomeComponent implements OnInit {
       this.sliderInterval = null;
     }
   }
+  
+  // Popup methods
+  openPopup(product: CategorySection) {
+    this.selectedProduct = product;
+    this.showPopup = true;
+  }
+  
+  closePopup() {
+    this.showPopup = false;
+    this.selectedProduct = null;
+  }
+  
+  addToCart(product: CategorySection) {
+    // Add directly to cart without opening popup
+    console.log('Adding to cart:', product);
+    
+    // Check if item already exists in cart
+    const existingItemIndex = this.cartItems.findIndex(item => item.item.id === product.id);
+    
+    if (existingItemIndex > -1) {
+      // Increment quantity if item already exists
+      this.cartItems[existingItemIndex].quantity++;
+    } else {
+      // Add new item with quantity 1
+      this.cartItems.push({ item: product, quantity: 1 });
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+    
+    // Show feedback
+    alert(`${product.name} added to cart!`);
+  }
+  
+  onAddCartItem(event: { item: CategorySection, quantity: number }) {
+    console.log('Adding to cart with quantity:', event);
+    
+    // Check if item already exists in cart
+    const existingItemIndex = this.cartItems.findIndex(item => item.item.id === event.item.id);
+    
+    if (existingItemIndex > -1) {
+      // Add to quantity if item already exists
+      this.cartItems[existingItemIndex].quantity += event.quantity;
+    } else {
+      // Add new item with specified quantity
+      this.cartItems.push({ item: event.item, quantity: event.quantity });
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+    
+    // Show feedback
+    alert(`${event.quantity} x ${event.item.name} added to cart!`);
+    this.closePopup();
+  }
 
   nextSlide() {
     this.currentSlide = (this.currentSlide + 1) % this.sliderImages.length;
@@ -255,92 +229,55 @@ export class HomeComponent implements OnInit {
     console.log('Go to slide:', this.currentSlide); // Debug log
   }
 
-  attachSliderScrollListener() {
-    const slider = document.querySelector('.cards-slider');
-    if (!slider) return;
-    slider.addEventListener('scroll', () => {
-      const cardWidth = (slider as HTMLElement).querySelector('.card')?.clientWidth || 1;
-      const scrollLeft = (slider as HTMLElement).scrollLeft;
-      const index = Math.round(scrollLeft / (cardWidth + 24)); // 24px gap
-      this.currentSlideIndex = index % this.originalCards.length;
-    });
-  }
-
-  attachCategoryScrollListener() {
-    const grid = document.querySelector('.category-section .category-grid');
-    if (!grid) return;
-    const totalCards = this.categories.length;
-    // Duplicate categories for infinite scroll
-    const originalCards = Array.from(grid.children).slice(0, totalCards);
-    // Only duplicate if not already duplicated
-    if (grid.children.length === totalCards) {
-      for (let i = 0; i < 2; i++) {
-        originalCards.forEach(card => grid.appendChild(card.cloneNode(true)));
-      }
-      grid.scrollLeft = grid.scrollWidth / 3;
-    }
-    grid.addEventListener('scroll', () => {
-      const cardWidth = (grid as HTMLElement).querySelector('.category-card')?.clientWidth || 1;
-      const scrollLeft = (grid as HTMLElement).scrollLeft;
-      const totalWidth = cardWidth * totalCards;
-      // Infinite scroll logic
-      if (scrollLeft <= cardWidth) {
-        grid.scrollLeft = scrollLeft + totalWidth;
-      } else if (scrollLeft + (grid as HTMLElement).clientWidth >= grid.scrollWidth - cardWidth) {
-        grid.scrollLeft = scrollLeft - totalWidth;
-      }
-      const index = Math.round(scrollLeft / (cardWidth + 32)) % totalCards;
-      this.currentCategoryIndex = ((index % totalCards) + totalCards) % totalCards;
-    });
-  }
-
-  @HostListener('mousedown', ['$event'])
-  onMouseDown(event: MouseEvent) {
-    const slider = document.querySelector('.cards-slider') as HTMLElement;
-    if (slider) {
-      this.isDragging = true;
-      this.startPos = event.clientX;
-      this.prevTranslate = slider.scrollLeft;
-      slider.style.cursor = 'grabbing';
+  nextProductSlide() {
+    const visibleCards = this.getVisibleCardCount();
+    const maxSlide = Math.ceil(this.productCards.length / visibleCards) - 1;
+    if (this.currentProductSlide >= maxSlide) {
+      // If at the last slide, go back to the first slide
+      this.currentProductSlide = 0;
+    } else {
+      this.currentProductSlide++;
     }
   }
 
-  @HostListener('mousemove', ['$event'])
-  onMouseMove(event: MouseEvent) {
-    if (!this.isDragging) return;
-
-    const slider = document.querySelector('.cards-slider') as HTMLElement;
-    if (slider) {
-      const currentPosition = event.clientX;
-      const diff = currentPosition - this.startPos;
-      slider.scrollLeft = this.prevTranslate - diff;
+  previousProductSlide() {
+    const visibleCards = this.getVisibleCardCount();
+    const maxSlide = Math.ceil(this.productCards.length / visibleCards) - 1;
+    if (this.currentProductSlide <= 0) {
+      // If at the first slide, go to the last slide
+      this.currentProductSlide = maxSlide;
+    } else {
+      this.currentProductSlide--;
     }
   }
-
-  @HostListener('mouseup')
-  @HostListener('mouseleave')
-  onMouseUp() {
-    const slider = document.querySelector('.cards-slider') as HTMLElement;
-    if (slider) {
-      this.isDragging = false;
-      slider.style.cursor = 'grab';
-    }
+  
+  goToProductSlide(index: number) {
+    this.currentProductSlide = index;
   }
 
-  @HostListener('scroll', ['$event'])
-  onScroll(event: Event) {
-    const slider = event.target as HTMLElement;
-    const scrollLeft = slider.scrollLeft;
-    const scrollWidth = slider.scrollWidth;
-    const clientWidth = slider.clientWidth;
+  getVisibleCardCount(): number {
+    // Responsive design - return different number of cards based on screen width
+    if (window.innerWidth < 768) {
+      return 1;
+    } else if (window.innerWidth < 1024) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+  
+  @HostListener('window:resize')
+  onResize() {
+    // Reset to first slide when screen size changes to avoid empty slides
+    this.currentProductSlide = 0;
+    // Recalculate total product slides
+    this.calculateTotalProductSlides();
+  }
 
-    // If we're near the end, jump back to the middle
-    if (scrollLeft + clientWidth >= scrollWidth - 100) {
-      slider.scrollLeft = scrollWidth / 3;
-    }
-    // If we're near the start, jump to the middle
-    else if (scrollLeft <= 100) {
-      slider.scrollLeft = scrollWidth / 3;
-    }
+  getProductTransform(): string {
+    const visibleCards = this.getVisibleCardCount();
+    // Calculate the percentage to move based on the number of cards visible
+    // and the current slide index
+    return `translateX(-${this.currentProductSlide * (100 / visibleCards)}%)`;
   }
 }

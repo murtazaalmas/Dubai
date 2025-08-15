@@ -3,11 +3,6 @@
 <!-- Toast Notification -->
 <div class="toast-message" *ngIf="showToast">{{ toastMessage }}</div>
 
-<div class="wheel-hero">
-  <img src="/assets/images/wheel/10011.jpg" alt="Alloy Rims-CD70" class="wheel-hero-image">
-  <h1 class="wheel-hero-title">Alloy Rims-CD70</h1>
-</div>
-
 <!-- Filter/Sort/View Bar -->
 <div class="wheel-toolbar">
   <div>
@@ -46,13 +41,6 @@
     <option value="lowToHigh">Price: Low to High</option>
     <option value="highToLow">Price: High to Low</option>
   </select>
-</div>
-
-<div class="container">
-  <div class="tab-buttons">
-    <button [class.active]="selectedTab === 1" (click)="setTab(1)">CD 70 Alloy Rim</button>
-    <button [class.active]="selectedTab === 2" (click)="setTab(2)">CG 125 Alloy Rim</button>
-  </div>
 </div>
 
 <section class="categories-section">

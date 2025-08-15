@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [cartItems]="cartItems"></app-navbar>
 
 <div class="home-container">
   <!-- AUTO SLIDER SECTION -->
@@ -21,16 +21,14 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Slider Navigation Dots -->
       <div class="slider-dots">
-        <span *ngFor="let slide of sliderImages; let i = index" 
-              class="dot" 
-              [class.active]="i === currentSlide"
-              (click)="goToSlide(i)">
+        <span *ngFor="let slide of sliderImages; let i = index" class="dot" [class.active]="i === currentSlide"
+          (click)="goToSlide(i)">
         </span>
       </div>
-      
+
       <!-- Slider Navigation Arrows -->
       <button class="slider-arrow prev" (click)="previousSlide()">
         <i class="fas fa-chevron-left"></i>
@@ -41,124 +39,50 @@
     </div>
   </section>
 
-  <!-- HERO & SEARCH -->
-  <section class="hero-section">
-    <div class="container">
-      <h2>Customized <span class="highlight"> Genuine Parts</span> Make Your Bike Premium!</h2>
-      <p class="subheading"> Explore the best quality parts for your bike.</p>
-      <div class="search-container">
-        <select class="search-dropdown">
-          <option *ngFor="let location of dubaiLocations" [value]="location.value">{{location.label}}</option>
-        </select>
-        <div class="search-input-wrapper">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" placeholder="Search for parts...">
-        </div>
-      </div>
-
-      <!-- <div class="store-buttons">
-        <a  class="store-button app-store">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="Apple Logo">
-          <div class="text">
-            <span>Available on the</span>
-            <strong>App Store</strong>
+  <!-- PRODUCT CARDS SLIDER -->
+  <section class="product-cards-section">
+    <h2>Featured Products</h2>
+    <div class="product-slider-container">
+      <div class="product-cards-slider" [style.transform]="getProductTransform()">
+        <div class="product-card" *ngFor="let product of productCards" (click)="openPopup(product)">
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.name" loading="lazy">
           </div>
-        </a>
-
-        <a  class="store-button google-play">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
-            alt="Google Play Logo">
-          <div class="text">
-            <span>Get it on</span>
-            <strong>Google Play</strong>
-          </div>
-        </a>
-      </div> -->
-    </div>
-  </section>
-
-
-   <!-- CATEGORIES Cards -->
-   <section class="categories-section">
-    <div class="container">
-      <h1 class="text-center m-2 pb-4">Our Top Collections</h1>
-      <div class="categories-grid">
-        <div class="category-card" *ngFor="let category of categorySections" [routerLink]="category.route ? category.route : null" style="cursor:pointer;">
-          <img [src]="category.image" [alt]="category.name" class="category-image">
-          <p>{{category.name}}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- CATEGORIES Icons -->
-
-  <section class="category-section">
-    <div class="container">
-      <div class="category-grid">
-        <div class="category-card" *ngFor="let category of categories">
-          <i [class]="category.icon"></i>
-          <p>{{category.name}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="slider-dots category-section-dots">
-      <span *ngFor="let category of categories; let i = index"
-            class="dot"
-            [class.active]="i === currentCategoryIndex">
-      </span>
-    </div>
-  </section>
-
- 
-  <!-- DUBAI CATEGORIES SLIDER -->
-  <section class="dubai-categories">
-    <div class="container">
-      <h3>Explore Products</h3>
-      <div class="slider-container">
-        <div class="cards-slider">
-          <div class="card" *ngFor="let card of dubaiCards">
-            <div class="card-image">
-              <img [src]="card.image" [alt]="card.title" loading="lazy">
-            </div>
-            <div class="card-content">
-              <h4>{{card.title}}</h4>
-              <p>{{card.description}}</p>
-            </div>
+          <div class="product-content">
+            <h3>{{product.name}}</h3>
+            <p class="price">${{product.price.toFixed(2)}}</p>
+            <button class="add-to-cart-btn" (click)="$event.stopPropagation(); addToCart(product)">Add to Cart</button>
           </div>
         </div>
       </div>
-      <div class="slider-dots">
-        <span *ngFor="let card of originalCards; let i = index" 
+
+      <!-- Product Slider Navigation Arrows -->
+      <button class="product-slider-arrow prev" (click)="previousProductSlide()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="product-slider-arrow next" (click)="nextProductSlide()">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      
+      <!-- Product Slider Navigation Dots -->
+      <div class="product-slider-dots">
+        <span *ngFor="let _ of [].constructor(totalProductSlides); let i = index" 
               class="dot" 
-              [class.active]="i === currentSlideIndex">
+              [class.active]="i === currentProductSlide"
+              (click)="goToProductSlide(i)">
         </span>
       </div>
     </div>
   </section>
 
-  <!-- FEATURE SECTION -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-content">
-        <div class="feature-image">
-          <img [src]="featureSection.image" [alt]="featureSection.title">
-        </div>
-        <div class="feature-details">
-          <h2>{{featureSection.title}}</h2>
-          <p class="description">{{featureSection.description}}</p>
-          <ul class="features-list">
-            <li *ngFor="let feature of featureSection.features">
-              <i class="fas fa-check-circle"></i>
-              {{feature}}
-            </li>
-          </ul>
-          <button class="cta-button">Shop Now</button>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
+
+<!-- Popup Component -->
+<app-popup 
+  *ngIf="showPopup" 
+  [category]="selectedProduct" 
+  (close)="closePopup()" 
+  (addCartItem)="onAddCartItem($event)">
+</app-popup>
 
 <app-footer></app-footer>
