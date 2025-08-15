@@ -287,7 +287,7 @@
     }
 
     .slide-content {
-      text-align: center;
+      text-align: left;
       color: white;
 
       h2 {
@@ -407,18 +407,18 @@
   }
 
   .product-card {
-    flex: 0 0 calc(33.333% - 2rem);
+    flex: 0 0 calc(25% - 2rem);
     margin: 0 1rem;
     background: white;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: calc(33.333% - 2rem); /* Ensure all cards have the same width */
+    width: calc(25% - 2rem); /* Ensure all cards have the same width */
     cursor: pointer;
 
     &:hover {
-      transform: translateY(-10px);
+      // transform: translateY(-10px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
       
       .add-to-cart-btn {
@@ -471,7 +471,7 @@
         font-weight: 600;
         cursor: pointer;
         transition: background 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-        opacity: 0; /* Hide button by default */
+        // opacity: 0; /* Hide button by default */
         transform: translateY(10px); /* Move button down slightly */
 
         &:hover {

@@ -5,7 +5,6 @@ import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { PopupComponent } from '../popup/popup.component';
 import { CategorySection } from '../../shared.service';
-import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -24,25 +23,34 @@ export class HomeComponent implements OnInit {
   showPopup = false;
   selectedProduct: CategorySection | null = null;
   cartItems: { item: CategorySection, quantity: number }[] = [];
+  hoveredProductIndex: number | null = null;
+  showToast: boolean = false;
+  toastMessage: string = '';
 
   sliderImages = [
     {
-      image1: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      image2: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      title: 'Premium Tracksuits',
-      description: 'Discover the finest quality tracksuits for your active lifestyle'
+      image1: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80', // T-shirt image
+      image2: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80', // T-shirt image
+      title: 'Trendy T-Shirts',
+      description: 'Explore our latest collection of stylish t-shirts for every occasion.'
     },
     {
-      image1: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      image2: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      title: 'Sportswear Collection',
-      description: 'Stylish and comfortable tracksuits for every occasion'
+      image1: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80', // T-shirt image
+      image2: 'https://images.unsplash.com/photo-1469398715555-76331a6c7b29?auto=format&fit=crop&w=800&q=80', // T-shirt image (new)
+      title: 'Comfort Cotton Tees',
+      description: 'Experience comfort and quality with our premium cotton t-shirts.'
     },
     {
-      image1: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      image2: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      title: 'Athletic Wear',
-      description: 'High-performance tracksuits for your fitness journey'
+      image1: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80', // T-shirt image
+      image2: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80', // T-shirt image
+      title: 'Classic & Modern',
+      description: 'From classic whites to modern prints, find your perfect tee.'
+    },
+    {
+      image1: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80', // T-shirt image
+      image2: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80', // T-shirt image (new, works)
+      title: 'Summer Collection',
+      description: 'Bright colors and cool styles for the summer season.'
     }
   ];
 
@@ -118,6 +126,54 @@ export class HomeComponent implements OnInit {
       categories: 'T-Shirts',
       availability: 'In Stock',
       detail: 'Premium quality t-shirt made from the finest cotton. Luxurious feel and excellent durability.'
+    },
+    {
+      id: 107,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=500&q=80',
+      name: 'Urban Blue Tee',
+      price: 27.99,
+      oldPrice: 35.99,
+      sku: 'T-SHIRT-007',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Urban style blue t-shirt, soft and comfortable for daily wear.'
+    },
+    {
+      id: 108,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1513105737057-3e97c0b9b8a2?auto=format&fit=crop&w=500&q=80',
+      name: 'Minimalist Grey Tee',
+      price: 22.99,
+      oldPrice: 29.99,
+      sku: 'T-SHIRT-008',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Minimalist grey t-shirt, perfect for a clean and modern look.'
+    },
+    {
+      id: 109,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1469398715555-76331a6c7b29?auto=format&fit=crop&w=500&q=80',
+      name: 'Bold Red Tee',
+      price: 31.99,
+      oldPrice: 41.99,
+      sku: 'T-SHIRT-009',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Make a statement with this bold red t-shirt, crafted from premium fabric.'
+    },
+    {
+      id: 110,
+      categoryId: 10,
+      image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=500&q=80',
+      name: 'Eco Green Tee',
+      price: 28.99,
+      oldPrice: 36.99,
+      sku: 'T-SHIRT-010',
+      categories: 'T-Shirts',
+      availability: 'In Stock',
+      detail: 'Eco-friendly green t-shirt made from sustainable materials.'
     }
   ];
   
@@ -189,7 +245,17 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     
     // Show feedback
-    alert(`${product.name} added to cart!`);
+    // alert(`${product.name} added to cart!`);
+        this.showToastMessage(`${product.name} added to cart!`);
+
+  }
+  showToastMessage(message: string) {
+    this.toastMessage = message;
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+      this.toastMessage = '';
+    }, 3000); // Hide after 3 seconds
   }
   
   onAddCartItem(event: { item: CategorySection, quantity: number }) {
@@ -210,7 +276,7 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     
     // Show feedback
-    alert(`${event.quantity} x ${event.item.name} added to cart!`);
+    // alert(`${event.quantity} x ${event.item.name} added to cart!`);
     this.closePopup();
   }
 

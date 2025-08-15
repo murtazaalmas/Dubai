@@ -212,12 +212,12 @@
   align-items: center;
   
   &:hover {
-    color: #FFD700;
+    // color: #FFD700;
   }
 }
 
 .nav-link.active {
-  color: #FFD700 !important;
+  // color: #FFD700 !important;
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
@@ -282,7 +282,7 @@
   position: relative;
   background: none;
   border: none;
-  color: #e53935;
+  // color: #e53935;a
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 1;
@@ -527,6 +527,17 @@
 .cart-view-btn:hover {
   background: #FFD700;
   color: #000;
+}
+
+// Make all icons black
+.fa,
+.fas,
+.far,
+.fal,
+.fab,
+[class^="fa-"],
+[class*=" fa-"] {
+  color: #000 !important;
 }
 
 @media (max-width: 900px) {
