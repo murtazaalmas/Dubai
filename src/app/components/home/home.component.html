@@ -1,3 +1,32 @@
 <app-navbar></app-navbar>
 
+<div class="slider-container">
+  <button class="arrow left" (click)="prevSlide()">&#10094;</button>
+  <div class="slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+    <div *ngFor="let slide of slides" class="slide">
+      <div class="column content sports-container">
+        <div class="sports-content">
+          <!-- Heading -->
+          <h1 class="sports-heading reveal" [innerHTML]="slide.heading"></h1>
+
+          <!-- Subtext -->
+          <p class="sports-subtext">{{ slide.subtext }}</p>
+
+          <!-- Buttons -->
+          <div class="sports-buttons">
+            <button *ngFor="let button of slide.buttons">{{ button }}</button>
+          </div>
+        </div>
+      </div>
+      <div class="column image">
+        <img [src]="slide.image1" alt="Slide Image 1">
+      </div>
+      <div class="column image">
+        <img [src]="slide.image2" alt="Slide Image 2">
+      </div>
+    </div>
+  </div>
+  <button class="arrow right" (click)="nextSlide()">&#10095;</button>
+</div>
+
 <app-footer></app-footer>

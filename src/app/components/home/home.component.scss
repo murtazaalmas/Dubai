@@ -1,0 +1,149 @@
+.slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  height: 90vh;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.column.content {
+  flex: 1;
+}
+
+/* Container */
+.sports-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  background-color: #4a3aff; /* Purple background */
+  color: white;
+  text-align: start;
+  font-family: 'Trebuchet MS', sans-serif;
+  padding: 0 30px; /* Added horizontal padding */
+}
+
+/* Content Wrapper */
+.sports-content {
+  max-width: 600px;
+}
+
+/* Heading */
+.sports-heading {
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Subtext */
+.sports-subtext {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+/* Buttons */
+.sports-buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sports-buttons button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.sports-buttons button:hover {
+  background: #f3f3f3;
+  transform: translateY(-2px);
+}
+
+/* Responsive: show buttons in a row on bigger screens */
+@media (min-width: 640px) {
+  .sports-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.column.image {
+  flex: 1;
+  overflow: hidden; /* Hide parts of the image that overflow */
+  padding: 0;
+}
+
+.column img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the container, may crop the image */
+  display: block;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 24px;
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+.reveal {
+  color: #0000;
+  background: linear-gradient(#fff 0 0) no-repeat;
+  background-size: 0% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  animation: t 1.2s .5s both;
+}
+
+@keyframes t{
+  to {background-size: 100% 100%}
+}

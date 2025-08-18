@@ -6,6 +6,6 @@
 </div>
 
 <!-- Main Content -->
-<div class="main-content" [class.hidden]="isLoading">
+<div class="main-content" *ngIf="!isLoading">
   <router-outlet></router-outlet>
 </div>
