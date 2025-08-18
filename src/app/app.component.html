@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<!-- Loader Overlay -->
+<div class="loader-overlay" *ngIf="isLoading">
+  <div class="loader-content">
+    <img src="/assets/images/loading_5.svg" alt="Daas" class="loader-logo">
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content" [class.hidden]="isLoading">
+  <router-outlet></router-outlet>
+</div>

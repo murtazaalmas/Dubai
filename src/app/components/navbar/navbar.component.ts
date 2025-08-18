@@ -2,7 +2,8 @@ import { Component, HostListener, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 export interface NavDropdownItem {
   name: string;
   icon: string;
@@ -37,7 +38,7 @@ function getMenuIconByName(name: string): string {
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -48,47 +49,44 @@ export class NavbarComponent {
   @Input() showBagIcon: boolean = false;
   shipping = 500;
   currentDate = new Date();
+  searchQuery: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   topBarLinks: TopBarLink[] = [
-    { label: '+92 316 7249265', icon: 'fas fa-phone', route: 'tel:+923167249265' },
-    { label: 'Ijaz@gmail.com', icon: 'fas fa-envelope', route: 'mailto:Ijaz@gmail.com' },
-    { label: 'IjazBikeStudio', route: '' }
+    { label: '+92 316 7249265', icon: 'ri-phone-line', route: 'tel:+923167249265' },
+    { label: 'daas@gmail.com', icon: 'ri-mail-line', route: 'mailto:daas@gmail.com' },
+    { label: 'Daas Enterprises', route: '' }
   ];
+
+
+  onSearch() {
+    if (this.searchQuery.trim()) { }
+  }
 
 
   navMenu: NavMenuItem[] = [
     {
-      name: 'Wheel',
-      icon: getMenuIconByName('Wheel'),
-      route: '/wheel',
+      name: 'Home',
+      icon: 'ri-home-line',
+      route: '/home',
     },
     {
-      name: 'CD 70 Tanks',
-      icon: getMenuIconByName('CD 70 Tanks'),
-      route: '/cd70tanks',
+      name: 'Our Product',
+      icon: 'ri-box-3-line',
+      route: '/ourProduct',
     },
     {
-      name: 'CG 125 Tanks',
-      icon: getMenuIconByName('CG 125 Tanks'),
-      route: '/cg125tanks',
+      name: 'About Us',
+      icon: 'ri-information-line',
+      route: '/aboutUS',
     },
     {
-      name: 'LED & Lighting',
-      icon: getMenuIconByName('LED & Lighting'),
-      route: '/ledlighting',
+      name: 'Contact Us',
+      icon: 'ri-mail-line',
+      route: '/contactUS',
     },
-    {
-      name: 'Helmet & Gadgets',
-      icon: getMenuIconByName('Helmet & Gadgets'),
-      route: '/helmetgadgets',
-    },
-    {
-      name: 'Silencer',
-      icon: getMenuIconByName('Silencer'),
-      route: '/silencer',
-    },
+
   ];
 
   showMobileMenu = false;

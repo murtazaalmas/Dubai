@@ -1,16 +1,49 @@
-<!-- Top Yellow Bar -->
+<!-- Top Bar -->
 <div class="top-bar">
-  <div class="row">
-    <div class="col-md-4">
-      <p class="date-time">{{ currentDate | date:'d MMM yyyy HH:mm' }}</p>
-    </div>
-    <div class="col-md-8">
-      <div class="top-links desktop-only">
+  <div class="top-icons">
+    <i class="fa-brands fa-facebook-f"></i>
+    <i class="fa-brands fa-instagram"></i>
+  </div>
+  <div class="top-email">
+    email
+  </div>
+</div>
+
+<!-- Main Navbar -->
+<header class="main-nav">
+  <!-- Left: Logo and nav links -->
+  <div class="nav-left">
+    <!-- Hamburger for mobile (left) -->
+    <button class="hamburger mobile-only" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Logo -->
+    <img [routerLink]="['/']" src="/assets/images/logo.png" alt="daas" class="navLogo"
+     >
+
+    <!-- Nav Links -->
+    <nav class="nav-menu" [class.open]="showMobileMenu">
+      <!-- X close button for mobile -->
+      <button class="close-drawer mobile-only" (click)="toggleMobileMenu()" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="nav-item" *ngFor="let item of navMenu; let i = index">
+        <a class="nav-link" role="button" [routerLink]="item.route ? item.route : null" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }" (click)="showMobileMenu ? toggleMenu(i) : null">
+          {{ item.name }}
+        </a>
+      </div>
+
+      <hr>
+
+      <div class="top-links mobile-only">
         <ng-container *ngFor="let link of topBarLinks; let last = last">
-          <a *ngIf="link.route"
-             class="hover-underline top-link-item"
-             [href]="link.route"
-             [attr.target]="link.route.startsWith('http') ? '_blank' : null">
+          <a *ngIf="link.route" class="hover-underline top-link-item" [href]="link.route"
+            [attr.target]="link.route.startsWith('http') ? '_blank' : null">
             <ng-container *ngIf="link.icon">
               <i [class]="link.icon"></i>
             </ng-container>
@@ -22,93 +55,39 @@
             </ng-container>
             {{ link.label }}
           </span>
-          <span class="separator" *ngIf="!last">|</span>
+          <!-- <span class="separator" *ngIf="!last">|</span> -->
         </ng-container>
-        <!-- Cart Icon (top right, with top-links) -->
-        <button *ngIf="showBagIcon" class="cart-icon-btn" aria-label="Bag" (click)="navigateToCart()">
-          <i class="fas fa-shopping-bag"></i>
-        </button>
-        <button *ngIf="showCartIcon && !showBagIcon" class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="cart-badge" *ngIf="cartCount > 0">
-            {{ cartCount }}
-          </span>
-        </button>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- Main Navbar -->
-<header class="main-nav">
-  <!-- Hamburger for mobile (left) -->
-  <button class="hamburger mobile-only" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <!-- Logo (centered on mobile) -->
-  <div class="logo-container">
-    <img [routerLink]="['/']" src="/assets/images/logo.png" alt="Ijaz Bikes" class="navLogo">
+    </nav>
   </div>
 
-  <!-- Cart Icon (right on mobile) -->
-  <button *ngIf="showBagIcon" class="cart-icon-btn mobile-only" aria-label="Bag">
-    <i class="fas fa-shopping-bag" (click)="navigateToCart()"></i>
-  </button>
-  <button *ngIf="showCartIcon && !showBagIcon" class="cart-icon-btn mobile-only" (click)="toggleCartDrawer()" aria-label="Open cart">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="cart-badge" *ngIf="cartCount > 0">
-      {{ cartCount }}
-    </span>
-  </button>
-
-  <!-- Cart Icon (desktop, with top-links) is already in top bar -->
-  <!-- Menu Items -->
-  <nav class="nav-menu" [class.open]="showMobileMenu">
-    <!-- X close button for mobile -->
-    <button class="close-drawer mobile-only" (click)="toggleMobileMenu()" aria-label="Close menu">
-      <i class="fas fa-times"></i>
-    </button>
-    <!-- Top links for mobile -->
-
-    <!-- End top links for mobile -->
-    <div class="nav-item " *ngFor="let item of navMenu; let i = index">
-      <a class="nav-link "
-         role="button"
-         [routerLink]="item.route ? item.route : null"
-         routerLinkActive="active"
-         [routerLinkActiveOptions]="{ exact: true }"
-         (click)="showMobileMenu ? toggleMenu(i) : null">
-        <i [class]="item.icon"></i>
-        {{ item.name }}
-      </a>
-      
+  <!-- Center: Search input -->
+  <div class="nav-center">
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchQuery"
+        (keyup.enter)="onSearch()">
     </div>
-    <hr>
+  </div>
 
-    <div class="top-links mobile-only">
-      <ng-container *ngFor="let link of topBarLinks; let last = last">
-        <a *ngIf="link.route"
-           class="hover-underline top-link-item"
-           [href]="link.route"
-           [attr.target]="link.route.startsWith('http') ? '_blank' : null">
-          <ng-container *ngIf="link.icon">
-            <i [class]="link.icon"></i>
-          </ng-container>
-          {{ link.label }}
-        </a>
-        <span *ngIf="!link.route" class="hover-underline top-link-item">
-          <ng-container *ngIf="link.icon">
-            <i [class]="link.icon"></i>
-          </ng-container>
-          {{ link.label }}
-        </span>
-        <!-- <span class="separator" *ngIf="!last">|</span> -->
-      </ng-container>
-    </div>
-  </nav>
+  <!-- Right: Icons -->
+  <div class="nav-right">
+    <a class="cart-icon-btn" aria-label="Bag" (click)="navigateToCart()">
+      <i class="fas fa-shopping-bag"></i>
+    </a>
+    <a class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="User">
+      <i class="fas fa-user"></i>
+      <span class="cart-badge" *ngIf="cartCount > 0">
+        {{ cartCount }}
+      </span>
+    </a>
+    <a class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-badge" *ngIf="cartCount > 0">
+        {{ cartCount }}
+      </span>
+    </a>
+  </div>
 
   <!-- Overlay for mobile menu -->
   <div class="mobile-menu-overlay" *ngIf="showMobileMenu" (click)="toggleMobileMenu()"></div>
@@ -133,7 +112,8 @@
           <div class="cart-item-qty">
             <span>Qty:</span>
             <button class="qty-btn" (click)="decrementCartQty(i)">-</button>
-            <input #qtyInput type="number" min="1" [value]="cart.quantity" (change)="onCartQtyInput(i, qtyInput.value)" />
+            <input #qtyInput type="number" min="1" [value]="cart.quantity"
+              (change)="onCartQtyInput(i, qtyInput.value)" />
             <button class="qty-btn" (click)="incrementCartQty(i)">+</button>
           </div>
         </div>
