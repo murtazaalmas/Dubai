@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   products: CategorySection[] = [];
   productCurrentIndex = 0;
   totalProductSlides = 0;
+  slidesToShow = 4;
+  slideWidth = 25;
 
   slides = [
     {
@@ -52,10 +54,34 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private sharedService: SharedService) { }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateSliderConfig();
+  }
+
   ngOnInit(): void {
     this.startSlider();
     this.products = this.sharedService.getWheelCategorySections();
-    this.totalProductSlides = this.products.length > 4 ? this.products.length - 4 + 1 : 1;
+    this.updateSliderConfig();
+  }
+
+  updateSliderConfig() {
+    const width = window.innerWidth;
+    if (width < 600) {
+      this.slidesToShow = 1;
+    } else if (width < 900) {
+      this.slidesToShow = 2;
+    } else {
+      this.slidesToShow = 4;
+    }
+    this.slideWidth = 100 / this.slidesToShow;
+    this.totalProductSlides = this.products.length > this.slidesToShow 
+      ? this.products.length - this.slidesToShow + 1 
+      : 1;
+
+    if (this.productCurrentIndex >= this.totalProductSlides) {
+      this.productCurrentIndex = 0;
+    }
   }
 
   ngOnDestroy() {
@@ -115,5 +141,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.closePopup();
   }
 
+  get productSliderTransform() {
+    return `translateX(-${this.productCurrentIndex * this.slideWidth}%)`;
+  }
 
 }

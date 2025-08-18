@@ -18,11 +18,13 @@
           </div>
         </div>
       </div>
-      <div class="column image">
-        <img [src]="slide.image1" alt="Slide Image 1">
-      </div>
-      <div class="column image">
-        <img [src]="slide.image2" alt="Slide Image 2">
+      <div class="images-container">
+        <div class="column image">
+          <img [src]="slide.image1" alt="Slide Image 1">
+        </div>
+        <div class="column image">
+          <img [src]="slide.image2" alt="Slide Image 2">
+        </div>
       </div>
     </div>
   </div>
@@ -35,8 +37,8 @@
   <div class="product-slider">
     <button class="arrow left" (click)="prevProduct()">&#10094;</button>
     <div class="product-slides-wrapper">
-      <div class="product-slides" [style.transform]="'translateX(-' + productCurrentIndex * 25 + '%)'">
-        <div *ngFor="let product of products.slice(productCurrentIndex, productCurrentIndex + 4)" class="product-slide" (click)="openPopup(product)">
+      <div class="product-slides" [style.transform]="productSliderTransform">
+        <div *ngFor="let product of products" class="product-slide" [style.flex-basis.%]="slideWidth" (click)="openPopup(product)">
           <img [src]="product.image" [alt]="product.name">
           <p>{{ product.name }}</p>
         </div>

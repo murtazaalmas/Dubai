@@ -28,7 +28,7 @@
 }
 
 .column.content {
-  flex: 1;
+  flex: 0 0 35%;
 }
 
 /* Container */
@@ -103,8 +103,18 @@
 
 .column.image {
   flex: 1;
-  overflow: hidden; /* Hide parts of the image that overflow */
+  overflow: hidden;
   padding: 0;
+}
+
+.images-container {
+  display: flex;
+  flex: 1;
+
+  .column.image {
+    width: 50%;
+    flex: 1 1 50%;
+  }
 }
 
 .column img {
@@ -135,6 +145,84 @@
   right: 10px;
 }
 
+@media (max-width: 900px) {
+  .slide {
+    flex-direction: column;
+    height: auto;
+    min-height: 70vh;
+  }
+
+  .column.content {
+    padding: 40px 20px;
+    text-align: center;
+    align-items: center;
+    order: 2;
+    flex-basis: 100%;
+  }
+
+  .images-container {
+    order: 1;
+    flex: none;
+  }
+
+  .sports-container {
+    align-items: center;
+    text-align: center;
+    height: auto; /* Allow container to size based on content */
+  }
+
+  .sports-heading {
+    font-size: 3.5rem;
+  }
+
+  .sports-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+
+  .arrow {
+    top: 35%;
+  }
+}
+
+@media (max-width: 600px) {
+  .slide {
+    height: auto;
+    min-height: 90vh;
+  }
+
+  .column.content {
+    flex: 0 1 auto; /* Allow content to shrink but not grow */
+    padding: 20px;
+  }
+
+  .column.image {
+    height: 250px; /* Set a fixed height for images on mobile */
+    flex: 1 0 auto; /* Allow image container to grow and take space */
+  }
+
+
+  .sports-heading {
+    font-size: 2.5rem;
+  }
+
+  .sports-subtext {
+    font-size: 1rem;
+  }
+
+  .sports-buttons button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  .arrow {
+    top: 50%;
+    padding: 8px;
+    font-size: 18px;
+  }
+}
+
 /* Product Slider Styles */
 .product-slider-container {
   padding: 40px 20px;
@@ -163,10 +251,11 @@
 }
 
 .product-slide {
-  flex: 0 0 25%;
+  flex-shrink: 0; /* Prevent slides from shrinking */
   padding: 0 15px;
   box-sizing: border-box;
   text-align: center;
+  cursor: pointer;
 
   img {
     width: 100%;
@@ -213,5 +302,32 @@
 
   &.active {
     background-color: #4a3aff;
+  }
+}
+
+@media (max-width: 900px) {
+  .product-slider-container h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .product-slider-container {
+    padding: 30px 10px;
+  }
+
+  .product-slider-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .product-slide img {
+    height: 250px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
   }
 }

@@ -11,58 +11,96 @@
 
 <!-- Main Navbar -->
 <header class="main-nav">
-  <!-- Left: Logo and nav links -->
-  <div class="nav-left">
-    <!-- Hamburger for mobile (left) -->
-    <button class="hamburger mobile-only" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
+  <!-- Hamburger for mobile (left) -->
+  <button class="hamburger mobile-only" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img [routerLink]="['/']" src="/assets/images/logo.png" alt="daas" class="navLogo">
+  </div>
+
+  <!-- Cart Icon for mobile (right) -->
+  <a class="cart-icon-btn mobile-only" (click)="toggleCartDrawer()" aria-label="Open cart">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-badge" *ngIf="cartCount > 0">
+      {{ cartCount }}
+    </span>
+  </a>
+
+  <!-- Nav Drawer for Mobile -->
+  <nav class="nav-menu" [class.open]="showMobileMenu">
+    <!-- X close button for mobile -->
+    <button class="close-drawer mobile-only" (click)="toggleMobileMenu()" aria-label="Close menu">
+      <i class="fas fa-times"></i>
     </button>
 
-    <!-- Logo -->
-    <img [routerLink]="['/']" src="/assets/images/logo.png" alt="daas" class="navLogo"
-     >
+    <div class="nav-item" *ngFor="let item of navMenu; let i = index">
+      <a class="nav-link" role="button" [routerLink]="item.route ? item.route : null" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }" (click)="showMobileMenu ? toggleMenu(i) : null">
+        {{ item.name }}
+      </a>
+    </div>
 
-    <!-- Nav Links -->
-    <nav class="nav-menu" [class.open]="showMobileMenu">
-      <!-- X close button for mobile -->
-      <button class="close-drawer mobile-only" (click)="toggleMobileMenu()" aria-label="Close menu">
-        <i class="fas fa-times"></i>
-      </button>
-
-      <div class="nav-item" *ngFor="let item of navMenu; let i = index">
-        <a class="nav-link" role="button" [routerLink]="item.route ? item.route : null" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }" (click)="showMobileMenu ? toggleMenu(i) : null">
-          {{ item.name }}
+    <!-- Search and Icons for Mobile Drawer -->
+    <div class="mobile-only-drawer-items">
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
+      </div>
+      <div class="drawer-icons">
+        <a class="cart-icon-btn" aria-label="Bag" (click)="navigateToCart()">
+          <i class="fas fa-shopping-bag"></i>
+        </a>
+        <a class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="User">
+          <i class="fas fa-user"></i>
+        </a>
+        <a class="cart-icon-btn" (click)="toggleCartDrawer()" aria-label="Open cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge" *ngIf="cartCount > 0">
+            {{ cartCount }}
+          </span>
         </a>
       </div>
+    </div>
 
-      <hr>
+    <hr>
 
-      <div class="top-links mobile-only">
-        <ng-container *ngFor="let link of topBarLinks; let last = last">
-          <a *ngIf="link.route" class="hover-underline top-link-item" [href]="link.route"
-            [attr.target]="link.route.startsWith('http') ? '_blank' : null">
-            <ng-container *ngIf="link.icon">
-              <i [class]="link.icon"></i>
-            </ng-container>
-            {{ link.label }}
-          </a>
-          <span *ngIf="!link.route" class="hover-underline top-link-item">
-            <ng-container *ngIf="link.icon">
-              <i [class]="link.icon"></i>
-            </ng-container>
-            {{ link.label }}
-          </span>
-          <!-- <span class="separator" *ngIf="!last">|</span> -->
-        </ng-container>
-      </div>
-    </nav>
+    <div class="top-links mobile-only">
+      <ng-container *ngFor="let link of topBarLinks; let last = last">
+        <a *ngIf="link.route" class="hover-underline top-link-item" [href]="link.route"
+          [attr.target]="link.route.startsWith('http') ? '_blank' : null">
+          <ng-container *ngIf="link.icon">
+            <i [class]="link.icon"></i>
+          </ng-container>
+          {{ link.label }}
+        </a>
+        <span *ngIf="!link.route" class="hover-underline top-link-item">
+          <ng-container *ngIf="link.icon">
+            <i [class]="link.icon"></i>
+          </ng-container>
+          {{ link.label }}
+        </span>
+        <!-- <span class="separator" *ngIf="!last">|</span> -->
+      </ng-container>
+    </div>
+  </nav>
+
+  <!-- Left: Nav Links (for desktop) -->
+  <div class="nav-left desktop-only">
+    <div class="nav-item" *ngFor="let item of navMenu; let i = index">
+      <a class="nav-link" role="button" [routerLink]="item.route ? item.route : null" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        {{ item.name }}
+      </a>
+    </div>
   </div>
 
   <!-- Center: Search input -->
-  <div class="nav-center">
+  <div class="nav-center desktop-only">
     <div class="search-container">
       <i class="fas fa-search search-icon"></i>
       <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchQuery"
@@ -71,7 +109,7 @@
   </div>
 
   <!-- Right: Icons -->
-  <div class="nav-right">
+  <div class="nav-right desktop-only">
     <a class="cart-icon-btn" aria-label="Bag" (click)="navigateToCart()">
       <i class="fas fa-shopping-bag"></i>
     </a>
