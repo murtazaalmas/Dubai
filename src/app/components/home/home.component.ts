@@ -3,17 +3,21 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-
+import { SharedService, CategorySection } from '../../shared.service';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, NavbarComponent, FooterComponent, CommonModule],
+  imports: [RouterModule, NavbarComponent, FooterComponent, CommonModule, PopupComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss']
 })
-
 export class HomeComponent implements OnInit, OnDestroy {
+
+  products: CategorySection[] = [];
+  productCurrentIndex = 0;
+  totalProductSlides = 0;
 
   slides = [
     {
@@ -40,10 +44,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
 
   currentIndex = 0;
-  slideInterval: any;
+  private slideInterval: any;
 
-  ngOnInit() {
+  // Popup logic
+  showPopup = false;
+  selectedProduct: CategorySection | null = null;
+
+  constructor(private sharedService: SharedService) { }
+
+  ngOnInit(): void {
     this.startSlider();
+    this.products = this.sharedService.getWheelCategorySections();
+    this.totalProductSlides = this.products.length > 4 ? this.products.length - 4 + 1 : 1;
   }
 
   ngOnDestroy() {
@@ -73,6 +85,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.slideInterval = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.slides.length;
     }, 3000); // Change slide every 3 seconds
+  }
+
+  // Product slider logic
+  nextProduct(): void {
+    this.productCurrentIndex = (this.productCurrentIndex + 1) % this.totalProductSlides;
+  }
+
+  prevProduct(): void {
+    this.productCurrentIndex = (this.productCurrentIndex - 1 + this.totalProductSlides) % this.totalProductSlides;
+  }
+
+  goToProductSlide(index: number): void {
+    this.productCurrentIndex = index;
+  }
+
+  openPopup(product: CategorySection): void {
+    this.selectedProduct = product;
+    this.showPopup = true;
+  }
+
+  closePopup(): void {
+    this.showPopup = false;
+    this.selectedProduct = null;
+  }
+
+  addToCart(event: { item: CategorySection, quantity: number }): void {
+    this.sharedService.addToCart(event.item, event.quantity);
+    this.closePopup();
   }
 
 

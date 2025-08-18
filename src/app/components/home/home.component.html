@@ -29,4 +29,34 @@
   <button class="arrow right" (click)="nextSlide()">&#10095;</button>
 </div>
 
+<!-- Product Slider -->
+<div class="product-slider-container">
+  <h2>Our Products</h2>
+  <div class="product-slider">
+    <button class="arrow left" (click)="prevProduct()">&#10094;</button>
+    <div class="product-slides-wrapper">
+      <div class="product-slides" [style.transform]="'translateX(-' + productCurrentIndex * 25 + '%)'">
+        <div *ngFor="let product of products.slice(productCurrentIndex, productCurrentIndex + 4)" class="product-slide" (click)="openPopup(product)">
+          <img [src]="product.image" [alt]="product.name">
+          <p>{{ product.name }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="arrow right" (click)="nextProduct()">&#10095;</button>
+  </div>
+  <div class="dots-container">
+    <span *ngFor="let i of [].constructor(totalProductSlides); let idx = index" 
+          class="dot" 
+          [class.active]="productCurrentIndex === idx" 
+          (click)="goToProductSlide(idx)"></span>
+  </div>
+</div>
+
 <app-footer></app-footer>
+
+<app-popup 
+    *ngIf="showPopup" 
+    [category]="selectedProduct" 
+    (close)="closePopup()"
+    (addCartItem)="addToCart($event)">
+</app-popup>

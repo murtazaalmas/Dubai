@@ -6,7 +6,8 @@
   height: 100vh;
   background: rgba(0,0,0,0.5);
   display: flex;
-  align-items: center;
+  // align-items: center;
+  padding: 30px;
   justify-content: center;
   z-index: 1000;
 }
@@ -51,12 +52,12 @@
 
 .popup-image-col {
   position: relative;
-  flex: 1 1 300px;
+  flex: 1 1 250px;
   background: #f9f9f9;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
+  min-height: 250px;
 }
 
 .popup-image-col img {
@@ -89,7 +90,7 @@
 }
 
 .popup-info-col {
-  flex: 1 1 400px;
+  flex: 1 1 440px;
   padding: 20px;
   display: flex;
   flex-direction: column;

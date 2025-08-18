@@ -6,6 +6,9 @@
 </div>
 
 <!-- Main Content -->
+<div class="toast-message" *ngIf="toastMessage">{{ toastMessage }}</div>
+
+<!-- Main Content -->
 <div class="main-content" *ngIf="!isLoading">
   <router-outlet></router-outlet>
 </div>

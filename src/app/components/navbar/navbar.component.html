@@ -111,13 +111,13 @@
           <div class="cart-item-price">Rs {{ cart.item.price | number:'1.0-0' }}</div>
           <div class="cart-item-qty">
             <span>Qty:</span>
-            <button class="qty-btn" (click)="decrementCartQty(i)">-</button>
+            <button class="qty-btn" (click)="decrementCartQty(cart)">-</button>
             <input #qtyInput type="number" min="1" [value]="cart.quantity"
-              (change)="onCartQtyInput(i, qtyInput.value)" />
-            <button class="qty-btn" (click)="incrementCartQty(i)">+</button>
+              (change)="onCartQtyInput(cart, qtyInput.value)" />
+            <button class="qty-btn" (click)="incrementCartQty(cart)">+</button>
           </div>
         </div>
-        <button class="cart-item-delete" (click)="removeCartItem(i)" aria-label="Remove item">
+        <button class="cart-item-delete" (click)="removeCartItem(cart.item.id)" aria-label="Remove item">
           <i class="fas fa-trash"></i>
         </button>
       </div>

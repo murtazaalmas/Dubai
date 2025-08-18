@@ -1,9 +1,11 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, Input, OnInit, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SharedService, CartItem } from '../../shared.service';
+import { Subscription } from 'rxjs';
 export interface NavDropdownItem {
   name: string;
   icon: string;
@@ -42,8 +44,9 @@ function getMenuIconByName(name: string): string {
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
-  @Input() cartItems: { item: any, quantity: number }[] = [];
+export class NavbarComponent implements OnInit, OnDestroy {
+  cartItems: CartItem[] = [];
+  private cartSubscription!: Subscription;
   @Input() disableCartDrawer = false;
   @Input() showCartIcon: boolean = true;
   @Input() showBagIcon: boolean = false;
@@ -51,7 +54,7 @@ export class NavbarComponent {
   currentDate = new Date();
   searchQuery: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sharedService: SharedService) { }
 
   topBarLinks: TopBarLink[] = [
     { label: '+92 316 7249265', icon: 'ri-phone-line', route: 'tel:+923167249265' },
@@ -59,11 +62,21 @@ export class NavbarComponent {
     { label: 'Daas Enterprises', route: '' }
   ];
 
+  ngOnInit(): void {
+    this.cartSubscription = this.sharedService.cartItems$.subscribe(items => {
+      this.cartItems = items;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+  }
 
   onSearch() {
     if (this.searchQuery.trim()) { }
   }
-
 
   navMenu: NavMenuItem[] = [
     {
@@ -86,7 +99,6 @@ export class NavbarComponent {
       icon: 'ri-mail-line',
       route: '/contactUS',
     },
-
   ];
 
   showMobileMenu = false;
@@ -113,28 +125,24 @@ export class NavbarComponent {
     this.showCartDrawer = !this.showCartDrawer;
   }
 
-  removeCartItem(index: number) {
-    this.cartItems.splice(index, 1);
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  removeCartItem(itemId: number) {
+    this.sharedService.removeItem(itemId);
   }
 
-  incrementCartQty(index: number) {
-    this.cartItems[index].quantity++;
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  incrementCartQty(item: CartItem) {
+    this.sharedService.updateItemQuantity(item.item.id, item.quantity + 1);
   }
 
-  decrementCartQty(index: number) {
-    if (this.cartItems[index].quantity > 1) {
-      this.cartItems[index].quantity--;
-      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  decrementCartQty(item: CartItem) {
+    if (item.quantity > 1) {
+      this.sharedService.updateItemQuantity(item.item.id, item.quantity - 1);
     }
   }
 
-  onCartQtyInput(index: number, value: string) {
+  onCartQtyInput(item: CartItem, value: string) {
     const parsedValue = parseInt(value, 10);
     const qty = Math.max(1, isNaN(parsedValue) ? 1 : parsedValue);
-    this.cartItems[index].quantity = qty;
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+    this.sharedService.updateItemQuantity(item.item.id, qty);
   }
 
   get cartCount(): number {

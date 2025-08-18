@@ -1,4 +1,4 @@
-<app-navbar [cartItems]="cartItems" [disableCartDrawer]="true" [showCartIcon]="false"></app-navbar>
+<app-navbar [disableCartDrawer]="true" [showCartIcon]="false"></app-navbar>
 <h1 class="cart-page-title">Your Cart</h1>
 <div *ngIf="cartItems.length === 0" class="cart-empty">Your cart is empty.</div>
 <div *ngIf="cartItems.length > 0">
