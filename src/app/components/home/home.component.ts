@@ -31,21 +31,33 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       subtext: 'The Best in Sports Equipment',
       buttons: ['Rugby Kit', 'Fitness Wear', 'Tennis Kit'],
       image1: 'assets/images/images1.jpeg',
-      image2: 'assets/images/images2.jpeg'
+      image2: 'assets/images/images2.jpeg',
+      bgColor: 'red',
+      overlayImage: 'assets/images/slide1.png',
+      overlayTop: '20%',
+      overlayLeft: '30%'
     },
     {
       heading: 'Peak Performance <br /> Gear',
       subtext: 'Engineered for the Modern Athlete',
       buttons: ['Running Shoes'],
       image1: 'assets/images/images3.jpeg',
-      image2: 'assets/images/images4.jpeg'
+      image2: 'assets/images/images4.jpeg',
+      bgColor: 'green',
+      overlayImage: 'assets/images/slide2.png',
+      overlayTop: '75%',
+      overlayLeft: '32%'
     },
     {
       heading: 'Find Your <br /> Strength',
       subtext: 'Comfort and Style for Every Workout',
       buttons: ['Yoga Mats', 'Dumbbells'],
       image1: 'assets/images/images5.jpeg',
-      image2: 'assets/images/images6.jpeg'
+      image2: '',
+      bgColor: 'blue',
+      overlayImage: 'assets/images/slide3.png',
+      overlayTop: '75%',
+      overlayLeft: '25%'
     }
   ];
 

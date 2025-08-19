@@ -15,6 +15,7 @@
   display: flex;
   box-sizing: border-box;
   height: 90vh;
+  position: relative;
 }
 
 .column {
@@ -105,6 +106,20 @@
   flex: 1;
   overflow: hidden;
   padding: 0;
+}
+
+.overlay-image-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 200px; // Adjust size as needed
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 }
 
 .images-container {

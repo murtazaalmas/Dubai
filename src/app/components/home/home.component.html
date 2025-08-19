@@ -4,7 +4,7 @@
   <button class="arrow left" (click)="prevSlide()">&#10094;</button>
   <div class="slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
     <div *ngFor="let slide of slides" class="slide">
-      <div class="column content sports-container">
+      <div class="column content sports-container" [ngStyle]="{'background-color': slides[currentIndex].bgColor}">
         <div class="sports-content">
           <!-- Heading -->
           <h1 class="sports-heading reveal" [innerHTML]="slide.heading"></h1>
@@ -18,11 +18,14 @@
           </div>
         </div>
       </div>
+      <div class="overlay-image-container" [ngStyle]="{ 'top': slide.overlayTop, 'left': slide.overlayLeft }">
+        <img [src]="slide.overlayImage" alt="Overlay Image">
+      </div>
       <div class="images-container">
         <div class="column image">
           <img [src]="slide.image1" alt="Slide Image 1">
         </div>
-        <div class="column image">
+        <div class="column image" *ngIf="slide.image2">
           <img [src]="slide.image2" alt="Slide Image 2">
         </div>
       </div>
