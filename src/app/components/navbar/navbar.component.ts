@@ -87,17 +87,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
     {
       name: 'Our Product',
       icon: 'ri-box-3-line',
-      route: '/ourProduct',
+      route: '/our-product',
     },
     {
       name: 'About Us',
       icon: 'ri-information-line',
-      route: '/aboutUS',
+      route: '/about-us',
     },
     {
       name: 'Contact Us',
       icon: 'ri-mail-line',
-      route: '/contactUS',
+      route: '/contact-us',
     },
   ];
 

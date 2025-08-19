@@ -9,7 +9,7 @@ import { PopupComponent } from '../popup/popup.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, NavbarComponent, FooterComponent, CommonModule, PopupComponent],
+  imports: [RouterModule, CommonModule, PopupComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
