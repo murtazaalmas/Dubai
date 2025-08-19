@@ -198,14 +198,14 @@ input[type=number] {
 }
 
 .sort-select:focus {
-  border: 1.5px solid #FFD700;
+  border: 1.5px solid #e92716;
   color: #222;
 }
 
 .sort-button .icon {
   pointer-events: none;
   margin-left: -22px;
-  color: #FFD700;
+  color: #e92716;
 }
 
 .icon {
@@ -367,18 +367,18 @@ input[type=number] {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  background: #FFD700;
-  color: #222;
+  background: #e92716;
+  color: #fff;
   transition: background 0.2s, color 0.2s;
 }
 
 .list-btn.read-more {
   background: #222;
-  color: #FFD700;
+  color: #fff;
 }
 
 .list-btn:hover {
-  // background: #FFB300;
+  // background: #f27e73;
   color: #fff;
 }
 
@@ -404,7 +404,7 @@ input[type=number] {
   grid-template-columns: 25% 50% 25%;
   align-items: stretch;
   background: #f8f9fa;
-  border: 1.5px solid #FFD700;
+  border: 1.5px solid #e92716;
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgba(0,0,0,0.10);
   padding: 0;
@@ -505,7 +505,7 @@ input[type=number] {
 
 .tab-buttons button {
   padding: 0.5em 1.5em;
-  border: 1.5px solid #FFD700;
+  border: 1.5px solid #e92716;
   background: #fff;
   color: #222;
   font-size: 1rem;
@@ -516,9 +516,9 @@ input[type=number] {
 }
 
 .tab-buttons button.active {
-  background: #FFD700;
-  color: #222;
-  border: 2px solid #FFD700;
+  background: #e92716;
+  color: #fff;
+  border: 2px solid #e92716;
 }
 
 // Toaster 

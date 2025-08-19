@@ -93,7 +93,7 @@
   justify-content: center;
 }
 .qty-btn:hover {
-  background: #FFD700;
+  background: #e92716;
   color: #111;
 }
 .cart-item-delete {
@@ -132,8 +132,8 @@
 }
 .cart-checkout-btn {
   width: 100%;
-  background: linear-gradient(90deg, #FFD700 0%, #FFB300 100%);
-  color: #111;
+  background: linear-gradient(90deg, #e92716 0%, #f27e73 100%);
+  color: #fff;
   border: none;
   border-radius: 6px;
   padding: 14px 0;
@@ -145,8 +145,8 @@
   margin-bottom: 32px;
 }
 .cart-checkout-btn:hover {
-  background: #ffe066;
-  color: #000;
+  background: #e92716;
+  color: #fff;
 } 
 
 .cart-page-title {
@@ -202,7 +202,7 @@
 .cart-order-note textarea {
   width: 100%;
   min-height: 60px;
-  border: 1.5px solid #FFD700;
+  border: 1.5px solid #e92716;
   border-radius: 6px;
   padding: 12px 14px;
   font-size: 1rem;
