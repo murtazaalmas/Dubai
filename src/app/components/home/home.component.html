@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="slider-container">
+<section class="slider-container">
   <button class="arrow left" (click)="prevSlide()">&#10094;</button>
   <div class="slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
     <div *ngFor="let slide of slides" class="slide">
@@ -29,16 +29,16 @@
     </div>
   </div>
   <button class="arrow right" (click)="nextSlide()">&#10095;</button>
-</div>
+</section>
 
-<!-- Product Slider -->
-<div class="product-slider-container">
+<section class="product-slider-container">
   <h2>Our Products</h2>
   <div class="product-slider">
     <button class="arrow left" (click)="prevProduct()">&#10094;</button>
     <div class="product-slides-wrapper">
       <div class="product-slides" [style.transform]="productSliderTransform">
-        <div *ngFor="let product of products" class="product-slide" [style.flex-basis.%]="slideWidth" (click)="openPopup(product)">
+        <div *ngFor="let product of products" class="product-slide" [style.flex-basis.%]="slideWidth"
+          (click)="openPopup(product)">
           <img [src]="product.image" [alt]="product.name">
           <p>{{ product.name }}</p>
         </div>
@@ -47,18 +47,89 @@
     <button class="arrow right" (click)="nextProduct()">&#10095;</button>
   </div>
   <div class="dots-container">
-    <span *ngFor="let i of [].constructor(totalProductSlides); let idx = index" 
-          class="dot" 
-          [class.active]="productCurrentIndex === idx" 
-          (click)="goToProductSlide(idx)"></span>
+    <span *ngFor="let i of [].constructor(totalProductSlides); let idx = index" class="dot"
+      [class.active]="productCurrentIndex === idx" (click)="goToProductSlide(idx)"></span>
   </div>
-</div>
+</section>
+
+<section class="animated-section">
+  <div class="animated-content left-animation">
+    <img src="/assets/images/images1.jpeg" alt="Image 1">
+    <div class="overlay-content">
+      <h3>Custom Team Wear</h3>
+      <button>Shop Now</button>
+    </div>
+  </div>
+  <div class="animated-content right-animation">
+    <img src="/assets/images/images2.jpeg" alt="Image 2">
+    <div class="overlay-content">
+      <h3>Custom Clothing</h3>
+      <button>Shop Now</button>
+    </div>
+  </div>
+  <div class="animated-content left-animation">
+    <img src="/assets/images/images3.jpeg" alt="Image 3">
+    <div class="overlay-content">
+      <h3>Custom Clothing</h3>
+      <button>Shop Now</button>
+    </div>
+  </div>
+  <div class="animated-content right-animation">
+    <img src="/assets/images/images4.jpeg" alt="Image 4">
+    <div class="overlay-content">
+      <h3>Custom Clothing</h3>
+      <button>Shop Now</button>
+    </div>
+  </div>
+</section>
+
+<section class="product-slider-container">
+  <h2>NEW ARRIVALS</h2>
+  <div class="product-slider">
+    <button class="arrow left" (click)="prevNewArrival()">&#10094;</button>
+    <div class="product-slides-wrapper">
+      <div class="product-slides" [style.transform]="newArrivalsSliderTransform">
+        <div *ngFor="let product of newArrivals" class="product-slide" [style.flex-basis.%]="slideWidth"
+          (click)="openPopup(product)">
+          <img [src]="product.image" [alt]="product.name">
+          <p>{{ product.name }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="arrow right" (click)="nextNewArrival()">&#10095;</button>
+  </div>
+  <div class="dots-container">
+    <span *ngFor="let i of [].constructor(totalNewArrivalsSlides); let idx = index" class="dot"
+      [class.active]="newArrivalsCurrentIndex === idx" (click)="goToNewArrivalSlide(idx)"></span>
+  </div>
+</section>
+
+<section class="about-us-container">
+  <div class="about-us-image-container">
+    <img src="/assets/images/images6.jpeg" alt="About Us Image">
+  </div>
+  <div class="about-us-content-container">
+    <h2>About US</h2>
+    <p>At Sixaiz Enterprises, we are passionate about delivering premium leather products and high-performance sportswear that stand out in quality and design. As a leading manufacturer, we merge traditional craftsmanship with modern innovation to create durable, stylish, and functional products.</p>
+    <p>Our expertise lies in crafting top-grade leather skins, catering to industries that value durability and elegance. In the realm of sportswear, we focus on cutting-edge designs and performance-driven materials, ensuring athletes and enthusiasts can perform at their best while looking great.</p>
+    <div class="about-us-buttons">
+      <button>About us</button>
+      <button>Contact Us</button>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter-container">
+  <div class="newsletter-content">
+    <p>JOIN OUR NEWSLETTER AND GET $10 DISCOUNT FOR YOUR FIRST ORDER</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="your email here">
+      <button>subscribe</button>
+    </div>
+  </div>
+</section>
 
 <app-footer></app-footer>
 
-<app-popup 
-    *ngIf="showPopup" 
-    [category]="selectedProduct" 
-    (close)="closePopup()"
-    (addCartItem)="addToCart($event)">
+<app-popup *ngIf="showPopup" [category]="selectedProduct" (close)="closePopup()" (addCartItem)="addToCart($event)">
 </app-popup>

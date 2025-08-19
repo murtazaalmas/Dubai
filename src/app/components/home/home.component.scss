@@ -156,7 +156,7 @@
     padding: 40px 20px;
     text-align: center;
     align-items: center;
-    order: 2;
+    opacity: 1;
     flex-basis: 100%;
   }
 
@@ -329,5 +329,270 @@
   .dot {
     width: 10px;
     height: 10px;
+  }
+}
+
+/* Animated Section Styles */
+.animated-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 50px 20px;
+  overflow-x: hidden; /* Prevents horizontal scrollbar during animation */
+  background-color: #f9f9f9;
+}
+
+.animated-content {
+  flex-basis: 45%;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.animated-content img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.animated-content:hover img {
+  transform: scale(1.05);
+}
+
+.overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay-content h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.overlay-content button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.overlay-content button:hover {
+  background-color: white;
+  color: #4a3aff;
+  transform: translateY(-2px);
+}
+
+/* Initial state for animations */
+.left-animation, .right-animation {
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.left-animation {
+  transform: translateX(-100px);
+}
+
+.right-animation {
+  transform: translateX(100px);
+}
+
+/* Animation trigger class */
+.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .animated-content h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .animated-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .animated-content {
+    flex-basis: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .animated-content:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* About Us Section Styles */
+.about-us-container {
+  display: flex;
+  align-items: stretch;
+  padding: 50px 20px;
+  background-color: #ffffff;
+  gap: 40px;
+}
+
+.about-us-image-container {
+  flex: 1;
+  max-width: 50%;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-us-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.about-us-content-container {
+  flex: 1;
+  max-width: 50%;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-us-content-container h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.about-us-content-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.about-us-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.about-us-buttons button {
+  background-color: #4a3aff;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.about-us-buttons button:hover {
+  background-color: #3a2dbd;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .about-us-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-us-image-container,
+  .about-us-content-container {
+    max-width: 100%;
+  }
+
+  .about-us-buttons {
+    justify-content: center;
+  }
+}
+
+/* Newsletter Section Styles */
+.newsletter-container {
+  padding: 50px 20px;
+  background-color: #000;
+  text-align: center;
+}
+
+.newsletter-content p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.newsletter-form input {
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 300px;
+  max-width: 100%;
+}
+
+.newsletter-form button {
+  background-color: #4a3aff;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background-color: #3a2dbd;
+}
+
+@media (max-width: 600px) {
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-form input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .newsletter-form button {
+    width: 100%;
   }
 }

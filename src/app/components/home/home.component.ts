@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -13,11 +13,15 @@ import { PopupComponent } from '../popup/popup.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   products: CategorySection[] = [];
   productCurrentIndex = 0;
   totalProductSlides = 0;
+
+  newArrivals: CategorySection[] = [];
+  newArrivalsCurrentIndex = 0;
+  totalNewArrivalsSlides = 0;
   slidesToShow = 4;
   slideWidth = 25;
 
@@ -52,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   showPopup = false;
   selectedProduct: CategorySection | null = null;
 
-  constructor(private sharedService: SharedService) { }
+    constructor(private sharedService: SharedService, private el: ElementRef) { }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -62,6 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.startSlider();
     this.products = this.sharedService.getWheelCategorySections();
+    this.newArrivals = this.sharedService.getNewArrivals();
     this.updateSliderConfig();
   }
 
@@ -82,11 +87,40 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.productCurrentIndex >= this.totalProductSlides) {
       this.productCurrentIndex = 0;
     }
+
+    // New Arrivals slider
+    this.totalNewArrivalsSlides = this.newArrivals.length > this.slidesToShow
+        ? this.newArrivals.length - this.slidesToShow + 1
+        : 1;
+    
+    if (this.newArrivalsCurrentIndex >= this.totalNewArrivalsSlides) {
+        this.newArrivalsCurrentIndex = 0;
+    }
   }
 
   ngOnDestroy() {
     if (this.slideInterval) {
       clearInterval(this.slideInterval);
+    }
+  }
+
+  ngAfterViewInit() {
+    const animatedSection = this.el.nativeElement.querySelector('.animated-section');
+    if (animatedSection) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Add 'in-view' to both animated content divs
+            const elements = entry.target.querySelectorAll('.animated-content');
+            elements.forEach(el => {
+              el.classList.add('in-view');
+            });
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+      observer.observe(animatedSection);
     }
   }
 
@@ -143,6 +177,23 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   get productSliderTransform() {
     return `translateX(-${this.productCurrentIndex * this.slideWidth}%)`;
+  }
+
+  // New Arrivals slider logic
+  nextNewArrival(): void {
+    this.newArrivalsCurrentIndex = (this.newArrivalsCurrentIndex + 1) % this.totalNewArrivalsSlides;
+  }
+
+  prevNewArrival(): void {
+    this.newArrivalsCurrentIndex = (this.newArrivalsCurrentIndex - 1 + this.totalNewArrivalsSlides) % this.totalNewArrivalsSlides;
+  }
+
+  goToNewArrivalSlide(index: number): void {
+    this.newArrivalsCurrentIndex = index;
+  }
+
+  get newArrivalsSliderTransform() {
+    return `translateX(-${this.newArrivalsCurrentIndex * this.slideWidth}%)`;
   }
 
 }

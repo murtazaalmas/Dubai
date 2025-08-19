@@ -11,7 +11,7 @@ export interface CategorySection {
   id: number;
   categoryId: number;
   image: string;
-  name: string;
+  name: 'Producr',
   price: number;
   oldPrice: number;
   sku: string;
@@ -36,7 +36,7 @@ export class SharedService {
     })
   );
 
-  constructor() { 
+  constructor() {
     this.loadCart();
   }
 
@@ -97,7 +97,7 @@ export class SharedService {
         id: 1,
         categoryId: 1,
         image: '/assets/images/images1.jpeg',
-        name: 'Crown Red Alloy Rims for Honda CD70 – Premium Quality',
+        name: 'Producr',
         price: 23000,
         oldPrice: 25000,
         sku: "Crown‑Red‑CD70",
@@ -109,7 +109,7 @@ export class SharedService {
         id: 2,
         categoryId: 1,
         image: '/assets/images/images2.jpeg',
-        name: 'Alloyrims Silver CD70 | Star Shape | Premium Quality',
+        name: 'Producr',
         price: 21999,
         oldPrice: 22900,
         sku: "Alloyrims‑Silver‑Star‑CD70",
@@ -121,7 +121,7 @@ export class SharedService {
         id: 3,
         categoryId: 1,
         image: '/assets/images/images3.jpeg',
-        name: 'Silver Curve Alloy Rims for CD70 – Durable & Sleek Design',
+        name: 'Producr',
         price: 23000,
         oldPrice: 25000,
         sku: "Silver‑Curve‑CD70",
@@ -133,7 +133,7 @@ export class SharedService {
         id: 4,
         categoryId: 1,
         image: '/assets/images/images4.jpeg',
-        name: 'Crown Golden Alloy Rims for Honda CD70 – Elegant & Durable',
+        name: 'Producr',
         price: 23000,
         oldPrice: 25000,
         sku: "Crown‑Golden‑CD70",
@@ -145,7 +145,7 @@ export class SharedService {
         id: 5,
         categoryId: 1,
         image: '/assets/images/images5.jpeg',
-        name: 'Alloyrims CD70 | YBR Shape Blue Outline | Premium Quality',
+        name: 'Producr',
         price: 21999,
         oldPrice: 0, // No old price listed
         sku: "Alloyrims‑YBR‑Blue‑CD70",
@@ -157,7 +157,7 @@ export class SharedService {
         id: 6,
         categoryId: 1,
         image: '/assets/images/images6.jpeg',
-        name: 'Premium Red Curve Alloy Rims for CD70 – Stylish & Durable Design',
+        name: 'Producr',
         price: 23000,
         oldPrice: 25000,
         sku: "Premium‑Red‑Curve‑CD70",
@@ -169,7 +169,7 @@ export class SharedService {
         id: 7,
         categoryId: 1,
         image: '/assets/images/images7.jpeg',
-        name: 'Curve Golden Alloy Rims for Honda CD70 – Stylish & Durable',
+        name: 'Producr',
         price: 23000,
         oldPrice: 25000,
         sku: "Curve‑Golden‑CD70",
@@ -183,7 +183,7 @@ export class SharedService {
         id: 8,
         categoryId: 2,
         image: '/assets/images/images8.jpeg',
-        name: 'YBR‑Shape Alloy Rims for Honda CG125',
+        name: 'Producr',
         price: 34999,
         oldPrice: 38000,
         sku: "YBR‑Shape‑CG125",
@@ -191,9 +191,14 @@ export class SharedService {
         availability: "In Stock",
         detail: "High-quality YBR-style alloy rims with durable finish. Suitable for Honda CG125. Includes front and rear rim set."
       },
-    
+
 
     ];
+  }
+
+  getNewArrivals(): CategorySection[] {
+    // Returning a subset of products as new arrivals for now
+    return this.getWheelCategorySections().slice(0, 7);
   }
 
 }

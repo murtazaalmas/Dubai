@@ -1,62 +1,39 @@
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-section about">
-      <h3>About Us</h3>
-      <p>Your trusted platform for discovering, buying, and selling motor bike parts and accessories. We help you find the best products and deals for your ride.</p>
-      <div class="store-buttons">
-        <a  class="store-button app-store">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="Apple Logo">
-          <div class="text">
-            <span>Available on the</span>
-            <strong>App Store</strong>
-          </div>
-        </a>
-        <a  class="store-button google-play">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Logo">
-          <div class="text">
-            <span>Get it on</span>
-            <strong>Google Play</strong>
-          </div>
-        </a>
-      </div>
+      <h3>Daas Enterprises</h3>
+      <p>At Daas Enterprises, we are passionate about delivering premium leather products and high-performance sportswear that stand out in quality and design.</p>
     </div>
 
-    <div class="footer-section quick-links">
-      <h3>Quick Links</h3>
+    <div class="footer-section links">
+      <h3>More Info</h3>
       <ul>
-        <li *ngFor="let link of quickLinks">
-          <a [href]="link.url">{{link.name}}</a>
-        </li>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/about">About Us</a></li>
+        <li><a routerLink="/shop">Shop</a></li>
+        <li><a routerLink="/contact">Contact Us</a></li>
       </ul>
     </div>
 
-    <div class="footer-section categories">
-      <h3>Categories</h3>
+    <div class="footer-section links">
+      <h3>Our Category</h3>
       <ul>
-        <li *ngFor="let category of categories">
-          <a [href]="category.url">{{category.name}}</a>
-        </li>
+        <li><a href="#">Leather wears</a></li>
+        <li><a href="#">Active Wears</a></li>
+        <li><a href="#">Safety wear</a></li>
+        <li><a href="#">Moto Bike Jacket</a></li>
       </ul>
     </div>
 
-    <div class="footer-section subscribe">
-      <h3>Subscribe</h3>
-      <p>Stay updated with our latest news and offers</p>
-      <form class="subscribe-form">
-        <input type="email" placeholder="Enter your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="social-icons">
-        <a *ngFor="let social of socialIcons" 
-           [href]="social.url" 
-           class="social-icon" 
-           [title]="social.name">
-          <i [class]="social.icon"></i>
-        </a>
-      </div>
+    <div class="footer-section contact-info">
+      <h3>Contact Us</h3>
+      <p><i class="fas fa-map-marker-alt"></i> People Colony, Gujranwala Pakistan</p>
+      <p><i class="fas fa-phone"></i> +92-321-6467893</p>
+      <p><i class="fas fa-phone"></i> +92-312-3232832</p>
+      <p><i class="fas fa-envelope"></i> daas.com</p>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2024 Murtaza Almas. All rights reserved.</p>
+    <p>&copy; 2025 Murtaza Almas. All rights reserved.</p>
   </div>
 </footer>
