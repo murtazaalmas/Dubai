@@ -1,4 +1,3 @@
-
 <section class="slider-container">
   <button class="arrow left" (click)="prevSlide()">&#10094;</button>
   <div class="slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
@@ -39,9 +38,16 @@
     <button class="arrow left" (click)="prevProduct()">&#10094;</button>
     <div class="product-slides-wrapper">
       <div class="product-slides" [style.transform]="productSliderTransform">
-        <div *ngFor="let product of products" class="product-slide" [style.flex-basis.%]="slideWidth"
-          (click)="openPopup(product)">
-          <img [src]="product.image" [alt]="product.name">
+        <div *ngFor="let product of products" class="product-slide" [style.flex-basis.%]="slideWidth">
+          <div class="product-image-container" (click)="openPopup(product)">
+            <img [src]="product.image" [alt]="product.name">
+            <div class="product-overlay">
+              <div class="overlay-content-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Add to cart</span>
+              </div>
+            </div>
+          </div>
           <p>{{ product.name }}</p>
         </div>
       </div>
@@ -91,9 +97,16 @@
     <button class="arrow left" (click)="prevNewArrival()">&#10094;</button>
     <div class="product-slides-wrapper">
       <div class="product-slides" [style.transform]="newArrivalsSliderTransform">
-        <div *ngFor="let product of newArrivals" class="product-slide" [style.flex-basis.%]="slideWidth"
-          (click)="openPopup(product)">
-          <img [src]="product.image" [alt]="product.name">
+        <div *ngFor="let product of newArrivals" class="product-slide" [style.flex-basis.%]="slideWidth">
+          <div class="product-image-container" (click)="openPopup(product)">
+            <img [src]="product.image" [alt]="product.name">
+            <div class="product-overlay">
+              <div class="overlay-content-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Add to cart</span>
+              </div>
+            </div>
+          </div>
           <p>{{ product.name }}</p>
         </div>
       </div>
@@ -112,25 +125,18 @@
   </div>
   <div class="about-us-content-container">
     <h2>About US</h2>
-    <p>At Sixaiz Enterprises, we are passionate about delivering premium leather products and high-performance sportswear that stand out in quality and design. As a leading manufacturer, we merge traditional craftsmanship with modern innovation to create durable, stylish, and functional products.</p>
-    <p>Our expertise lies in crafting top-grade leather skins, catering to industries that value durability and elegance. In the realm of sportswear, we focus on cutting-edge designs and performance-driven materials, ensuring athletes and enthusiasts can perform at their best while looking great.</p>
+    <p>At Sixaiz Enterprises, we are passionate about delivering premium leather products and high-performance
+      sportswear that stand out in quality and design. As a leading manufacturer, we merge traditional craftsmanship
+      with modern innovation to create durable, stylish, and functional products.</p>
+    <p>Our expertise lies in crafting top-grade leather skins, catering to industries that value durability and
+      elegance. In the realm of sportswear, we focus on cutting-edge designs and performance-driven materials, ensuring
+      athletes and enthusiasts can perform at their best while looking great.</p>
     <div class="about-us-buttons">
       <button>About us</button>
       <button>Contact Us</button>
     </div>
   </div>
 </section>
-
-<section class="newsletter-container">
-  <div class="newsletter-content">
-    <p>JOIN OUR NEWSLETTER AND GET $10 DISCOUNT FOR YOUR FIRST ORDER</p>
-    <div class="newsletter-form">
-      <input type="email" placeholder="your email here">
-      <button>subscribe</button>
-    </div>
-  </div>
-</section>
-
 
 <app-popup *ngIf="showPopup" [category]="selectedProduct" (close)="closePopup()" (addCartItem)="addToCart($event)">
 </app-popup>

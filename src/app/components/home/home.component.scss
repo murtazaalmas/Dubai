@@ -39,11 +39,13 @@
   justify-content: center;
   align-items: flex-start;
   height: 100%;
-  background-color: #4a3aff; /* Purple background */
+  background-color: #4a3aff;
+  /* Purple background */
   color: white;
   text-align: start;
   font-family: 'Trebuchet MS', sans-serif;
-  padding: 0 30px; /* Added horizontal padding */
+  padding: 0 30px;
+  /* Added horizontal padding */
 }
 
 /* Content Wrapper */
@@ -135,7 +137,8 @@
 .column img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Cover the container, may crop the image */
+  object-fit: cover;
+  /* Cover the container, may crop the image */
   display: block;
 }
 
@@ -183,7 +186,8 @@
   .sports-container {
     align-items: center;
     text-align: center;
-    height: auto; /* Allow container to size based on content */
+    height: auto;
+    /* Allow container to size based on content */
   }
 
   .sports-heading {
@@ -208,13 +212,16 @@
   }
 
   .column.content {
-    flex: 0 1 auto; /* Allow content to shrink but not grow */
+    flex: 0 1 auto;
+    /* Allow content to shrink but not grow */
     padding: 20px;
   }
 
   .column.image {
-    height: 250px; /* Set a fixed height for images on mobile */
-    flex: 1 0 auto; /* Allow image container to grow and take space */
+    height: 250px;
+    /* Set a fixed height for images on mobile */
+    flex: 1 0 auto;
+    /* Allow image container to grow and take space */
   }
 
 
@@ -266,18 +273,68 @@
 }
 
 .product-slide {
-  flex-shrink: 0; /* Prevent slides from shrinking */
+  flex-shrink: 0;
+  /* Prevent slides from shrinking */
   padding: 0 15px;
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
 
-  img {
-    width: 100%;
-    height: 300px; /* Set a fixed height */
-    object-fit: cover; /* Ensure images cover the area without distortion */
+  .product-image-container {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
     border-radius: 8px;
     margin-bottom: 15px;
+
+    img {
+      width: 100%;
+      height: 300px;
+      /* Set a fixed height */
+      object-fit: cover;
+      /* Ensure images cover the area without distortion */
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .product-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .overlay-content-cart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+
+        .fa-shopping-cart {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+
+        span {
+          font-size: 1rem;
+          font-weight: 500;
+        }
+      }
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+    }
+
+    &:hover .product-overlay {
+      opacity: 1;
+    }
   }
 
   p {
@@ -291,12 +348,14 @@
   background: linear-gradient(#fff 0 0) no-repeat;
   background-size: 0% 100%;
   -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   animation: t 1.2s .5s both;
 }
 
-@keyframes t{
-  to {background-size: 100% 100%}
+@keyframes t {
+  to {
+    background-size: 100% 100%
+  }
 }
 
 /* Dots Navigation */
@@ -354,7 +413,8 @@
   flex-wrap: wrap;
   gap: 30px;
   padding: 50px 20px;
-  overflow-x: hidden; /* Prevents horizontal scrollbar during animation */
+  overflow-x: hidden;
+  /* Prevents horizontal scrollbar during animation */
   background-color: #f9f9f9;
 }
 
@@ -373,7 +433,7 @@
   object-fit: cover;
   border-radius: 8px;
   display: block;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -424,7 +484,8 @@
 }
 
 /* Initial state for animations */
-.left-animation, .right-animation {
+.left-animation,
+.right-animation {
   opacity: 0;
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
@@ -460,7 +521,7 @@
     flex-basis: 100%;
     margin-bottom: 30px;
   }
-  
+
   .animated-content:last-child {
     margin-bottom: 0;
   }
@@ -549,65 +610,5 @@
 
   .about-us-buttons {
     justify-content: center;
-  }
-}
-
-/* Newsletter Section Styles */
-.newsletter-container {
-  padding: 50px 20px;
-  background-color: #000;
-  text-align: center;
-}
-
-.newsletter-content p {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 25px;
-  color: #fff;
-}
-
-.newsletter-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.newsletter-form input {
-  padding: 15px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 300px;
-  max-width: 100%;
-}
-
-.newsletter-form button {
-  background-color: #4a3aff;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.newsletter-form button:hover {
-  background-color: #3a2dbd;
-}
-
-@media (max-width: 600px) {
-  .newsletter-form {
-    flex-direction: column;
-  }
-
-  .newsletter-form input {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .newsletter-form button {
-    width: 100%;
   }
 }

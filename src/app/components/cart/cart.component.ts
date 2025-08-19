@@ -7,7 +7,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

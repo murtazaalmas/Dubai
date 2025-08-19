@@ -5,7 +5,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })

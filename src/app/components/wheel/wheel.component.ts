@@ -32,7 +32,7 @@ export class WheelComponent implements OnInit {
   constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
-    this.categorySections = this.sharedService.getWheelCategorySections();
+    this.categorySections = this.sharedService.getCategorySection();
     const savedCart = localStorage.getItem('cartItems');
     if (savedCart) {
       this.cartItems = JSON.parse(savedCart);

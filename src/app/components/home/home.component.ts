@@ -77,8 +77,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.startSlider();
-    this.products = this.sharedService.getWheelCategorySections();
-    this.newArrivals = this.sharedService.getNewArrivals();
+    this.products = this.sharedService.getCategorySection().filter(product => product.categoryId === 1);
+    this.newArrivals = this.sharedService.getCategorySection().filter(product => product.categoryId === 2);
     this.updateSliderConfig();
   }
 

@@ -1,1 +1,39 @@
-<p>our-product works!</p>
+<section class="product-gallery-container">
+  <div class="product-header">
+    <h2>Our Products</h2>
+    <div class="filters-container">
+      <div class="filter-group">
+        <label for="category-select">Categories:</label>
+        <select id="category-select" [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange()">
+          <option value="all">All</option>
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" [(ngModel)]="sortBy" (ngModelChange)="onSortChange()">
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="product-gallery">
+    <div *ngFor="let product of products" class="product-item" (click)="openPopup(product)">
+      <img [src]="product.image" [alt]="product.name">
+      <div class="product-info">
+        <p>{{ product.name }}</p>
+        <p class="product-price">${{ product.price.toFixed(2) }}</p>
+      </div>
+      <div class="overlay">
+        <div class="overlay-content">
+          <i class="fas fa-shopping-cart"></i>
+          <p>Add to cart</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-popup *ngIf="showPopup" [category]="selectedProduct" (close)="closePopup()" (addCartItem)="addToCart($event)">
+</app-popup>
