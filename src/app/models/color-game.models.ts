@@ -72,5 +72,6 @@ export interface GameState {
   partyBMatchScore: number;
   gamePhase: 'dealing' | 'choosing_trump' | 'playing' | 'round_over' | 'game_over';
   message: string;
+  trumpSuitForDisplay?: Suit | null;
   streakHolder?: { name: string, party: 'A' | 'B' };
 }

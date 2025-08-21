@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TrumpSuitDisplayComponent } from '../trump-suit-display/trump-suit-display.component';
 import { GameState, Player, Card, Suit, Rank, Trick, RankValue } from '../../models/color-game.models';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TrumpSuitDisplayComponent],
   selector: 'app-color-game',
   templateUrl: './color-game.component.html',
   styleUrls: ['./color-game.component.scss']
@@ -13,6 +15,8 @@ export class ColorGameComponent implements OnInit {
   RankValue = RankValue; // Make enum available in the template
   Suit = Suit; // Make enum available in the template
   gameState!: GameState;
+
+  constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.setupGame();
@@ -38,7 +42,8 @@ export class ColorGameComponent implements OnInit {
       partyAMatchScore: this.gameState?.partyAMatchScore || 0, // Persist match score across rounds
       partyBMatchScore: this.gameState?.partyBMatchScore || 0,
       gamePhase: 'choosing_trump',
-      message: 'Player 1, choose the Color.'
+      message: '',
+      trumpSuitForDisplay: null
     };
 
     this.dealCards();
@@ -87,7 +92,12 @@ export class ColorGameComponent implements OnInit {
     if (this.gameState.gamePhase !== 'choosing_trump') return;
 
     this.gameState.trumpSuit = suit;
-    this.gameState.message = `Color is ${suit}. Dealing remaining cards.`;
+    this.gameState.trumpSuitForDisplay = suit;
+    this.messageService.showMessage(`Color chosen: ${suit}`);
+
+    setTimeout(() => {
+      this.gameState.trumpSuitForDisplay = null;
+    }, 2500); // Corresponds to the animation duration
 
     // Deal 5 cards to other players
     for (let i = 1; i < 4; i++) {
@@ -116,7 +126,7 @@ export class ColorGameComponent implements OnInit {
     });
 
     this.gameState.gamePhase = 'playing';
-    this.gameState.message = `Player ${this.gameState.players[this.gameState.currentPlayerIndex].name}'s turn to start.`;
+    this.messageService.showMessage(`Player ${this.gameState.players[this.gameState.currentPlayerIndex].name}'s turn to start.`);
   }
 
     playCard(player: Player, card: Card): void {
@@ -124,7 +134,7 @@ export class ColorGameComponent implements OnInit {
 
     if (player.id !== currentPlayer.id) {
       const originalMessage = this.gameState.message;
-      this.gameState.message = `It's not your turn! It's ${currentPlayer.name}'s turn.`;
+      this.messageService.showMessage(`It's not your turn! It's ${currentPlayer.name}'s turn.`);
       // Revert the message after a short delay
       setTimeout(() => {
         this.gameState.message = originalMessage;
@@ -151,7 +161,7 @@ export class ColorGameComponent implements OnInit {
     } else {
       // Advance to next player
       this.gameState.currentPlayerIndex = (this.gameState.currentPlayerIndex + 1) % 4;
-      this.gameState.message = `Player ${this.gameState.players[this.gameState.currentPlayerIndex].name}'s turn.`;
+      this.messageService.showMessage(`Player ${this.gameState.players[this.gameState.currentPlayerIndex].name}'s turn.`);
     }
   }
 
@@ -170,7 +180,7 @@ export class ColorGameComponent implements OnInit {
   }
 
   evaluateTrick(): void {
-    this.gameState.message = 'Evaluating trick...';
+    this.messageService.showMessage('Evaluating trick...');
 
     setTimeout(() => {
       const trick = this.gameState.currentTrick;
@@ -234,7 +244,7 @@ export class ColorGameComponent implements OnInit {
           this.gameState.partyBRoundScore += tricksInStreak;
         }
 
-        this.gameState.message = `${winner.name} won a streak of ${tricksInStreak} tricks!`
+        this.messageService.showMessage(`${winner.name} won a streak of ${tricksInStreak} tricks!`);
         this.gameState.trickStreak = []; // Clear the streak
         winner.consecutiveWins = 0; // Reset winner's streak
         this.gameState.lastTrickWinnerId = undefined; // Reset last winner
@@ -243,7 +253,7 @@ export class ColorGameComponent implements OnInit {
       } else {
         // No streak win, just a normal trick win for now
         // The trick is kept in the streak pile until the streak is broken or won
-        this.gameState.message = `${winner.name} won the trick.`
+        this.messageService.showMessage(`${winner.name} won the trick.`);
       }
 
       // Check for round end
@@ -284,14 +294,14 @@ export class ColorGameComponent implements OnInit {
     }
 
     if (this.gameState.partyAMatchScore >= 7) {
-      this.gameState.message = 'Party A wins the match!';
+      this.messageService.showMessage('Party A wins the match!');
       this.gameState.gamePhase = 'game_over';
     } else if (this.gameState.partyBMatchScore >= 7) {
-      this.gameState.message = 'Party B wins the match!';
+      this.messageService.showMessage('Party B wins the match!');
       this.gameState.gamePhase = 'game_over';
     } else {
       // Start next round after a delay
-      this.gameState.message = `Round Over! ${roundWinner !== 'Draw' ? `Party ${roundWinner} wins!` : 'It\'s a draw!'}`;
+      this.messageService.showMessage(`Round Over! ${roundWinner !== 'Draw' ? `Party ${roundWinner} wins!` : 'It\'s a draw!'}`);
       setTimeout(() => {
         this.gameState.roundNumber++;
         this.setupGame(); // Re-setup for the next round
@@ -304,5 +314,6 @@ export class ColorGameComponent implements OnInit {
     this.gameState.partyBMatchScore = 0;
     this.gameState.roundNumber = 1;
     this.setupGame();
+    this.messageService.showMessage(`Game Over! Party ${this.gameState.partyAMatchScore > this.gameState.partyBMatchScore ? 'A' : 'B'} wins the game!`);
   }
 }
