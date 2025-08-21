@@ -1,0 +1,66 @@
+<div class="game-container" *ngIf="gameState">
+  <header class="game-header">
+    <h1>Color Card Game</h1>
+    <p class="game-message">{{ gameState.message }}</p>
+  </header>
+
+  <!-- Trump Suit Selection -->
+  <div class="trump-selection" *ngIf="gameState.gamePhase === 'choosing_trump'">
+    <h2>Choose Trump Suit</h2>
+    <div class="suits">
+      <button (click)="chooseTrump(Suit.Spades)">{{ Suit.Spades }} Spades</button>
+      <button (click)="chooseTrump(Suit.Hearts)">{{ Suit.Hearts }} Hearts</button>
+      <button (click)="chooseTrump(Suit.Diamonds)">{{ Suit.Diamonds }} Diamonds</button>
+      <button (click)="chooseTrump(Suit.Clubs)">{{ Suit.Clubs }} Clubs</button>
+    </div>
+  </div>
+
+  <div class="game-board">
+    <!-- Player Areas -->
+    <div class="players-container">
+            <div *ngFor="let player of gameState.players" 
+           class="player-area" 
+           [class.current-player]="gameState.players[gameState.currentPlayerIndex].id === player.id"
+           [class.party-a]="player.isPartyA"
+           [class.party-b]="!player.isPartyA">
+        <h3>{{ player.name }} ({{ player.isPartyA ? 'Party A' : 'Party B' }})</h3>
+        <p>Tricks Won: {{ player.tricksWon }}</p>
+        <div class="player-hand">
+                    <div *ngFor="let card of player.hand" 
+               class="card"
+                              [class.playable]="isCardPlayable(card, player.hand) && gameState.players[gameState.currentPlayerIndex].id === player.id"
+               [class.disabled]="!isCardPlayable(card, player.hand) && gameState.players[gameState.currentPlayerIndex].id === player.id"
+                              [class.red-card]="card.suit === Suit.Hearts || card.suit === Suit.Diamonds"
+               [class.trump-card]="card.suit === gameState.trumpSuit"
+               (click)="playCard(player, card)">
+
+            {{ card.rank }}{{ card.suit }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Info & Trick Area -->
+    <div class="game-info">
+      <h2>Game Info</h2>
+      <p><strong>Trump Suit:</strong> {{ gameState.trumpSuit || 'Not Selected' }}</p>
+      <p><strong>Round:</strong> {{ gameState.roundNumber }}</p>
+      <p><strong>Round Score (A/B):</strong> {{ gameState.partyARoundScore }} / {{ gameState.partyBRoundScore }}</p>
+      <p><strong>Match Score (A/B):</strong> {{ gameState.partyAMatchScore }} / {{ gameState.partyBMatchScore }}</p>
+
+            <div class="game-over-controls" *ngIf="gameState.gamePhase === 'game_over'">
+        <button class="play-again-btn" (click)="newGame()">Play Again</button>
+      </div>
+
+      <div class="trick-area">
+        <h3>Current Trick</h3>
+        <div class="trick-cards">
+          <div *ngFor="let played of gameState.currentTrick.cards" class="card" [class.red-card]="played.card.suit === Suit.Hearts || played.card.suit === Suit.Diamonds">
+            <small>{{ played.player.name }}</small>
+            {{ played.card.rank }}{{ played.card.suit }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
