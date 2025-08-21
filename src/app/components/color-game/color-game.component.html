@@ -2,6 +2,9 @@
   <header class="game-header">
     <h1>Color Card Game</h1>
     <p class="game-message">{{ gameState.message }}</p>
+    <div *ngIf="gameState.streakHolder" class="streak-info">
+      <p><strong>On a Streak:</strong> {{ gameState.streakHolder.name }} (Party {{ gameState.streakHolder.party }})</p>
+    </div>
   </header>
 
   <!-- Color Selection -->
@@ -22,7 +25,7 @@
         [class.current-player]="gameState.players[gameState.currentPlayerIndex].id === player.id"
         [class.party-a]="player.isPartyA" [class.party-b]="!player.isPartyA">
         <h3>{{ player.name }} ({{ player.isPartyA ? 'Party A' : 'Party B' }})</h3>
-        <p>Tricks Won: {{ player.tricksWon }}</p>
+        <p>Tricks Won: {{ player.tricksWon.length }}</p>
         <div class="player-hand">
           <div *ngFor="let card of player.hand" class="card"
             [class.playable]="isCardPlayable(card, player.hand) && gameState.players[gameState.currentPlayerIndex].id === player.id"

@@ -47,7 +47,8 @@ export interface Player {
   id: number;
   name: string;
   hand: Card[];
-  tricksWon: number;
+  tricksWon: Trick[];
+  consecutiveWins: number;
   isPartyA: boolean; // Players are in two parties
 }
 
@@ -62,6 +63,8 @@ export interface GameState {
   trumpSuit?: Suit;
   currentPlayerIndex: number;
   currentTrick: Trick;
+  trickStreak: Card[];
+  lastTrickWinnerId?: number;
   roundNumber: number;
   partyARoundScore: number;
   partyBRoundScore: number;
@@ -69,4 +72,5 @@ export interface GameState {
   partyBMatchScore: number;
   gamePhase: 'dealing' | 'choosing_trump' | 'playing' | 'round_over' | 'game_over';
   message: string;
+  streakHolder?: { name: string, party: 'A' | 'B' };
 }

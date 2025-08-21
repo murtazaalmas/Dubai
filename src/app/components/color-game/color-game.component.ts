@@ -29,6 +29,9 @@ export class ColorGameComponent implements OnInit {
       trumpSuit: undefined,
       currentPlayerIndex: 0, // Player 1 starts
       currentTrick: { cards: [] },
+      trickStreak: [],
+      lastTrickWinnerId: undefined,
+      streakHolder: undefined,
       roundNumber: 1,
       partyARoundScore: 0,
       partyBRoundScore: 0,
@@ -43,10 +46,10 @@ export class ColorGameComponent implements OnInit {
 
   initializePlayers(): Player[] {
     return [
-      { id: 1, name: 'Player 1', hand: [], tricksWon: 0, isPartyA: true },
-      { id: 2, name: 'Player 2', hand: [], tricksWon: 0, isPartyA: false },
-      { id: 3, name: 'Player 3', hand: [], tricksWon: 0, isPartyA: true },
-      { id: 4, name: 'Player 4', hand: [], tricksWon: 0, isPartyA: false },
+      { id: 1, name: 'Player 1', hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: true },
+      { id: 2, name: 'Player 2', hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: false },
+      { id: 3, name: 'Player 3', hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: true },
+      { id: 4, name: 'Player 4', hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: false },
     ];
   }
 
@@ -199,24 +202,70 @@ export class ColorGameComponent implements OnInit {
       }
 
       const winner = winningPlay.player;
-      winner.tricksWon++;
 
-      // Update party scores
-      if (winner.isPartyA) {
-        this.gameState.partyARoundScore++;
+      // Add current trick's cards to the streak
+      this.gameState.trickStreak.push(...this.gameState.currentTrick.cards.map(c => c.card));
+
+      if (this.gameState.lastTrickWinnerId === winner.id) {
+        winner.consecutiveWins++;
       } else {
-        this.gameState.partyBRoundScore++;
+        // Reset other players' consecutive wins
+        this.gameState.players.forEach(p => {
+          if (p.id !== winner.id) {
+            p.consecutiveWins = 0;
+          }
+        });
+        winner.consecutiveWins = 1;
+        this.gameState.lastTrickWinnerId = winner.id;
+        this.gameState.streakHolder = { name: winner.name, party: winner.isPartyA ? 'A' : 'B' };
+      }
+
+      if (winner.consecutiveWins === 2) {
+        // Player wins the streak
+        const tricksInStreak = Math.floor(this.gameState.trickStreak.length / 4);
+        for (let i = 0; i < tricksInStreak; i++) {
+          // This is a simplified representation. You might want to store actual trick objects.
+          winner.tricksWon.push({ cards: [] });
+        }
+
+        if (winner.isPartyA) {
+          this.gameState.partyARoundScore += tricksInStreak;
+        } else {
+          this.gameState.partyBRoundScore += tricksInStreak;
+        }
+
+        this.gameState.message = `${winner.name} won a streak of ${tricksInStreak} tricks!`
+        this.gameState.trickStreak = []; // Clear the streak
+        winner.consecutiveWins = 0; // Reset winner's streak
+        this.gameState.lastTrickWinnerId = undefined; // Reset last winner
+        this.gameState.streakHolder = undefined;
+
+      } else {
+        // No streak win, just a normal trick win for now
+        // The trick is kept in the streak pile until the streak is broken or won
+        this.gameState.message = `${winner.name} won the trick.`
       }
 
       // Check for round end
       if (this.gameState.players.every(p => p.hand.length === 0)) {
+        // If there's a pending streak, award it to the last winner's party
+        if (this.gameState.trickStreak.length > 0) {
+          const lastWinner = this.gameState.players.find(p => p.id === this.gameState.lastTrickWinnerId);
+          if(lastWinner) {
+            const tricksInStreak = Math.floor(this.gameState.trickStreak.length / 4);
+            if (lastWinner.isPartyA) {
+              this.gameState.partyARoundScore += tricksInStreak;
+            } else {
+              this.gameState.partyBRoundScore += tricksInStreak;
+            }
+          }
+        }
         this.endRound();
       } else {
         // Winner of the trick starts the next one
         this.gameState.currentPlayerIndex = this.gameState.players.findIndex(p => p.id === winner.id);
         this.gameState.currentTrick = { cards: [] };
-        this.gameState.message = `Player ${winner.name} won the trick! Their turn to start.`;
-      }
+      }  
     }, 1500); // Delay for user to see the trick
   }
 
