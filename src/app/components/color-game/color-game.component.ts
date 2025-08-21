@@ -35,7 +35,7 @@ export class ColorGameComponent implements OnInit {
       partyAMatchScore: this.gameState?.partyAMatchScore || 0, // Persist match score across rounds
       partyBMatchScore: this.gameState?.partyBMatchScore || 0,
       gamePhase: 'choosing_trump',
-      message: 'Player 1, choose the trump suit.'
+      message: 'Player 1, choose the Color.'
     };
 
     this.dealCards();
@@ -84,7 +84,7 @@ export class ColorGameComponent implements OnInit {
     if (this.gameState.gamePhase !== 'choosing_trump') return;
 
     this.gameState.trumpSuit = suit;
-    this.gameState.message = `Trump suit is ${suit}. Dealing remaining cards.`;
+    this.gameState.message = `Color is ${suit}. Dealing remaining cards.`;
 
     // Deal 5 cards to other players
     for (let i = 1; i < 4; i++) {

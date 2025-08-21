@@ -31,19 +31,41 @@
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
 
-  .suits button {
-    font-size: 1.5em;
-    margin: 0 10px;
-    padding: 10px 15px;
-    border: 2px solid #fff;
-    background-color: transparent;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+  .suits {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 
-    &:hover {
-      background-color: #2a5c2a;
-      transform: scale(1.05);
+    .suit-btn {
+      font-size: 2.5em; // Larger font for the suit symbol
+      padding: 15px;
+      border: 3px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+
+      &:hover {
+        transform: scale(1.1);
+        border-color: #ffeb3b; // Highlight color on hover
+        box-shadow: 0 0 12px rgba(255, 235, 59, 0.8);
+      }
+
+      &.spades,
+      &.clubs {
+        color: #000;
+      }
+
+      &.hearts,
+      &.diamonds {
+        color: #d90000; // Bright red for red suits
+      }
     }
   }
 }
@@ -65,16 +87,21 @@
   border-radius: 8px;
   transition: background-color 0.3s;
 
-  &.party-a {
-    background-color: rgba(255, 0, 0, 0.1);
-  }
-
-  &.party-b {
-    background-color: rgba(0, 0, 255, 0.1);
-  }
+  background-color: rgba(0, 0, 0, 0.5); // Disabled state by default
+  color: #aaa;
+  border: 2px solid transparent;
 
   &.current-player {
-    border-color: #ffeb3b;
+    color: #333; // Restore text color
+    border-color: #ffeb3b; // Highlight border
+
+    &.party-a {
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+
+    &.party-b {
+      background-color: rgba(0, 0, 255, 0.1);
+    }
   }
 
   h3 {
@@ -146,6 +173,13 @@
 
   p {
     margin-bottom: 8px;
+
+    .round-status {
+      font-style: italic;
+      color: #ffeb3b; // A bright yellow to stand out
+      margin-left: 8px;
+      font-weight: bold;
+    }
   }
 }
 
