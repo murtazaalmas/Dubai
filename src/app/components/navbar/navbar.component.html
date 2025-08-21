@@ -37,7 +37,7 @@
         <i class="fas fa-times"></i>
       </button>
       
-      <div class="nav-item " *ngFor="let item of navMenu; let i = index">
+            <div class="nav-item " *ngFor="let item of navMenu; let i = index">
         <a class="nav-link "
            role="button"
            [routerLink]="item.route ? item.route : null"
@@ -46,6 +46,12 @@
            (click)="showMobileMenu ? toggleMenu(i) : null">
           {{ item.name }}
         </a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" routerLink="/color-game" routerLinkActive="active">Color Game</a>
       </div>
     </nav>
   </div>
