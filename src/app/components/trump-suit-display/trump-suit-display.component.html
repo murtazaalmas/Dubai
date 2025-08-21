@@ -1,0 +1,10 @@
+<div *ngIf="suit" class="trump-display-overlay">
+  <div class="trump-icon" [ngClass]="suit.toLowerCase()">
+    <ng-container [ngSwitch]="suit">
+      <span *ngSwitchCase="Suit.Spades">♠</span>
+      <span *ngSwitchCase="Suit.Hearts">♥</span>
+      <span *ngSwitchCase="Suit.Clubs">♣</span>
+      <span *ngSwitchCase="Suit.Diamonds">♦</span>
+    </ng-container>
+  </div>
+</div>
