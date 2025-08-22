@@ -66,11 +66,13 @@ export interface GameState {
   trickStreak: Card[];
   lastTrickWinnerId?: number;
   roundNumber: number;
+  partyAName: string;
+  partyBName: string;
   partyARoundScore: number;
   partyBRoundScore: number;
   partyAMatchScore: number;
   partyBMatchScore: number;
-  gamePhase: 'dealing' | 'choosing_trump' | 'playing' | 'round_over' | 'game_over';
+  gamePhase: 'setup' | 'dealing' | 'choosing_trump' | 'playing' | 'round_over' | 'game_over';
   message: string;
   trumpSuitForDisplay?: Suit | null;
   streakHolder?: { name: string, party: 'A' | 'B' };

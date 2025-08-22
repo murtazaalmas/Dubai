@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { TrumpSuitDisplayComponent } from '../trump-suit-display/trump-suit-display.component';
 import { GameState, Player, Card, Suit, Rank, Trick, RankValue } from '../../models/color-game.models';
 import { MessageService } from '../../services/message.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TrumpSuitDisplayComponent],
+  imports: [CommonModule, FormsModule, TrumpSuitDisplayComponent],
   selector: 'app-color-game',
   templateUrl: './color-game.component.html',
   styleUrls: ['./color-game.component.scss']
@@ -19,7 +20,17 @@ export class ColorGameComponent implements OnInit {
 
   constructor(private messageService: MessageService) {}
 
+  partyAName: string = 'Party A';
+  partyBName: string = 'Party B';
+  playerNames: string[] = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
+
   ngOnInit(): void {
+    this.loadGameState();
+  }
+
+  startGame(): void {
+    localStorage.removeItem('colorGameState');
+    this.gameState = {} as GameState; // Reset state
     this.setupGame();
   }
 
@@ -38,6 +49,8 @@ export class ColorGameComponent implements OnInit {
       lastTrickWinnerId: undefined,
       streakHolder: undefined,
       roundNumber: 1,
+      partyAName: this.partyAName,
+      partyBName: this.partyBName,
       partyARoundScore: 0,
       partyBRoundScore: 0,
       partyAMatchScore: this.gameState?.partyAMatchScore || 0, // Persist match score across rounds
@@ -48,14 +61,15 @@ export class ColorGameComponent implements OnInit {
     };
 
     this.dealCards();
+    this.saveGameState();
   }
 
   initializePlayers(): Player[] {
     return [
-      { id: 1, name: 'Player 1', hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: true },
-      { id: 2, name: 'Player 2', hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: false },
-      { id: 3, name: 'Player 3', hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: true },
-      { id: 4, name: 'Player 4', hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: false },
+      { id: 1, name: this.playerNames[0], hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: true },
+      { id: 2, name: this.playerNames[1], hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: false },
+      { id: 3, name: this.playerNames[2], hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: true },
+      { id: 4, name: this.playerNames[3], hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: false },
     ];
   }
 
@@ -128,6 +142,7 @@ export class ColorGameComponent implements OnInit {
 
     this.gameState.gamePhase = 'playing';
     this.messageService.showMessage(`Player ${this.gameState.players[this.gameState.currentPlayerIndex].name}'s turn to start.`);
+    this.saveGameState();
   }
 
       playCard(player: Player, card: Card): void {
@@ -154,6 +169,7 @@ export class ColorGameComponent implements OnInit {
     // Move card from hand to trick
     player.hand = player.hand.filter(c => c !== card);
     this.gameState.currentTrick.cards.push({ player, card });
+    this.saveGameState();
 
     // Set leading suit for the trick
     if (this.gameState.currentTrick.cards.length === 1) {
@@ -319,11 +335,44 @@ export class ColorGameComponent implements OnInit {
     }
   }
 
+  saveGameState(): void {
+    localStorage.setItem('colorGameState', JSON.stringify(this.gameState));
+  }
+
+  loadGameState(): void {
+    const savedState = localStorage.getItem('colorGameState');
+    if (savedState) {
+      this.gameState = JSON.parse(savedState);
+    } else {
+      this.gameState = { gamePhase: 'setup' } as GameState;
+    }
+  }
+
+  forfeitRound(): void {
+    if (this.gameState.gamePhase !== 'playing') return;
+
+    const currentPlayer = this.gameState.players[this.gameState.currentPlayerIndex];
+    if (currentPlayer.isPartyA) {
+      this.gameState.partyBMatchScore++;
+      this.messageService.showMessage(`${this.gameState.partyAName} forfeits. ${this.gameState.partyBName} wins the round.`);
+    } else {
+      this.gameState.partyAMatchScore++;
+      this.messageService.showMessage(`${this.gameState.partyBName} forfeits. ${this.gameState.partyAName} wins the round.`);
+    }
+
+    if (this.gameState.partyAMatchScore >= 7 || this.gameState.partyBMatchScore >= 7) {
+      this.gameState.gamePhase = 'game_over';
+    } else {
+      this.gameState.roundNumber++;
+      this.setupGame();
+    }
+
+    this.saveGameState();
+  }
+
   newGame(): void {
-    this.gameState.partyAMatchScore = 0;
-    this.gameState.partyBMatchScore = 0;
-    this.gameState.roundNumber = 1;
-    this.setupGame();
-    this.messageService.showMessage(`Game Over! Party ${this.gameState.partyAMatchScore > this.gameState.partyBMatchScore ? 'A' : 'B'} wins the game!`);
+    localStorage.removeItem('colorGameState');
+    this.gameState = { gamePhase: 'setup' } as GameState;
+    this.saveGameState(); // Save the clean setup state
   }
 }
