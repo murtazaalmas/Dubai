@@ -349,18 +349,35 @@
     }
   }
 
-  .start-game-btn {
+  .start-game-btn, .next-btn, .back-btn {
     padding: 12px 25px;
     font-size: 1.2em;
     color: #fff;
-    background-color: #4CAF50;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin: 5px;
+  }
 
+  .start-game-btn {
+    background-color: #4CAF50;
     &:hover {
       background-color: #45a049;
+    }
+  }
+
+  .next-btn {
+    background-color: #2196F3; // Blue
+    &:hover {
+      background-color: #1976D2;
+    }
+  }
+
+  .back-btn {
+    background-color: #6c757d; // Gray
+    &:hover {
+      background-color: #5a6268;
     }
   }
 }
@@ -379,4 +396,11 @@
   &:hover {
     background-color: #d32f2f;
   }
+}
+
+.sponsor-text {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #777;
+  font-style: italic;
 }

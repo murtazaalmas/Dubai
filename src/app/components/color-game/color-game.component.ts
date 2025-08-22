@@ -17,6 +17,7 @@ export class ColorGameComponent implements OnInit {
   Suit = Suit; // Make enum available in the template
   gameState!: GameState;
   cardPlayInProgress = false;
+  setupStep = 1; // 1 for party names, 2 for player names
 
   constructor(private messageService: MessageService) {}
 
@@ -26,6 +27,14 @@ export class ColorGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadGameState();
+  }
+
+  nextStep(): void {
+    this.setupStep = 2;
+  }
+
+  previousStep(): void {
+    this.setupStep = 1;
   }
 
   startGame(): void {

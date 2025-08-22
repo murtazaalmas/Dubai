@@ -1,35 +1,46 @@
 <div class="setup-container" *ngIf="gameState.gamePhase === 'setup'">
-  <h1>Game Setup</h1>
-  <div class="party-inputs">
-    <div class="party-input">
-      <label for="partyA">Party A Name:</label>
-      <input id="partyA" type="text" [(ngModel)]="partyAName">
+  <h1>Wecome To Color Game</h1>
+  <h2>Game Setup</h2>
+  <!-- Step 1: Party Names -->
+  <div *ngIf="setupStep === 1">
+    <div class="party-inputs">
+      <div class="party-input">
+        <label for="partyA">Party A Name:</label>
+        <input id="partyA" type="text" [(ngModel)]="partyAName">
+      </div>
+      <div class="party-input">
+        <label for="partyB">Party B Name:</label>
+        <input id="partyB" type="text" [(ngModel)]="partyBName">
+      </div>
     </div>
-    <div class="party-input">
-      <label for="partyB">Party B Name:</label>
-      <input id="partyB" type="text" [(ngModel)]="partyBName">
-    </div>
+    <button class="next-btn" (click)="nextStep()">Next</button>
   </div>
-  <h2>Players</h2>
-  <div class="player-inputs">
-    <div class="player-input">
-      <label for="player1">Player 1 (Party A):</label>
-      <input id="player1" type="text" [(ngModel)]="playerNames[0]">
+
+  <!-- Step 2: Player Names -->
+  <div *ngIf="setupStep === 2">
+    <h2>Players</h2>
+    <div class="player-inputs">
+      <div class="player-input">
+        <label for="player1">Player 1 ({{ partyAName }}):</label>
+        <input id="player1" type="text" [(ngModel)]="playerNames[0]">
+      </div>
+      <div class="player-input">
+        <label for="player2">Player 2 ({{ partyBName }}):</label>
+        <input id="player2" type="text" [(ngModel)]="playerNames[1]">
+      </div>
+      <div class="player-input">
+        <label for="player3">Player 3 ({{ partyAName }}):</label>
+        <input id="player3" type="text" [(ngModel)]="playerNames[2]">
+      </div>
+      <div class="player-input">
+        <label for="player4">Player 4 ({{ partyBName }}):</label>
+        <input id="player4" type="text" [(ngModel)]="playerNames[3]">
+      </div>
     </div>
-    <div class="player-input">
-      <label for="player2">Player 2 (Party B):</label>
-      <input id="player2" type="text" [(ngModel)]="playerNames[1]">
-    </div>
-    <div class="player-input">
-      <label for="player3">Player 3 (Party A):</label>
-      <input id="player3" type="text" [(ngModel)]="playerNames[2]">
-    </div>
-    <div class="player-input">
-      <label for="player4">Player 4 (Party B):</label>
-      <input id="player4" type="text" [(ngModel)]="playerNames[3]">
-    </div>
+    <button class="back-btn" (click)="previousStep()">Back</button>
+    <button class="start-game-btn" (click)="startGame()">Start Game</button>
   </div>
-  <button class="start-game-btn" (click)="startGame()">Start Game</button>
+  <p class="sponsor-text">Sponsor by Murtaza, Sharik and Mujtaba</p>
 </div>
 
 <div *ngIf="gameState && gameState.gamePhase !== 'setup'">
@@ -123,3 +134,4 @@
 
     </div>
   </div>
+</div>
