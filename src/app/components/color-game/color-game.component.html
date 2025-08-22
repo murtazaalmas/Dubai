@@ -58,10 +58,30 @@
     <div class="trump-selection" *ngIf="gameState.gamePhase === 'choosing_trump'">
       <h2>Choose Color</h2>
       <div class="suits">
-        <button class="suit-btn spades" (click)="chooseTrump(Suit.Spades)">{{ Suit.Spades }}</button>
-        <button class="suit-btn hearts" (click)="chooseTrump(Suit.Hearts)">{{ Suit.Hearts }}</button>
-        <button class="suit-btn diamonds" (click)="chooseTrump(Suit.Diamonds)">{{ Suit.Diamonds }}</button>
-        <button class="suit-btn clubs" (click)="chooseTrump(Suit.Clubs)">{{ Suit.Clubs }}</button>
+        <div class="suit-btn spades" (click)="chooseTrump(Suit.Spades)">
+          <div class="card-content">
+            <div class="card-value">A</div>
+            <div class="card-suit">{{ Suit.Spades }}</div>
+          </div>
+        </div>
+        <div class="suit-btn hearts" (click)="chooseTrump(Suit.Hearts)">
+          <div class="card-content">
+            <div class="card-value">A</div>
+            <div class="card-suit">{{ Suit.Hearts }}</div>
+          </div>
+        </div>
+        <div class="suit-btn diamonds" (click)="chooseTrump(Suit.Diamonds)">
+          <div class="card-content">
+            <div class="card-value">A</div>
+            <div class="card-suit">{{ Suit.Diamonds }}</div>
+          </div>
+        </div>
+        <div class="suit-btn clubs" (click)="chooseTrump(Suit.Clubs)">
+          <div class="card-content">
+            <div class="card-value">A</div>
+            <div class="card-suit">{{ Suit.Clubs }}</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -104,7 +124,8 @@
           <div *ngFor="let played of gameState.currentTrick.cards" class="card"
             [class.red-card]="played.card.suit === Suit.Hearts || played.card.suit === Suit.Diamonds">
             <small>{{ played.player.name }}</small>
-            {{ played.card.rank }}{{ played.card.suit }}
+            <div class="card-value">{{ played.card.rank }}</div>
+            <div class="card-suit">{{ played.card.suit }}</div>
           </div>
         </div>
       </div>
@@ -125,7 +146,8 @@
               [class.red-card]="card.suit === Suit.Hearts || card.suit === Suit.Diamonds"
               [class.trump-card]="card.suit === gameState.trumpSuit" (click)="playCard(player, card)">
 
-              {{ card.rank }}{{ card.suit }}
+              <div class="card-value">{{ card.rank }}</div>
+              <div class="card-suit">{{ card.suit }}</div>
             </div>
           </div>
         </div>
