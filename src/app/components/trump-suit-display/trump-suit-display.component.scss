@@ -17,6 +17,18 @@
   animation: fadeInZoomOut 2.5s forwards;
 }
 
+@media (max-width: 768px) {
+  .trump-icon {
+    font-size: 15rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .trump-icon {
+    font-size: 10rem;
+  }
+}
+
 .spades, .clubs {
   color: #333;
   text-shadow: 0 0 15px white;

@@ -28,8 +28,8 @@
         <p>Tricks Won: {{ player.tricksWon.length }}</p>
         <div class="player-hand">
           <div *ngFor="let card of player.hand" class="card"
-            [class.playable]="isCardPlayable(card, player.hand) && gameState.players[gameState.currentPlayerIndex].id === player.id"
-            [class.disabled]="!isCardPlayable(card, player.hand) && gameState.players[gameState.currentPlayerIndex].id === player.id"
+            [class.playable]="isCardPlayable(card, player.hand) && gameState.players[gameState.currentPlayerIndex].id === player.id && !cardPlayInProgress"
+            [class.disabled]="(!isCardPlayable(card, player.hand) && gameState.players[gameState.currentPlayerIndex].id === player.id) || cardPlayInProgress"
             [class.red-card]="card.suit === Suit.Hearts || card.suit === Suit.Diamonds"
             [class.trump-card]="card.suit === gameState.trumpSuit" (click)="playCard(player, card)">
 

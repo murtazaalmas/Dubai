@@ -15,6 +15,7 @@ export class ColorGameComponent implements OnInit {
   RankValue = RankValue; // Make enum available in the template
   Suit = Suit; // Make enum available in the template
   gameState!: GameState;
+  cardPlayInProgress = false;
 
   constructor(private messageService: MessageService) {}
 
@@ -129,7 +130,9 @@ export class ColorGameComponent implements OnInit {
     this.messageService.showMessage(`Player ${this.gameState.players[this.gameState.currentPlayerIndex].name}'s turn to start.`);
   }
 
-    playCard(player: Player, card: Card): void {
+      playCard(player: Player, card: Card): void {
+    if (this.cardPlayInProgress) return; // Prevent playing multiple cards
+
     const currentPlayer = this.gameState.players[this.gameState.currentPlayerIndex];
 
     if (player.id !== currentPlayer.id) {
@@ -144,7 +147,9 @@ export class ColorGameComponent implements OnInit {
     
     // Basic validation
     if (this.gameState.gamePhase !== 'playing') return;
-    if (!this.isCardPlayable(card, player.hand)) return;
+        if (!this.isCardPlayable(card, player.hand)) return;
+
+    this.cardPlayInProgress = true; // Lock card play
 
     // Move card from hand to trick
     player.hand = player.hand.filter(c => c !== card);
@@ -157,11 +162,13 @@ export class ColorGameComponent implements OnInit {
 
     // Check if trick is complete
     if (this.gameState.currentTrick.cards.length === 4) {
-      this.evaluateTrick();
+            this.evaluateTrick();
     } else {
       // Advance to next player
+            // Advance to next player
       this.gameState.currentPlayerIndex = (this.gameState.currentPlayerIndex + 1) % 4;
       this.messageService.showMessage(`Player ${this.gameState.players[this.gameState.currentPlayerIndex].name}'s turn.`);
+      this.cardPlayInProgress = false; // Unlock for next player
     }
   }
 
@@ -270,11 +277,14 @@ export class ColorGameComponent implements OnInit {
             }
           }
         }
-        this.endRound();
+                this.endRound();
+        this.cardPlayInProgress = false; // Unlock for new round/game
       } else {
         // Winner of the trick starts the next one
+                // Winner of the trick starts the next one
         this.gameState.currentPlayerIndex = this.gameState.players.findIndex(p => p.id === winner.id);
         this.gameState.currentTrick = { cards: [] };
+        this.cardPlayInProgress = false; // Unlock for next trick
       }  
     }, 1500); // Delay for user to see the trick
   }

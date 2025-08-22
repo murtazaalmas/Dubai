@@ -229,3 +229,56 @@
     }
   }
 }
+
+// Responsive Design
+@media (max-width: 992px) {
+  .game-board {
+    flex-direction: column;
+  }
+
+  .players-container {
+    grid-template-columns: 1fr; // Stack players on smaller screens
+  }
+
+  .game-info {
+    flex-basis: auto; // Allow game info to take full width
+  }
+}
+
+@media (max-width: 768px) {
+  .trump-selection .suits {
+    flex-wrap: wrap; // Allow suit buttons to wrap
+    gap: 10px;
+
+    .suit-btn {
+      font-size: 2em;
+      padding: 10px;
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .card {
+    font-size: 1em;
+    padding: 8px 6px;
+    min-width: 35px;
+  }
+
+  .player-hand {
+    gap: 5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .game-container {
+    padding: 10px;
+  }
+
+  .game-header h1 {
+    font-size: 1.5em;
+  }
+
+  .player-area h3 {
+    font-size: 1em;
+  }
+}
