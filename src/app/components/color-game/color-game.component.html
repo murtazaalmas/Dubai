@@ -134,10 +134,12 @@
         <p><strong>Streak:</strong> {{ gameState.streakHolder.name }}</p>
       </div>
       <div class="game-controls" *ngIf="gameState.gamePhase === 'playing'">
-        <button class="forfeit-btn" (click)="forfeitRound()">Restart</button>
+        <button class="forfeit-btn" (click)="forfeitRound()">Game Over</button>
+        <button class="start-over-btn" (click)="newGame()">Restart</button>
       </div>
       <div class="game-over-controls" *ngIf="gameState.gamePhase === 'game_over'">
         <button class="play-again-btn" (click)="newGame()">Play Again</button>
+        <button class="start-over-btn" (click)="newGame()">Start Over</button>
       </div>
     </div>
   </div>

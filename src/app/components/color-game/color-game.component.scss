@@ -276,7 +276,7 @@
   .back-btn { background-color: #6c757d; &:hover { background-color: #5a6268; } }
 }
 
-.forfeit-btn, .play-again-btn {
+.forfeit-btn, .play-again-btn, .start-over-btn {
   width: 100%;
   padding: 10px;
   border: none;
@@ -288,6 +288,7 @@
 
 .forfeit-btn { background-color: #e74c3c; }
 .play-again-btn { background-color: #2ecc71; }
+.start-over-btn { background-color: #3498db; }
 
 .sponsor-text {
   margin-top: 20px;
