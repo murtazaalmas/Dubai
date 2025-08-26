@@ -1,6 +1,6 @@
 <div class="setup-container" *ngIf="gameState.gamePhase === 'setup'">
-  <h1>Wecome To Color Game</h1>
-  <h2>Game Setup</h2>
+  <h1>Welcome to Rang</h1>
+  <!-- <h2>Game Setup</h2> -->
   <!-- Step 1: Party Names -->
   <div *ngIf="setupStep === 1">
     <div class="party-inputs">
@@ -18,23 +18,27 @@
 
   <!-- Step 2: Player Names -->
   <div *ngIf="setupStep === 2">
-    <h2>Players</h2>
+    <!-- <h2>Players</h2> -->
     <div class="player-inputs">
-      <div class="player-input">
-        <label for="player1">Player 1 ({{ partyAName }}):</label>
-        <input id="player1" type="text" [(ngModel)]="playerNames[0]">
+      <div class="player-row team-a">
+        <div class="player-input">
+          <label for="player1">Player 1 ({{ partyAName }}):</label>
+          <input id="player1" type="text" [(ngModel)]="playerNames[0]" name="player1">
+        </div>
+        <div class="player-input">
+          <label for="player3">Player 3 ({{ partyAName }}):</label>
+          <input id="player3" type="text" [(ngModel)]="playerNames[2]" name="player3">
+        </div>
       </div>
-      <div class="player-input">
-        <label for="player2">Player 2 ({{ partyBName }}):</label>
-        <input id="player2" type="text" [(ngModel)]="playerNames[1]">
-      </div>
-      <div class="player-input">
-        <label for="player3">Player 3 ({{ partyAName }}):</label>
-        <input id="player3" type="text" [(ngModel)]="playerNames[2]">
-      </div>
-      <div class="player-input">
-        <label for="player4">Player 4 ({{ partyBName }}):</label>
-        <input id="player4" type="text" [(ngModel)]="playerNames[3]">
+      <div class="player-row team-b">
+        <div class="player-input">
+          <label for="player2">Player 2 ({{ partyBName }}):</label>
+          <input id="player2" type="text" [(ngModel)]="playerNames[1]" name="player2">
+        </div>
+        <div class="player-input">
+          <label for="player4">Player 4 ({{ partyBName }}):</label>
+          <input id="player4" type="text" [(ngModel)]="playerNames[3]" name="player4">
+        </div>
       </div>
     </div>
     <button class="back-btn" (click)="previousStep()">Back</button>
