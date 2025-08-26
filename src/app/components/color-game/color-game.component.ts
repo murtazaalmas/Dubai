@@ -17,6 +17,10 @@ export class ColorGameComponent implements OnInit {
   Suit = Suit; // Make enum available in the template
   gameState!: GameState;
   cardPlayInProgress = false;
+
+  get currentPlayer(): Player | undefined {
+    return this.gameState?.players[this.gameState.currentPlayerIndex];
+  }
   setupStep = 1; // 1 for party names, 2 for player names
 
   constructor(private messageService: MessageService) {}
@@ -383,5 +387,45 @@ export class ColorGameComponent implements OnInit {
     localStorage.removeItem('colorGameState');
     this.gameState = { gamePhase: 'setup' } as GameState;
     this.saveGameState(); // Save the clean setup state
+  }
+
+  getPlayedCardPosition(player: Player): string {
+    return this.getPlayerPosition(player);
+  }
+
+  getCardRotation(index: number, totalCards: number): number {
+    const midPoint = (totalCards - 1) / 2;
+    const rotationPerCard = 4; // degrees
+    return (index - midPoint) * rotationPerCard;
+  }
+
+  getCardYOffset(index: number, totalCards: number): number {
+    const midPoint = (totalCards - 1) / 2;
+    const distanceFromMid = Math.abs(index - midPoint);
+    // Create a gentle arc
+    return distanceFromMid * distanceFromMid * 2.5;
+  }
+
+  getPlayerTeam(player: Player): string {
+    const playerIndex = this.gameState.players.findIndex(p => p.id === player.id);
+    if (playerIndex === -1) return '';
+    return (playerIndex % 2 === 0) ? 'team-1' : 'team-2';
+  }
+
+  getPlayerPosition(player: Player): string {
+    const mainPlayerId = this.gameState.players[0].id;
+    if (player.id === mainPlayerId) return 'bottom';
+
+    const playerIndex = this.gameState.players.findIndex(p => p.id === player.id);
+    const mainPlayerIndex = 0; // Assuming the main player is always at index 0
+
+    const relativePosition = (playerIndex - mainPlayerIndex + 4) % 4;
+
+    switch (relativePosition) {
+      case 1: return 'left';
+      case 2: return 'top';
+      case 3: return 'right';
+      default: return '';
+    }
   }
 }

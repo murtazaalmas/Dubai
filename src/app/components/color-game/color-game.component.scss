@@ -1,352 +1,260 @@
+/* General Styling */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.game-container {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #fff;
-  color: #333;
-  min-height: 100vh;
-}
-
-.game-header {
-  text-align: center;
-  margin-bottom: 20px;
-
-  .game-message {
-    font-size: 1.2em;
-    font-style: italic;
-    margin-top: 10px;
-    min-height: 25px;
-  }
-}
-
-.trump-selection {
-  text-align: center;
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-
-  .suits {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-
-    .suit-btn {
-      background-color: #fff;
-      border: 1px solid #aaa;
-      border-radius: 10px;
-      width: 80px;
-      height: 110px;
-      position: relative;
-      box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-
-      .card-content {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .card-value {
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        font-size: 1.2em;
-        font-weight: bold;
-      }
-
-      .card-suit {
-        font-size: 2.5em;
-      }
-
-      &:hover {
-        transform: scale(1.1);
-        border-color: #ffeb3b;
-        box-shadow: 0 0 12px rgba(255, 235, 59, 0.8);
-      }
-
-      &.spades,
-      &.clubs {
-        color: #000;
-      }
-
-      &.hearts,
-      &.diamonds {
-        color: #d90000;
-      }
-    }
-  }
-}
-
-.game-board {
+.game-view {
   display: flex;
-  gap: 20px;
+  height: 100vh;
+  background-color: #0a3d1e; /* Dark green background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  overflow: hidden;
 }
 
-.players-container {
+/* Poker Table and Player Avatars */
+.poker-table-container {
   flex-grow: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-.player-area {
-  padding: 15px;
-  border-radius: 8px;
-  transition: background-color 0.3s;
+.poker-table {
+  width: 70vw;
+  height: 70vw;
+  max-width: 700px;
+  max-height: 700px;
+  background-color: #006400; /* Dark green felt */
+  border: 20px solid #8b4513; /* Wood border */
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.4);
+}
 
-  background-color: rgba(0, 0, 0, 0.5); // Disabled state by default
-  color: #aaa;
-  border: 2px solid transparent;
+.player-position {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.player-top { top: 10%; left: 50%; }
+.player-left { top: 50%; left: 10%; }
+.player-right { top: 50%; left: 90%; }
+
+.player-avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.player-avatar {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 3px solid transparent;
+  transition: border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &.team-1 { background-color: rgba(52, 152, 219, 0.4); }
+  &.team-2 { background-color: rgb(231 76 60 / 73%); }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50% 50% 0 0;
+  }
+
+  .player-name {
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+
+  .card-count {
+    font-size: 0.7em;
+    color: #ddd;
+  }
 
   &.current-player {
-    color: #333; // Restore text color
-    border-color: #ffeb3b; // Highlight border
-
-    &.party-a {
-      background-color: rgba(255, 0, 0, 0.1);
-    }
-
-    &.party-b {
-      background-color: rgba(0, 0, 255, 0.1);
-    }
+    transform: scale(1.15);
+    box-shadow: 0 0 20px #ffeb3b;
+    border-color: #ffeb3b;
   }
+}
 
-  h3 {
-    margin-bottom: 10px;
+/* Main Player Area */
+.main-player-area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 250px; /* Adjust for sidebar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+  .main-player-avatar {
+    position: absolute;
+    top: 120px; /* Position above hand */
+    z-index: 10;
   }
 }
 
 .player-hand {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  min-height: 100px; // Increased to accommodate new card height
+  justify-content: center;
+  gap: -20px; /* Overlap cards */
+  padding-bottom: 80px;
 }
 
+/* Card Styling */
 .card {
   background-color: #fff;
   border: 1px solid #aaa;
   border-radius: 10px;
   width: 80px;
   height: 110px;
-  padding: 5px;
-  font-size: 1.5em;
   font-weight: bold;
   position: relative;
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out;
+  color: #333;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 
-  .card-value {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    font-size: 0.8em;
-  }
+  .card-value { font-size: 1.5em; }
+  .card-suit { font-size: 2em; }
 
-  .card-suit {
-    font-size: 2em;
-    text-align: center;
-    line-height: 1;
-    align-self: center;
-    margin-top: 30px; // Adjust as needed to center the suit
-  }
-
-  &.red-card {
-    color: #d90000;
-  }
+  &.red-card { color: #d90000; }
 
   &.playable {
     cursor: pointer;
-    border-color: #ffeb3b;
-    box-shadow: 0 0 10px #ffeb3b;
-
     &:hover {
-      transform: translateY(-5px);
-      transition: transform 0.2s;
+      transform: translateY(-15px) scale(1.05);
+      z-index: 100;
     }
+  }
+
+  &.disabled { 
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
   &.trump-card {
-    border-color: #ff4136; // A bright red
-    border-width: 2px;
-  }
-
-  &.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    border-color: #999;
-    box-shadow: none;
-
-    &:hover {
-      transform: none;
-    }
+    border: 2px solid #ff4136;
   }
 }
 
-.game-info {
-  flex-basis: 250px;
-  flex-shrink: 0;
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 8px;
-
-  h2 {
-    margin-bottom: 15px;
-  }
-
-  p {
-    margin-bottom: 8px;
-
-    .round-status {
-      font-style: italic;
-      color: #ffeb3b; // A bright yellow to stand out
-      margin-left: 8px;
-      font-weight: bold;
-    }
-  }
-}
-
-.game-info-content {
-  display: flex;
-  justify-content: space-between;
-
-  .suit-hearts,
-  .suit-diamonds {
-    color: #d90000; // Red for Hearts and Diamonds
-    font-weight: bold;
-  }
-
-  .suit-spades,
-  .suit-clubs {
-    color: #000; // Black for Spades and Clubs
-    font-weight: bold;
-  }
-}
-
-.game-over-controls {
-  margin-top: 20px;
-  text-align: center;
-
-  .play-again-btn {
-    padding: 12px 25px;
-    font-size: 1.2em;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: #45a049;
-    }
-  }
-}
-
+/* Trick Area (Center of Table) */
 .trick-area {
-  margin-top: 5px;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.1);
-  text-align: center;
-  justify-content: center;
-  .trick-cards {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    min-height: 60px;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 6px;
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px; // Increased size to better contain cards
+  height: 220px;
+
+  .card-in-trick {
+    position: absolute;
+    width: 80px;
+    height: 110px;
+    transform: translate(-50%, -50%);
 
     .card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      small {
-        font-size: 0.7em;
-        font-weight: normal;
-        color: #555;
-      }
-    }
-  }
-}
-
-// Responsive Design
-@media (max-width: 992px) {
-  .game-board {
-    flex-direction: column;
-  }
-
-  .players-container {
-    grid-template-columns: 1fr; // Stack players on smaller screens
-  }
-
-  .game-info {
-    flex-basis: auto; // Allow game info to take full width
-  }
-}
-
-@media (max-width: 768px) {
-  .game-info-content {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .trump-selection .suits {
-    flex-wrap: wrap; // Allow suit buttons to wrap
-    gap: 10px;
-
-    .suit-btn {
-      font-size: 2em;
-      padding: 10px;
       width: 60px;
-      height: 60px;
+      height: 90px;
+      font-size: 0.8em;
+      .card-value { font-size: 1.2em; }
+      .card-suit { font-size: 1.5em; }
     }
-  }
 
-  .card {
-    font-size: 1em;
-    padding: 8px 6px;
-    min-width: 35px;
-  }
-
-  .player-hand {
-    gap: 5px;
+    &.bottom { top: 75%; left: 50%; }
+    &.top { top: 25%; left: 50%; }
+    &.left { top: 50%; left: 25%; }
+    &.right { top: 50%; left: 75%; }
   }
 }
 
-@media (max-width: 576px) {
-  .game-container {
-    padding: 10px;
-  }
+/* Game Info Sidebar */
+.game-info-sidebar {
+  width: 250px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
-  .game-header h1 {
-    font-size: 1.5em;
-  }
+  h2 { margin-bottom: 15px; border-bottom: 1px solid #fff; padding-bottom: 10px; }
+  p { margin-bottom: 10px; }
+  .suit-hearts, .suit-diamonds { color: #ff7b7b; font-weight: bold; }
+  .suit-spades, .suit-clubs { color: #ccc; font-weight: bold; }
+}
 
-  .player-area h3 {
-    font-size: 1em;
+/* Trump Selection Modal */
+.trump-selection-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.trump-selection-modal {
+  background: #2c3e50;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+
+  .suits { display: flex; gap: 20px; margin-top: 20px; }
+  .suit-btn {
+    /* Re-using card styles for consistency */
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    width: 80px;
+    height: 110px;
+    position: relative;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #333;
+
+    .card-content { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; }
+    .card-value { position: absolute; top: 5px; left: 5px; font-size: 1.2em; font-weight: bold; }
+    .card-suit { font-size: 2.5em; }
+    &:hover { transform: scale(1.1); border-color: #ffeb3b; }
+    &.hearts, &.diamonds { color: #d90000; }
   }
 }
 
+/* Setup Screen (Kept as is) */
 .setup-container {
   padding: 20px;
   max-width: 600px;
@@ -355,84 +263,31 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+  color: #333;
 
-  h1, h2 {
-    margin-bottom: 20px;
-  }
-
-  .party-inputs, .player-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-
-  .party-input, .player-input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-
-    label {
-      font-weight: bold;
-    }
-
-    input {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-  }
-
-  .start-game-btn, .next-btn, .back-btn {
-    padding: 12px 25px;
-    font-size: 1.2em;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin: 5px;
-  }
-
-  .start-game-btn {
-    background-color: #4CAF50;
-    &:hover {
-      background-color: #45a049;
-    }
-  }
-
-  .next-btn {
-    background-color: #2196F3; // Blue
-    &:hover {
-      background-color: #1976D2;
-    }
-  }
-
-  .back-btn {
-    background-color: #6c757d; // Gray
-    &:hover {
-      background-color: #5a6268;
-    }
-  }
+  h1, h2 { margin-bottom: 20px; }
+  .party-inputs, .player-inputs { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
+  .party-input, .player-input { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+  label { font-weight: bold; }
+  input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  .start-game-btn, .next-btn, .back-btn { padding: 12px 25px; font-size: 1.2em; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; margin: 5px; }
+  .start-game-btn { background-color: #4CAF50; &:hover { background-color: #45a049; } }
+  .next-btn { background-color: #2196F3; &:hover { background-color: #1976D2; } }
+  .back-btn { background-color: #6c757d; &:hover { background-color: #5a6268; } }
 }
 
-.forfeit-btn {
-  padding: 8px 16px;
-  font-size: 0.9em;
-  color: #fff;
-  background-color: #f44336; // Red color for forfeit
+.forfeit-btn, .play-again-btn {
+  width: 100%;
+  padding: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
   margin-top: 10px;
-
-  &:hover {
-    background-color: #d32f2f;
-  }
+  color: white;
 }
+
+.forfeit-btn { background-color: #e74c3c; }
+.play-again-btn { background-color: #2ecc71; }
 
 .sponsor-text {
   margin-top: 20px;

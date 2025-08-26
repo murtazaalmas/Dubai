@@ -43,117 +43,102 @@
   <p class="sponsor-text">Sponsor by Murtaza, Sharik and Mujtaba</p>
 </div>
 
-<div *ngIf="gameState && gameState.gamePhase !== 'setup'">
+<div class="game-view" *ngIf="gameState && gameState.gamePhase !== 'setup'">
   <app-trump-suit-display [suit]="gameState.trumpSuitForDisplay ?? null"></app-trump-suit-display>
-  <div class="game-container">
-    <header class="game-header">
-      <h1>Color Card Game</h1>
-      <div *ngIf="gameState.streakHolder" class="streak-info">
-        <p><strong>On a Streak:</strong> {{ gameState.streakHolder.name }} (Party {{ gameState.streakHolder.party }})
-        </p>
-      </div>
-    </header>
 
-    <!-- Color Selection -->
-    <div class="trump-selection" *ngIf="gameState.gamePhase === 'choosing_trump'">
+  <!-- Trump Selection Modal -->
+  <div class="trump-selection-overlay" *ngIf="gameState.gamePhase === 'choosing_trump'">
+    <div class="trump-selection-modal">
       <h2>Choose Color</h2>
       <div class="suits">
         <div class="suit-btn spades" (click)="chooseTrump(Suit.Spades)">
-          <div class="card-content">
-            <div class="card-value">A</div>
-            <div class="card-suit">{{ Suit.Spades }}</div>
-          </div>
+          <div class="card-content"><div class="card-value">A</div><div class="card-suit">{{ Suit.Spades }}</div></div>
         </div>
         <div class="suit-btn hearts" (click)="chooseTrump(Suit.Hearts)">
-          <div class="card-content">
-            <div class="card-value">A</div>
-            <div class="card-suit">{{ Suit.Hearts }}</div>
-          </div>
+          <div class="card-content"><div class="card-value">A</div><div class="card-suit">{{ Suit.Hearts }}</div></div>
         </div>
         <div class="suit-btn diamonds" (click)="chooseTrump(Suit.Diamonds)">
-          <div class="card-content">
-            <div class="card-value">A</div>
-            <div class="card-suit">{{ Suit.Diamonds }}</div>
-          </div>
+          <div class="card-content"><div class="card-value">A</div><div class="card-suit">{{ Suit.Diamonds }}</div></div>
         </div>
         <div class="suit-btn clubs" (click)="chooseTrump(Suit.Clubs)">
-          <div class="card-content">
-            <div class="card-value">A</div>
-            <div class="card-suit">{{ Suit.Clubs }}</div>
-          </div>
+          <div class="card-content"><div class="card-value">A</div><div class="card-suit">{{ Suit.Clubs }}</div></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Game Info -->
-    <div class="game-info">
-      <h2>Game Info</h2>
-      <div class="game-info-content">
-        <p><strong>Color:</strong> <span [ngClass]="{
-      'suit-hearts': gameState.trumpSuit === Suit.Hearts,
-      'suit-diamonds': gameState.trumpSuit === Suit.Diamonds,
-      'suit-spades': gameState.trumpSuit === Suit.Spades,
-      'suit-clubs': gameState.trumpSuit === Suit.Clubs
-    }">{{ gameState.trumpSuit || 'Not Selected' }}</span></p>
-        <p><strong>Round:</strong> {{ gameState.roundNumber }}</p>
-        <p>
-          <strong>{{ gameState.partyAName }}:</strong> {{ gameState.partyARoundScore }}
-          <span class="round-status" *ngIf="gameState.partyARoundScore > gameState.partyBRoundScore">({{
-            gameState.partyAName }}
-            leads)</span>
-        </p>
-        <p><strong>{{ gameState.partyBName }}:</strong> {{ gameState.partyBRoundScore }}
-          <span class="round-status" *ngIf="gameState.partyBRoundScore > gameState.partyARoundScore">({{
-            gameState.partyBName }}
-            leads)</span>
-        </p>
-        <p><strong>Total Rounds ({{ gameState.partyAName }}/{{ gameState.partyBName }}):</strong> {{
-          gameState.partyAMatchScore }} / {{ gameState.partyBMatchScore }}</p>
-
-        <div class="game-controls" *ngIf="gameState.gamePhase === 'playing'">
-          <button class="forfeit-btn" (click)="forfeitRound()">Restart </button>
+  <div class="poker-table-container">
+    <div class="poker-table">
+      <!-- Opponent Players -->
+      <ng-container *ngFor="let player of gameState.players; let i = index">
+        <div *ngIf="i > 0" class="player-position" [ngClass]="'player-' + getPlayerPosition(player)">
+          <div class="player-avatar-container">
+            <div class="player-avatar" [class.current-player]="gameState.currentPlayerIndex === i" [ngClass]="getPlayerTeam(player)"></div>
+            <div class="player-name">{{ player.name }}</div>
+            <div class="card-count">{{ player.hand.length }} cards</div>
+          </div>
         </div>
+      </ng-container>
 
-        <div class="game-over-controls" *ngIf="gameState.gamePhase === 'game_over'">
-          <button class="play-again-btn" (click)="newGame()">Play Again</button>
-        </div>
-      </div>
-      <div class="trick-area" *ngIf="gameState && gameState.currentTrick && gameState.currentTrick.cards.length > 0">
-        <h3>Current Cards</h3>
-        <div class="trick-cards">
-          <div *ngFor="let played of gameState.currentTrick.cards" class="card"
-            [class.red-card]="played.card.suit === Suit.Hearts || played.card.suit === Suit.Diamonds">
-            <small>{{ played.player.name }}</small>
+      <!-- Trick Area (Center) -->
+      <div class="trick-area">
+        <div *ngFor="let played of gameState.currentTrick.cards" class="card-in-trick"
+             [ngClass]="getPlayedCardPosition(played.player)">
+          <div class="card" [class.red-card]="played.card.suit === Suit.Hearts || played.card.suit === Suit.Diamonds">
             <div class="card-value">{{ played.card.rank }}</div>
             <div class="card-suit">{{ played.card.suit }}</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="game-board">
-      <!-- Player Areas -->
-      <div class="players-container">
-        <div *ngFor="let player of gameState.players" class="player-area"
-          [class.current-player]="gameState.players[gameState.currentPlayerIndex].id === player.id"
-          [class.party-a]="player.isPartyA" [class.party-b]="!player.isPartyA">
-          <h3>{{ player.name }} ({{ player.isPartyA ? gameState.partyAName : gameState.partyBName }})</h3>
-          <p>Tricks Won: {{ player.tricksWon.length }}</p>
-          <div class="player-hand">
-            <div *ngFor="let card of player.hand" class="card"
-              [class.playable]="isCardPlayable(card, player.hand) && gameState.players[gameState.currentPlayerIndex].id === player.id && !cardPlayInProgress"
-              [class.disabled]="(!isCardPlayable(card, player.hand) && gameState.players[gameState.currentPlayerIndex].id === player.id) || cardPlayInProgress"
-              [class.red-card]="card.suit === Suit.Hearts || card.suit === Suit.Diamonds"
-              [class.trump-card]="card.suit === gameState.trumpSuit" (click)="playCard(player, card)">
-
-              <div class="card-value">{{ card.rank }}</div>
-              <div class="card-suit">{{ card.suit }}</div>
-            </div>
-          </div>
-        </div>
+  <!-- Main Player Area (Bottom) -->
+  <div class="main-player-area">
+    <div class="player-avatar-container">
+      <div class="player-avatar main-player-avatar" [class.current-player]="gameState.currentPlayerIndex === 0" [ngClass]="getPlayerTeam(gameState.players[0])"></div>
+      <div class="player-name">{{ gameState.players[0].name }}</div>
+    </div>
+    <div class="player-hand" *ngIf="currentPlayer">
+      <div *ngFor="let card of currentPlayer.hand; let i = index" class="card"
+           [ngStyle]="{
+             'transform': 'rotate(' + getCardRotation(i, currentPlayer.hand.length) + 'deg) translateY(' + getCardYOffset(i, currentPlayer.hand.length) + 'px)',
+             'z-index': i
+           }"
+           [class.playable]="isCardPlayable(card, currentPlayer.hand) && !cardPlayInProgress"
+           [class.disabled]="!isCardPlayable(card, currentPlayer.hand) || cardPlayInProgress"
+           [class.red-card]="card.suit === Suit.Hearts || card.suit === Suit.Diamonds"
+           [class.trump-card]="card.suit === gameState.trumpSuit"
+           (click)="playCard(currentPlayer, card)">
+        <div class="card-value">{{ card.rank }}</div>
+        <div class="card-suit">{{ card.suit }}</div>
       </div>
+    </div>
+  </div>
 
-
+  <!-- Game Info Sidebar -->
+  <div class="game-info-sidebar">
+    <div class="game-info-content">
+      <h2>Game Info</h2>
+      <p><strong>Color:</strong> <span [ngClass]="{
+        'suit-hearts': gameState.trumpSuit === Suit.Hearts,
+        'suit-diamonds': gameState.trumpSuit === Suit.Diamonds,
+        'suit-spades': gameState.trumpSuit === Suit.Spades,
+        'suit-clubs': gameState.trumpSuit === Suit.Clubs
+      }">{{ gameState.trumpSuit || 'Not Selected' }}</span></p>
+      <p><strong>Round:</strong> {{ gameState.roundNumber }}</p>
+      <p><strong>{{ gameState.partyAName }}:</strong> {{ gameState.partyARoundScore }}</p>
+      <p><strong>{{ gameState.partyBName }}:</strong> {{ gameState.partyBRoundScore }}</p>
+      <p><strong>Total:</strong> {{ gameState.partyAMatchScore }} / {{ gameState.partyBMatchScore }}</p>
+      <div *ngIf="gameState.streakHolder" class="streak-info">
+        <p><strong>Streak:</strong> {{ gameState.streakHolder.name }}</p>
+      </div>
+      <div class="game-controls" *ngIf="gameState.gamePhase === 'playing'">
+        <button class="forfeit-btn" (click)="forfeitRound()">Restart</button>
+      </div>
+      <div class="game-over-controls" *ngIf="gameState.gamePhase === 'game_over'">
+        <button class="play-again-btn" (click)="newGame()">Play Again</button>
+      </div>
     </div>
   </div>
 </div>
