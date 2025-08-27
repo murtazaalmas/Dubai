@@ -104,6 +104,7 @@
       <div class="player-name">{{ gameState.players[0].name }}</div>
     </div>
     <div class="player-hand" *ngIf="currentPlayer">
+     
       <div *ngFor="let card of currentPlayer.hand; let i = index" class="card"
            [ngStyle]="{
              'transform': 'rotate(' + getCardRotation(i, currentPlayer.hand.length) + 'deg) translateY(' + getCardYOffset(i, currentPlayer.hand.length) + 'px)',
@@ -138,6 +139,10 @@
         <p><strong>Streak:</strong> {{ gameState.streakHolder.name }}</p>
       </div>
       <div class="game-controls" *ngIf="gameState.gamePhase === 'playing'">
+        <div class="timer-container" *ngIf="timeRemaining > 0">
+          <div class="timer-bar" [style.width.%]="(timeRemaining / 40) * 100"></div>
+          <div class="timer-text">{{ timeRemaining }}s</div>
+        </div>
         <button class="forfeit-btn" (click)="forfeitRound()">Game Over</button>
         <button class="start-over-btn" (click)="newGame()">Restart</button>
       </div>

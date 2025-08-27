@@ -156,6 +156,47 @@ export class ColorGameComponent implements OnInit {
     this.gameState.gamePhase = 'playing';
     this.messageService.showMessage(`Player ${this.gameState.players[this.gameState.currentPlayerIndex].name}'s turn to start.`);
     this.saveGameState();
+    this.startTimer();
+  }
+
+  timeRemaining = 40;
+  timerInterval: any;
+
+  startTimer() {
+    this.stopTimer();
+    this.timeRemaining = 40;
+    this.timerInterval = setInterval(() => {
+      this.timeRemaining--;
+      
+      if (this.timeRemaining <= 0) {
+        this.stopTimer();
+        if (this.currentPlayer && this.currentPlayer.hand.length > 0) {
+          this.playRandomCard();
+        }
+      }
+    }, 1000);
+  }
+
+  stopTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+  }
+
+  playRandomCard() {
+    if (!this.currentPlayer || !this.currentPlayer.hand || this.currentPlayer.hand.length === 0) return;
+    
+    const playableCards = this.currentPlayer.hand.filter(card => 
+      this.isCardPlayable(card, this.currentPlayer?.hand || [])
+    );
+    
+    const cardToPlay = playableCards.length > 0 
+      ? playableCards[0] 
+      : this.currentPlayer.hand[0];
+    
+    if (cardToPlay) {
+      this.playCard(this.currentPlayer, cardToPlay);
+    }
   }
 
       playCard(player: Player, card: Card): void {
@@ -198,6 +239,7 @@ export class ColorGameComponent implements OnInit {
       this.gameState.currentPlayerIndex = (this.gameState.currentPlayerIndex + 1) % 4;
       this.messageService.showMessage(`Player ${this.gameState.players[this.gameState.currentPlayerIndex].name}'s turn.`);
       this.cardPlayInProgress = false; // Unlock for next player
+      this.startTimer();
     }
   }
 
@@ -314,6 +356,7 @@ export class ColorGameComponent implements OnInit {
         this.gameState.currentPlayerIndex = this.gameState.players.findIndex(p => p.id === winner.id);
         this.gameState.currentTrick = { cards: [] };
         this.cardPlayInProgress = false; // Unlock for next trick
+        this.startTimer();
       }  
     }, 1500); // Delay for user to see the trick
   }
