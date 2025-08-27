@@ -455,6 +455,12 @@ export class ColorGameComponent implements OnInit {
     return (playerIndex % 2 === 0) ? 'team-1' : 'team-2';
   }
 
+  getStreakCardTransform(index: number): string {
+    const rotation = index * 5;
+    const translation = index * 2;
+    return `rotate(${rotation}deg) translate(${translation}px)`;
+  }
+
   getPlayerPosition(player: Player): string {
     const mainPlayerId = this.gameState.players[0].id;
     if (player.id === mainPlayerId) return 'bottom';

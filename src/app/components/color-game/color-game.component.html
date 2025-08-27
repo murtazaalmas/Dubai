@@ -72,6 +72,16 @@
   </div>
 
   <div class="poker-table-container">
+    <div class="streak-pile-container" *ngIf="gameState.trickStreak && gameState.trickStreak.length > 0">
+      <div *ngFor="let card of gameState.trickStreak; let i = index" 
+           class="card-in-streak-pile" 
+           [style.transform]="getStreakCardTransform(i)">
+          <div class="card small-card" [class.red-card]="card.suit === Suit.Hearts || card.suit === Suit.Diamonds">
+              <div class="card-value">{{ card.rank }}</div>
+              <div class="card-suit">{{ card.suit }}</div>
+          </div>
+      </div>
+    </div>
     <div class="poker-table">
       <!-- Opponent Players -->
       <ng-container *ngFor="let player of gameState.players; let i = index">
@@ -83,6 +93,9 @@
           </div>
         </div>
       </ng-container>
+
+      <!-- Streak Pile -->
+    
 
       <!-- Trick Area (Center) -->
       <div class="trick-area">

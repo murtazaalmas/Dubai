@@ -200,6 +200,38 @@
   }
 }
 
+/* Streak Pile */
+.streak-pile-container {
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px dashed #ffeb3b;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 10; // Behind the trick area
+}
+
+.card-in-streak-pile {
+  position: absolute;
+
+  .small-card {
+    width: 40px;
+    height: 60px;
+    font-size: 0.6em;
+    border-radius: 5px;
+
+    .card-value { font-size: 1em; }
+    .card-suit { font-size: 1.2em; }
+  }
+}
+
 /* Center Timer */
 .table-center {
   position: absolute;
