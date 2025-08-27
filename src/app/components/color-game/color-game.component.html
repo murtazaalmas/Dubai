@@ -73,6 +73,7 @@
 
   <div class="poker-table-container">
     <div class="streak-pile-container" *ngIf="gameState.trickStreak && gameState.trickStreak.length > 0">
+      <div class="streak-count">{{ gameState.trickStreak.length / 4 }}</div>
       <div *ngFor="let card of gameState.trickStreak; let i = index" 
            class="card-in-streak-pile" 
            [style.transform]="getStreakCardTransform(i)">
