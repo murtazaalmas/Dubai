@@ -49,7 +49,8 @@ export interface Player {
   hand: Card[];
   tricksWon: Trick[];
   consecutiveWins: number;
-  isPartyA: boolean; // Players are in two parties
+  isPartyA: boolean; 
+  avatarUrl: string;
 }
 
 export interface Trick {

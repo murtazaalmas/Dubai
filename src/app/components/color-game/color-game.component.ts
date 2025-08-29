@@ -29,7 +29,7 @@ export class ColorGameComponent implements OnInit {
   partyBName: string = 'Party B';
   playerNames: string[] = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
   
-  showWinPopup = true;
+  showWinPopup = false;
   winningTeam = '';
   
   showTeamWinPopup(team: string): void {
@@ -90,10 +90,42 @@ export class ColorGameComponent implements OnInit {
 
   initializePlayers(): Player[] {
     return [
-      { id: 1, name: this.playerNames[0], hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: true },
-      { id: 2, name: this.playerNames[1], hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: false },
-      { id: 3, name: this.playerNames[2], hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: true },
-      { id: 4, name: this.playerNames[3], hand: [], tricksWon: [], consecutiveWins: 0, isPartyA: false },
+      { 
+        id: 1, 
+        name: this.playerNames[0], 
+        hand: [], 
+        tricksWon: [], 
+        consecutiveWins: 0, 
+        isPartyA: true,
+        avatarUrl: '/assets/images/1.webp'
+      },
+      { 
+        id: 2, 
+        name: this.playerNames[1], 
+        hand: [], 
+        tricksWon: [], 
+        consecutiveWins: 0, 
+        isPartyA: false,
+        avatarUrl: '/assets/images/2.webp'
+      },
+      { 
+        id: 3, 
+        name: this.playerNames[2], 
+        hand: [], 
+        tricksWon: [], 
+        consecutiveWins: 0, 
+        isPartyA: true,
+        avatarUrl: '/assets/images/3.webp'
+      },
+      { 
+        id: 4, 
+        name: this.playerNames[3], 
+        hand: [], 
+        tricksWon: [], 
+        consecutiveWins: 0, 
+        isPartyA: false,
+        avatarUrl: '/assets/images/4.webp'
+      },
     ];
   }
 
