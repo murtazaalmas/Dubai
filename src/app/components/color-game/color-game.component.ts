@@ -28,6 +28,17 @@ export class ColorGameComponent implements OnInit {
   partyAName: string = 'Party A';
   partyBName: string = 'Party B';
   playerNames: string[] = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
+  
+  showWinPopup = true;
+  winningTeam = '';
+  
+  showTeamWinPopup(team: string): void {
+    this.winningTeam = team;
+    this.showWinPopup = true;
+    setTimeout(() => {
+      this.showWinPopup = false;
+    }, 10000);
+  }
 
   ngOnInit(): void {
     this.loadGameState();
@@ -370,9 +381,11 @@ export class ColorGameComponent implements OnInit {
     if (partyA > partyB) {
       this.gameState.partyAMatchScore++;
       roundWinner = 'A';
+      this.showTeamWinPopup(this.gameState.partyAName);
     } else if (partyB > partyA) {
       this.gameState.partyBMatchScore++;
       roundWinner = 'B';
+      this.showTeamWinPopup(this.gameState.partyBName);
     }
 
     if (this.gameState.partyAMatchScore >= 7) {
