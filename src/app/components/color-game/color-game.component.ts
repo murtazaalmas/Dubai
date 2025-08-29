@@ -42,6 +42,8 @@ export class ColorGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadGameState();
+    this.checkScreenSize();
+    window.addEventListener('resize', () => this.checkScreenSize());
   }
 
   nextStep(): void {
@@ -521,5 +523,19 @@ export class ColorGameComponent implements OnInit {
       case 3: return 'right';
       default: return '';
     }
+  }
+
+  showHamburger = false;
+  sidebarOpen = false;
+
+  checkScreenSize() {
+    this.showHamburger = window.innerWidth <= 992;
+    if (!this.showHamburger) {
+      this.sidebarOpen = false;
+    }
+  }
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
   }
 }

@@ -94,7 +94,10 @@
               class="player-avatar" 
               [class.current-player]="gameState.currentPlayerIndex === i"
               [ngClass]="getPlayerTeam(player)">
-            <div class="player-name">{{ player.name }}</div>
+            <div class="player-timer" *ngIf="gameState.currentPlayerIndex === i && timeRemaining > 0">
+              {{timeRemaining}}s
+            </div>
+            <div class="player-name">{{ player.name }} <span class="round-wins" *ngIf="player.tricksWon.length > 0">{{ player.tricksWon.length }}</span></div>
             <div class="card-count">{{ player.hand.length }} cards</div>
           </div>
         </div>
@@ -125,7 +128,10 @@
         class="player-avatar main-player-avatar" 
         [class.current-player]="gameState.currentPlayerIndex === 0"
         [ngClass]="getPlayerTeam(gameState.players[0])">
-      <div class="player-name">{{ gameState.players[0].name }}</div>
+      <div class="player-timer" *ngIf="gameState.currentPlayerIndex === 0 && timeRemaining > 0">
+        {{timeRemaining}}s
+      </div>
+      <div class="player-name">{{ gameState.players[0].name }} <span class="round-wins" *ngIf="gameState.players[0].tricksWon.length > 0">{{ gameState.players[0].tricksWon.length }}</span></div>
     </div>
     <div class="player-hand" *ngIf="currentPlayer">
      
@@ -146,7 +152,27 @@
   </div>
 
   <!-- Game Info Sidebar -->
-  <div class="game-info-sidebar">
+  <div class="game-info-sidebar" [class.open]="sidebarOpen">
+    <div class="hamburger-menu" *ngIf="showHamburger" (click)="toggleSidebar()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="mobile-trump-indicator" [ngClass]="'suit-' + gameState.trumpSuit" *ngIf="gameState.trumpSuit && showHamburger">
+      <div class="round-number">
+        <span>Color:</span>
+        <span [ngClass]="{
+          'suit-hearts': gameState.trumpSuit === Suit.Hearts,
+          'suit-diamonds': gameState.trumpSuit === Suit.Diamonds,
+          'suit-spades': gameState.trumpSuit === Suit.Spades,
+          'suit-clubs': gameState.trumpSuit === Suit.Clubs
+        }"> {{ gameState.trumpSuit || 'Not Selected' }}</span>
+      </div>
+      <div class="round-number">Round: {{ gameState.roundNumber }}</div>
+      <div class="streak-player" *ngIf="gameState.streakHolder">
+        Streak: {{ gameState.streakHolder.name }}
+      </div>
+    </div>
     <div class="game-info-content">
       <h2>Game Info</h2>
       <p><strong>Color:</strong> <span [ngClass]="{
@@ -163,10 +189,6 @@
         <p><strong>Streak:</strong> {{ gameState.streakHolder.name }}</p>
       </div>
       <div class="game-controls" *ngIf="gameState.gamePhase === 'playing'">
-        <div class="timer-container" *ngIf="timeRemaining > 0">
-          <div class="timer-bar" [style.width.%]="(timeRemaining / 40) * 100"></div>
-          <div class="timer-text">{{ timeRemaining }}s</div>
-        </div>
         <button class="forfeit-btn" (click)="forfeitRound()">Game Over</button>
         <button class="start-over-btn" (click)="newGame()">Restart</button>
       </div>
