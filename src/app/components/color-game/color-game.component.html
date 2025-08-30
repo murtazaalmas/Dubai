@@ -128,7 +128,7 @@
         class="player-avatar main-player-avatar" 
         [class.current-player]="gameState.currentPlayerIndex === 0"
         [ngClass]="getPlayerTeam(gameState.players[0])">
-      <div class="player-timer" *ngIf="gameState.currentPlayerIndex === 0 && timeRemaining > 0">
+      <div class="player-timer player-timer-bottom" *ngIf="gameState.currentPlayerIndex === 0 && timeRemaining > 0">
         {{timeRemaining}}s
       </div>
       <div class="player-name">{{ gameState.players[0].name }} <span class="round-wins" *ngIf="gameState.players[0].tricksWon.length > 0">{{ gameState.players[0].tricksWon.length }}</span></div>
@@ -175,7 +175,7 @@
     </div>
     <div class="game-info-content">
       <h2>Game Info</h2>
-      <p><strong>Color:</strong> <span [ngClass]="{
+      <p><strong>Color: </strong> <span [ngClass]="{
         'suit-hearts': gameState.trumpSuit === Suit.Hearts,
         'suit-diamonds': gameState.trumpSuit === Suit.Diamonds,
         'suit-spades': gameState.trumpSuit === Suit.Spades,
