@@ -493,7 +493,7 @@ export class ColorGameComponent implements OnInit {
     const midPoint = (totalCards - 1) / 2;
     const distanceFromMid = Math.abs(index - midPoint);
     // Create a gentle arc
-    return distanceFromMid * distanceFromMid * 2.5;
+    return distanceFromMid * distanceFromMid * 1.5;
   }
 
   getPlayerTeam(player: Player): string {
