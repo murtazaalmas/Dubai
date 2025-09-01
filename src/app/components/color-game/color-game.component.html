@@ -1,15 +1,15 @@
 <div class="setup-container" *ngIf="gameState.gamePhase === 'setup'">
-  <h1>Welcome to Rang</h1>
+  <!-- <h1>Welcome to Rang</h1> -->
   <!-- <h2>Game Setup</h2> -->
   <!-- Step 1: Party Names -->
   <div *ngIf="setupStep === 1">
     <div class="party-inputs">
       <div class="party-input">
-        <label for="partyA">Party A Name:</label>
+        <label for="partyA">Team A:</label>
         <input id="partyA" type="text" [(ngModel)]="partyAName">
       </div>
       <div class="party-input">
-        <label for="partyB">Party B Name:</label>
+        <label for="partyB">Team B:</label>
         <input id="partyB" type="text" [(ngModel)]="partyBName">
       </div>
     </div>
@@ -42,7 +42,7 @@
       </div>
     </div>
     <button class="back-btn" (click)="previousStep()">Back</button>
-    <button class="start-game-btn" (click)="startGame()">Start Game</button>
+    <button class="start-game-btn" (click)="startGame()">Start</button>
   </div>
   <p class="sponsor-text">Sponsor by Murtaza, Sharik and Mujtaba</p>
 </div>

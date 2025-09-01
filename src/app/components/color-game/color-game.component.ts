@@ -25,8 +25,8 @@ export class ColorGameComponent implements OnInit {
 
   constructor(private messageService: MessageService) {}
 
-  partyAName: string = 'Party A';
-  partyBName: string = 'Party B';
+  partyAName: string = 'Blue';
+  partyBName: string = 'Red';
   playerNames: string[] = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
   
   showWinPopup = false;
